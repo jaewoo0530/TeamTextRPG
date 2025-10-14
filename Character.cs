@@ -8,6 +8,7 @@ namespace TeamTextRPG
 {
     internal class Character : Living
     {
+        private Random random = new Random();
         public string Job { get; }
         public int Level { get; private set; } = 1;
 
@@ -36,7 +37,10 @@ namespace TeamTextRPG
 
         public override int CalculateDamage()
         {
-            return Attack;
+            int min = (int)(Attack * 0.9f);
+            int max = (int)(Attack * 1.1f) + 1;
+            int randDamage = random.Next(min, max);
+            return randDamage;
         }
     }
 }
