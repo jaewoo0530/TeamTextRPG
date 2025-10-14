@@ -50,7 +50,9 @@ namespace TeamTextRPG
             {
                 if (monster[i].Hp == 0)
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine($"Lv.{monster[i].Level} {monster[i].Name} Dead");
+                    Console.ResetColor();
                 }
                 else
                 {
