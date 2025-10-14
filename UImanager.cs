@@ -24,8 +24,13 @@ namespace TeamTextRPG
                 Console.WriteLine("1. 상태 보기\n2. 전투 시작");
                 Console.WriteLine();
                 Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
-                return int.TryParse(Console.ReadLine(), out int choice) ? choice : -1;
+                Input();
             }
+        }
+
+        public int Input()
+        {
+            return int.TryParse(Console.ReadLine(), out int choice) ? choice : -1;
         }
 
         public void Status(Character player) // 1. 상태 보기
