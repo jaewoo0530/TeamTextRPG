@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -113,5 +114,23 @@ namespace TeamTextRPG
 
             }
         }
+
+        public void BattlePlayerWin(Character player, Monster monster, int beforeDungeonHp) // 플레이어 승리 결과창
+        {
+            Console.Clear();
+            Console.WriteLine("Battle!! - Result");
+            Console.WriteLine();
+            Console.WriteLine("Victory");
+            Console.WriteLine();
+            Console.WriteLine($"던전에서 몬스터 {monster[i]}마리를 잡았습니다.");
+            Console.WriteLine();
+            Console.WriteLine($"Lv.{player.Name}");
+            Console.WriteLine($"HP {beforeDungeonHp} -> {player.Hp}");
+            Console.WriteLine();
+            Console.WriteLine("0. 다음");
+            Console.WriteLine();
+            Console.WriteLine(">>");
+        }
+
     }
 }
