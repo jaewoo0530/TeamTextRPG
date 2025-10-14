@@ -131,6 +131,21 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine(">>");
         }
-
+        public void BattlePlayerLose(Character player, Monster monster, int beforeDungeonHp)
+        {
+            Console.Clear();
+            Console.WriteLine("Battle!! - Result");
+            Console.WriteLine();
+            Console.WriteLine("You Lose");
+            Console.WriteLine();
+            Console.WriteLine($"던전에서 몬스터 {monster[i]}마리를 잡았습니다.");
+            Console.WriteLine();
+            Console.WriteLine($"Lv.{player.Name}");
+            Console.WriteLine($"HP {beforeDungeonHp} -> 0");
+            Console.WriteLine();
+            Console.WriteLine("0. 다음");
+            Console.WriteLine();
+            Console.WriteLine(">>");
+        }
     }
 }
