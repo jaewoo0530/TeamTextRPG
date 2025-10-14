@@ -61,8 +61,8 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine($"Lv. {player.Level}");
                 Console.WriteLine($"{player.Name} ({player.Job})");
-                Console.WriteLine($"공격력 : {player.Attack}");
-                Console.WriteLine($"방어력 : {player.Defense}");
+                Console.WriteLine($"공격력 : {player.Atk}");
+                Console.WriteLine($"방어력 : {player.Def}");
                 Console.WriteLine($"체 력 : {player.Hp}");
                 Console.WriteLine($"Gold : {player.Gold} G");
                 Console.WriteLine();
