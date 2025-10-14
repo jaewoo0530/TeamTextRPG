@@ -8,17 +8,20 @@ namespace TeamTextRPG
 {
     internal class Living
     {
+
+        private int hp;
+
         public string Name { get; protected set; }
         public int Attack { get; protected set; }
         public int Defense { get; protected set; }
         public int Hp 
         { 
-            get=> Hp;
+            get=> hp;
             protected set
             {
-                Hp = value;
-                if (Hp < 0)
-                    Hp = 0;
+                hp = value;
+                if (hp < 0)
+                    hp = 0;
             } 
         }
 
@@ -37,8 +40,8 @@ namespace TeamTextRPG
 
         public void TakeDamage(int damage)
         {
-            int Finaldamage = Math.Max(damage-Defense, 0);
-            Hp -= Finaldamage;
+            int finalDamage = Math.Max(damage-Defense, 0);
+            Hp -= finalDamage;
             
         }
     }
