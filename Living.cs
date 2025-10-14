@@ -29,12 +29,13 @@ namespace TeamTextRPG
 
 
         // 🔹 몬스터용 생성자 (값 다 넘김)
-        public Living(string name, int attack, int defense, int hp)
+        public Living(string name, int attack, int defense, int hp,int level)
         {
             Name = name;
             Atk = attack;
             Def = defense;
             Hp = hp;
+            Level = level;
         }
 
         // 🔹 캐릭터용 기본 생성자 (나중에 직접 세팅)
