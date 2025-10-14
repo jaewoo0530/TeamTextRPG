@@ -48,7 +48,14 @@ namespace TeamTextRPG
             Console.WriteLine();
             for (int i = 0; i < monster.Count; i++)
             {
-                Console.WriteLine($"Lv.{monster[i].level} {monster[i].name} HP {monster[i].hp}");
+                if (monster[i].hp == 0)
+                {
+                    Console.WriteLine($"Lv.{monster[i].level} {monster[i].name} Dead");
+                }
+                else
+                {
+                    Console.WriteLine($"Lv.{monster[i].level} {monster[i].name} HP {monster[i].hp}");
+                }
             }
             Console.WriteLine();
             Console.WriteLine();
