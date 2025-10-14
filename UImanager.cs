@@ -82,6 +82,10 @@ namespace TeamTextRPG
             {
                 Console.WriteLine($"HP {beforeHp} -> {monster.Hp}");
             }
+            Console.WriteLine();
+            Console.WriteLine("0. 다음");
+            Console.WriteLine();
+            Console.WriteLine(">>");
         }
     }
 }
