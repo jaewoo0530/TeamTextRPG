@@ -21,5 +21,23 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
         }
+
+        public void Status()
+        {
+            Console.WriteLine("상태 보기");
+            Console.WriteLine("캐릭터의 정보가 표시됩니다.");
+            Console.WriteLine();
+            Console.WriteLine($"Lv. {player.level}");
+            Console.WriteLine($"{player.name} ({player.job})");
+            Console.WriteLine($"공격력 : {player.attackPower}");
+            Console.WriteLine($"방어력 : {player.defencePower}");
+            Console.WriteLine($"체 력 : {player.hp}");
+            Console.WriteLine($"Gold : {player.gold} G");
+            Console.WriteLine();
+            Console.WriteLine("0. 나가기");
+            Console.WriteLine();
+            Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
+
+        }
     }
 }
