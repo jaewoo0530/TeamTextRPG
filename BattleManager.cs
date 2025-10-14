@@ -2,35 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
+using System.Numerics;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TeamTextRPG
 {
     internal class BattleManager
     {
-        Monster monster;
         Character player;
-        public void GiveDamage()
+        public void Attack(Living attacker, Living target)
         {
-            int damage = player.CalculateDamage();
-
-            Console.WriteLine($"{player.Name}이(가) {monster.Name}을(를) 공격했습니다! ({damage} 피해)");
-
-            monster.TakeDamage(damage);
-
-            Console.WriteLine($"{monster.Name}의 남은 HP: {monster.Hp}");
-        }
-
-        public void TakeDamage()
-        {
-            int damage = monster.CalculateDamage();
-
-            Console.WriteLine($"{player.Name}이(가) {monster.Name}을(를) 공격했습니다! ({damage} 피해)");
-
-            monster.TakeDamage(damage);
-
-            Console.WriteLine($"{monster.Name}의 남은 HP: {monster.Hp}");
+            Random random = new Random();
+            if (random.Next(0, 100) < 10)
+            {
+                Console.WriteLine($"{player.Name}의 공격이 빗나갔습니다!");
+            }
+            else
+            {
+            int damage = attacker.CalculateDamage();
+            target.TakeDamage(damage);
+            }
         }
     }
 }
