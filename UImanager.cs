@@ -23,65 +23,49 @@ namespace TeamTextRPG
             Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
         }
 
-        public void Status(Character player) // 1. 상태 보기
+        public void Status() // 1. 상태 보기
         {
             Console.Clear();
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
             Console.WriteLine();
-            Console.WriteLine($"Lv. {player.Level}");
-            Console.WriteLine($"{player.Name} ({player.Job})");
-            Console.WriteLine($"공격력 : {player.Attack}");
-            Console.WriteLine($"방어력 : {player.Defense}");
-            Console.WriteLine($"체 력 : {player.Hp}");
-            Console.WriteLine($"Gold : {player.Gold} G");
+            Console.WriteLine($"Lv. {player.level}");
+            Console.WriteLine($"{player.name} ({player.job})");
+            Console.WriteLine($"공격력 : {player.basePower}");
+            Console.WriteLine($"방어력 : {player.baseDefense}");
+            Console.WriteLine($"체 력 : {player.hp}");
+            Console.WriteLine($"Gold : {player.gold} G");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
             Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
         }
 
-        public void BattleStart(Character player, List<Monster> monster) // 2. 전투 시작
+        public void BattleStart() // 2. 전투 시작
         {
             Console.Clear();
             Console.WriteLine("Battle!!");
             Console.WriteLine();
             for (int i = 0; i < monster.Count; i++)
             {
-                if (monster[i].Hp == 0)
+                if (monster[i].hp == 0)
                 {
-                    Console.WriteLine($"Lv.{monster[i].Level} {monster[i].Name} Dead");
+                    Console.WriteLine($"Lv.{monster[i].level} {monster[i].name} Dead");
                 }
                 else
                 {
-                    Console.WriteLine($"Lv.{monster[i].Level} {monster[i].Name} HP {monster[i].Hp}");
+                    Console.WriteLine($"Lv.{monster[i].level} {monster[i].name} HP {monster[i].hp}");
                 }
             }
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("[내정보]");
-            Console.WriteLine($"Lv.{player.Level} {player.Name} ({player.Job})");
-            Console.WriteLine($"HP {player.Hp}/100");
+            Console.WriteLine($"Lv.{player.level} {player.name} ({player.job})");
+            Console.WriteLine($"HP {player.hp}/100");
             Console.WriteLine();
             Console.WriteLine("1. 공격");
             Console.WriteLine();
             Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
-        }
-
-        public void PlayerAttack(Character player, Monster monster, int damage, int beforeHp) // 플레이어 공격
-        {
-            Console.WriteLine($"{player.Name}의 공격!");
-            Console.WriteLine($"Lv.{monster.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
-            Console.WriteLine();
-            Console.WriteLine($"Lv.{monster.Name}");
-            if (monster.Hp == 0)
-            {
-                Console.WriteLine($"HP {beforeHp} -> Dead");
-            }
-            else
-            {
-                Console.WriteLine($"HP {beforeHp} -> {monster.Hp}");
-            }
         }
     }
 }
