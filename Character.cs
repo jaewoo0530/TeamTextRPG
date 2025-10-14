@@ -10,7 +10,6 @@ namespace TeamTextRPG
     {
         private Random random = new Random();
         public string Job { get; }
-        public int Level { get; private set; } = 1;
 
         private int stamina = 100;
         public int Stamina
@@ -30,7 +29,7 @@ namespace TeamTextRPG
         public int Gold { get; private set; } = 500;
         public int Exp { get; private set; } = 0;
 
-        public Character(string name, string job, int basePower, int baseDefense, int hp) : base(name, basePower, baseDefense, hp)
+        public Character(string name, string job, int basePower, int baseDefense, int hp, int level) : base(name, basePower, baseDefense, hp, level)
         {
             Job = job;
         }
