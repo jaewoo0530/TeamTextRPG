@@ -41,7 +41,7 @@ namespace TeamTextRPG
             Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
         }
 
-        public void BattleStart(Character player, List<Monster> monster) // 2. 전투 시작
+        public void BattleMain(Character player, List<Monster> monster) // 2. 전투 시작
         {
             Console.Clear();
             Console.WriteLine("Battle!!");
