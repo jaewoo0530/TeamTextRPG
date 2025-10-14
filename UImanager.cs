@@ -51,7 +51,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void Status(Character player) // 1. 상태 보기
+        public void Status(Character player, List<Monster> monster) // 1. 상태 보기
         {
             while (true)
             {
@@ -68,7 +68,18 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine("0. 나가기");
                 Console.WriteLine();
-                Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
+                int choice = Input();
+                Input();
+                if (choice == 0)
+                {
+                    Mainmenu(player, monster);
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(800);
+                }
             }
         }
 
