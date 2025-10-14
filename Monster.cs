@@ -9,7 +9,7 @@ namespace TeamTextRPG
     internal class Monster: Living
     {
 
-        public Monster(string name, int attack, int defense, int hp, int level): base(name, attack, defense, hp, level  )
+        public Monster(string name, int attack, int defense, int hp, int level): base(name, attack, defense, hp, level)
         { }
 
     }
