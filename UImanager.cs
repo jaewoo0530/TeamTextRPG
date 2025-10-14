@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace TeamTextRPG
 {
@@ -14,7 +16,14 @@ namespace TeamTextRPG
 
         }
 
-        public void Mainmenu() // 게임 시작 화면
+        public int Input()
+        {
+            Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
+            return int.TryParse(Console.ReadLine(), out int choice) ? choice : -1;
+        }
+
+
+        public void Mainmenu(Character player, List<Monster> monster) // 게임 시작 화면
         {
             while (true)
             {
@@ -23,14 +32,23 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine("1. 상태 보기\n2. 전투 시작");
                 Console.WriteLine();
+                int choice = Input();
                 Input();
+                if (choice == 1)
+                {
+                    Status(player);
+                }
+                else if (choice == 2)
+                {
+                    BattleMain(player, monster);
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(800);
+                }
             }
-        }
-
-        public int Input()
-        {
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
-            return int.TryParse(Console.ReadLine(), out int choice) ? choice : -1;
         }
 
         public void Status(Character player) // 1. 상태 보기
