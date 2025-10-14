@@ -29,9 +29,14 @@ namespace TeamTextRPG
         public int Gold { get; private set; } = 500;
         public int Exp { get; private set; } = 0;
 
-        public Character(string name, string job, int basePower, int baseDefense) : base(name)
+        public Character(string name, string job, int basePower, int baseDefense, int hp) : base(name, basePower, baseDefense, hp)
         {
+            Job = job;
+        }
 
+        public override int CalculateDamage()
+        {
+            return Attack;
         }
     }
 }

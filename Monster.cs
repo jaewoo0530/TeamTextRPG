@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace TeamTextRPG
 {
-    internal class Monster
+    internal class Monster: Living
     {
-        public Monster(string name, int basePower, int baseDefense) : base(name)
+        public Monster(string name, int basePower, int baseDefense, int hp): base(name, basePower, baseDefense, hp)
         {
-
         }
     }
 }
