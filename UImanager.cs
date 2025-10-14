@@ -72,6 +72,8 @@ namespace TeamTextRPG
 
         public void PlayerAttack(Character player, Monster monster, int damage, int beforeHp) // 플레이어 공격
         {
+            Console.Clear();
+            Console.WriteLine("Battle!!");
             Console.WriteLine($"{player.Name}의 공격!");
             Console.WriteLine($"Lv.{monster.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
             Console.WriteLine();
