@@ -8,6 +8,8 @@ namespace TeamTextRPG
 {
     internal class Character : Living
     {
+        public enum JobType { 전사, 궁수, 마법사 }
+
         private Random random = new Random();
         public string Job { get; }
 
@@ -31,7 +33,15 @@ namespace TeamTextRPG
 
         public Character(string name, string job)
         {
-            Job = job;
+            Job = job.ToString();
+            Level = 1;
+
+            switch (job)
+            {
+                case "전사": Atk = 5; Def = 10; break;
+                case "궁수": Atk = 10; Def = 5; break;
+                case "마법사": Atk = 3; Def = 5; break;
+            }
         }
 
         public override int CalculateDamage()
