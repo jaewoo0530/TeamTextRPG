@@ -89,5 +89,27 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine(">>");
         }
+
+        public void MonsterAttack(Character player, Monster monster, int damage, int beforePlayerHp) // 몬스터 공격
+        {
+            Console.Clear();
+            Console.WriteLine("Battle!!");
+            Console.WriteLine($"{monster.Name}의 공격!");
+            Console.WriteLine($"Lv.{player.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
+            Console.WriteLine();
+            Console.WriteLine($"Lv.{player.Name}");
+            if (player.Hp == 0)
+            {
+                Console.WriteLine($"HP {beforePlayerHp} -> {player.Hp}");
+                Console.WriteLine();
+                Console.WriteLine("0. 다음");
+                Console.WriteLine();
+                Console.WriteLine(">>");
+            }
+            else
+            {
+
+            }
+        }
     }
 }
