@@ -9,6 +9,11 @@ namespace TeamTextRPG
 {
     internal class BattleManager
     {
+        Monster monster;
+        Character player;
+        public void GiveDamage()
+        {
 
+        }
     }
 }

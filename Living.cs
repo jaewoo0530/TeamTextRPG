@@ -25,7 +25,7 @@ namespace TeamTextRPG
                     hp = 0;
             } 
         }
-        public int Exp { get; protected set; }
+
 
         public Living(string name, int attack, int defense, int hp, int level)
         {
