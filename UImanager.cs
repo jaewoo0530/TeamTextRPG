@@ -28,6 +28,7 @@ namespace TeamTextRPG
         {
             while (true)
             {
+                Console.Write("\n>> ");
                 bool valid = int.TryParse(Console.ReadLine(), out int choice);
 
                 if (valid && (choice >= 0 && choice <= maxOption))
@@ -41,20 +42,22 @@ namespace TeamTextRPG
                 }
             }
         }
-        public void CreateName()
-        {
-            Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.\n원하시는 이름을 설정해주세요.");
-            Console.WriteLine("원하시는 이름을 입력해주세요.\n>>");
-            string name = Console.ReadLine();
 
+        public string CreateName()
+        {
+            Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
+            Console.Write("원하시는 이름을 입력해주세요.\n>> ");
+            string name = Console.ReadLine();
+            return name;
         }
+
         public JobType CreateJob()
         {
-            Console.WriteLine("원하시는 직업의 이름을 입력해주세요. [전사, 마법사, 궁수]\n>>");
+            Console.Write("원하시는 직업의 이름을 입력해주세요. [전사, 궁수, 마법사]\n>> ");
             int jobCount = Enum.GetValues<JobType>().Length; // jobCount - 1
             return Enum.TryParse(Console.ReadLine(), out JobType selectJob) ? selectJob : JobType.전사;
-
         }
+
         public void MainmenuUI() // 게임 시작 화면
         {
             Console.Clear();
@@ -62,7 +65,7 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine("1. 상태 보기\n2. 전투 시작\n3. 회복 아이템");
             Console.WriteLine();
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
+            Console.Write("원하시는 행동을 입력해주세요.");
 
             int choice = Input(3);
             if (choice == 1)
@@ -94,7 +97,7 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
+            Console.Write("원하시는 행동을 입력해주세요.");
 
             int choice = Input(0);
             if (choice == 0)
@@ -131,7 +134,7 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine("1. 공격\n2. 스킬");
             Console.WriteLine();
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
+            Console.Write("원하시는 행동을 입력해주세요.");
 
             int choice = Input(2);
             if (choice == 1)
@@ -142,7 +145,6 @@ namespace TeamTextRPG
             {
 
             }
-
         }
 
         public void PlayerAttackStartUI()
@@ -173,7 +175,7 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine("0. 취소");
             Console.WriteLine();
-            Console.WriteLine("대상을 선택해주세요.\n>>");
+            Console.Write("대상을 선택해주세요.");
 
             int choice = Input(Monsters.Count);
             if (choice == 0)
@@ -225,8 +227,6 @@ namespace TeamTextRPG
 
             Console.WriteLine();
             Console.WriteLine("0. 다음");
-            Console.WriteLine();
-            Console.WriteLine(">>");
 
             int choice = Input(0);
             if (choice == 0)
@@ -261,12 +261,10 @@ namespace TeamTextRPG
             Console.WriteLine($"HP {beforePlayerHp} -> {Player.Hp}");
             Console.WriteLine();
             Console.WriteLine("0. 다음");
-            Console.WriteLine();
-            Console.WriteLine(">>");
             Input(0);
         }
 
-        public void BattlePlayerWinUI(int damage, int beforeDungeonHp) // 플레이어 승리 결과창
+        public void BattlePlayerWinUI(int beforeDungeonHp) // 플레이어 승리 결과창
         {
             Console.Clear();
             Console.WriteLine("Battle!! - Result");
@@ -276,7 +274,7 @@ namespace TeamTextRPG
             Console.WriteLine($"던전에서 몬스터 {Monsters.Count}마리를 잡았습니다.");
             Console.WriteLine();
             Console.WriteLine("[캐릭터 정보]");
-            Console.WriteLine($"Lv.{Player.Level}{Player.Name} -> Lv.{Player.Level}{Player.Name}");
+            Console.WriteLine($"Lv.{Player.Level} {Player.Name} -> Lv.{Player.Level} {Player.Name}");
             Console.WriteLine($"exp.{Player.Exp} -> exp.{Player.Exp}");
             Console.WriteLine($"HP {beforeDungeonHp} -> {Player.Hp}");
             Console.WriteLine();
@@ -284,7 +282,7 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine("0. 다음");
             Console.WriteLine();
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
 
             int choice = Input(0);
             if (choice == 0)
@@ -293,28 +291,21 @@ namespace TeamTextRPG
             }
         }
 
-        public void BattlePlayerLoseUI(int damage, int beforeDungeonHp)
+        public void BattlePlayerLoseUI(int beforeDungeonHp)
         {
             Console.Clear();
             Console.WriteLine("Battle!! - Result");
             Console.WriteLine();
             Console.WriteLine("You Lose");
             Console.WriteLine();
-            Console.WriteLine($"던전에서 몬스터 {Monsters.Count}마리를 잡았습니다.");
-            Console.WriteLine();
-            Console.WriteLine($"Lv.{Player.Name}");
+            Console.WriteLine($"Lv.{Player.Level} {Player.Name}");
             Console.WriteLine($"HP {beforeDungeonHp} -> 0");
             Console.WriteLine();
-            Console.WriteLine("0. 다음");
-            Console.WriteLine();
-            Console.WriteLine(">>");
+            Console.WriteLine("0. 종료");
 
             int choice = Input(0);
-            if (choice == 0)
-            {
-                MainmenuUI();
-            }
         }
+
         public void HealItem()
         {
             Console.Clear();
@@ -324,7 +315,7 @@ namespace TeamTextRPG
             Console.WriteLine("1. 사용하기");
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
 
             int choice = Input(1);
             if (choice == 0)

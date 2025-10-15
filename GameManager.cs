@@ -18,23 +18,27 @@ namespace TeamTextRPG
 
         private MonsterData monsterData = new MonsterData();
 
+        private int beforeDungeonHp;
+
         public void StartGame()
         {
-            Console.WriteLine("이름");
-            string name = Console.ReadLine();
-            Console.WriteLine("직업");
-            JobType job = Enum.TryParse(Console.ReadLine(), out JobType selectJob) ? selectJob : JobType.전사;
+            UI = new UIManager(this);
+            Battle = new BattleManager(this);
+
+            string name = UI.CreateName();
+            JobType job = UI.CreateJob();
 
             Player = new Character(name, job);
-            Battle = new BattleManager(this);
-            UI = new UIManager(this);
 
             UI.MainmenuUI();
         }
 
         public void StartBattle()
         {
+            beforeDungeonHp = Player.Hp;
+
             int monsterCount = random.Next(1, 5);
+
             Monsters = new List<Monster>();
 
             for (int i = 0; i < monsterCount; i++)
@@ -54,23 +58,24 @@ namespace TeamTextRPG
 
             if (!Player.IsDead)
             {
-
+                BattleWin();
             }
             else
             {
-
+                BattleLose();
             }
 
             Monsters.Clear();
-
         }
 
         public void PlayerAttack(Monster target)
         {
             int beforeMonsterHp = target.Hp;
+
             int damage = Battle.CalculateDamage(Player, target);
             Player.Attack(target, damage);
             UI.PlayerAttackUI(target, damage, beforeMonsterHp);
+
             Battle.isCritical = false;
             Battle.isEvaded = false;
         }
@@ -85,18 +90,33 @@ namespace TeamTextRPG
                 }
                 else
                 {
-                    int beforePlayerHp = player.Hp;
-                    int damage = Battle.CalculateDamage(Monsters[i], Player);
-                    Monsters[i].Attack(player, damage);
-                    UI.MonsterAttackUI(Monsters[i], damage, beforePlayerHp);
-                    Battle.isCritical = false;
-                    Battle.isEvaded = false;
+                    if (!Player.IsDead)
+                    {
+                        int beforePlayerHp = player.Hp;
+
+                        int damage = Battle.CalculateDamage(Monsters[i], Player);
+                        Monsters[i].Attack(player, damage);
+                        UI.MonsterAttackUI(Monsters[i], damage, beforePlayerHp);
+
+                        Battle.isCritical = false;
+                        Battle.isEvaded = false;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }
 
         public void BattleWin()
         {
+            UI.BattlePlayerWinUI(beforeDungeonHp);
+        }
+
+        public void BattleLose()
+        {
+            UI.BattlePlayerLoseUI(beforeDungeonHp);
         }
     }
 }
