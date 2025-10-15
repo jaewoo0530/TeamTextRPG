@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamTextRPG
 {
-    internal class Inventory
+    internal class Item
     {
     }
 }
