@@ -53,6 +53,17 @@ namespace TeamTextRPG
             UI.PlayerAttack(damage, beforeMonsterHp);
         }
 
+        public void MonsterAttack(Living target)
+        {
+            for (int i = 0; i < Monsters.Count; i++)
+            {
+                int beforePlayerHp = target.Hp;
+                int damage = Battle.CalculateDamage(Monsters[i]);
+                Monsters[i].Attack(target, damage);
+                UI.MonsterAttack(damage, beforePlayerHp);
+            }
+        }
+
         public void BattleWin()
         {
             Monsters.Clear();
