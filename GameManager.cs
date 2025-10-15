@@ -29,7 +29,7 @@ namespace TeamTextRPG
             Battle = new BattleManager();
             UI = new UIManager(this);
 
-            UI.Mainmenu();
+            UI.MainmenuUI();
         }
 
         public void StartBattle()
@@ -42,25 +42,25 @@ namespace TeamTextRPG
                 Monsters.Add(monsterData.GetRandomMonster());
             }
 
-            UI.BattleMain(Monsters);
+            UI.BattleMainUI();
         }
 
-        public void PlayerAttack(Living target)
+        public void PlayerAttack(Monster target)
         {
             int beforeMonsterHp = target.Hp;
             int damage = Battle.CalculateDamage(Player);
             Player.Attack(target, damage);
-            UI.PlayerAttack(damage, beforeMonsterHp);
+            UI.PlayerAttackUI(target, damage, beforeMonsterHp);
         }
 
-        public void MonsterAttack(Living target)
+        public void MonsterAttack(Character player)
         {
             for (int i = 0; i < Monsters.Count; i++)
             {
-                int beforePlayerHp = target.Hp;
+                int beforePlayerHp = player.Hp;
                 int damage = Battle.CalculateDamage(Monsters[i]);
-                Monsters[i].Attack(target, damage);
-                UI.MonsterAttack(damage, beforePlayerHp);
+                Monsters[i].Attack(player, damage);
+                UI.MonsterAttackUI(Monsters[i], damage, beforePlayerHp);
             }
         }
 
