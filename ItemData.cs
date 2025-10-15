@@ -8,7 +8,7 @@ namespace TeamTextRPG
 {
     internal class ItemData
     {
-        public List<Item> items;
+        private List<Item> items;
 
         public ItemData()
         {
