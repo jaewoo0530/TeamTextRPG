@@ -36,6 +36,7 @@ namespace TeamTextRPG
                 {
                     Console.WriteLine();
                     Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(800);
                 }
             }
         }
@@ -156,7 +157,6 @@ namespace TeamTextRPG
             if (choice == 0)
             {
                 BattleMainUI();
-
             }
 
             if (choice > 0 && choice <= Monsters.Count)
@@ -209,19 +209,12 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine($"Lv.{Player.Name}");
 
-            if (Player.Hp != 0)
-            {
-                Console.WriteLine($"HP {beforePlayerHp} -> {Player.Hp}");
-                Console.WriteLine();
-                Console.WriteLine("0. 다음");
-                Console.WriteLine();
-                Console.WriteLine(">>");
-            }
-            else
-            {
-                return;
-            }
-
+            Console.WriteLine($"HP {beforePlayerHp} -> {Player.Hp}");
+            Console.WriteLine();
+            Console.WriteLine("0. 다음");
+            Console.WriteLine();
+            Console.WriteLine(">>");
+            Input(0);
         }
 
         public void BattlePlayerWinUI(int damage, int beforeDungeonHp) // 플레이어 승리 결과창
