@@ -29,6 +29,21 @@ namespace TeamTextRPG
         public int Gold { get; private set; } = 500;
         public int Exp { get; private set; } = 0;
 
+        private int mp = 100;
+        public int Mp
+        {
+            get { return mp; }
+            private set
+            {
+                if (value < 0)
+                    mp = 0;
+                else if (value > 100)
+                    mp = 100;
+                else
+                    mp = value;
+            }
+        }
+
         public Character(string name, JobType job)
         {
             Name = name;
@@ -43,6 +58,7 @@ namespace TeamTextRPG
             }
 
             Hp = 100;
+            Mp = 100;
         }
     }
 }
