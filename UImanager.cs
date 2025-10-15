@@ -21,6 +21,7 @@ namespace TeamTextRPG
 
         private Character Player => gameManager.Player;
         private List<Monster> Monsters => gameManager.Monsters;
+        private BattleManager Battle => gameManager.Battle;
 
         private int Input(int maxOption)
         {
