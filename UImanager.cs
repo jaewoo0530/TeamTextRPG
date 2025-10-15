@@ -36,7 +36,7 @@ namespace TeamTextRPG
                 Input();
                 if (choice == 1)
                 {
-                    Status(player);
+                    Status(player, monster);
                 }
                 else if (choice == 2)
                 {
