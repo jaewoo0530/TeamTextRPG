@@ -9,7 +9,6 @@ namespace TeamTextRPG
     public enum JobType { 전사, 궁수, 마법사 }
     internal class Character : Living
     {
-        private Random random = new Random();
         public JobType Job { get; }
 
         private int stamina = 100;

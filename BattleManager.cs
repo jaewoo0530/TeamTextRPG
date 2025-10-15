@@ -17,20 +17,6 @@ namespace TeamTextRPG
         {
 
         }
-        public void ProcessAttack(Living attacker, Living target)
-        {
-
-            if (random.Next(0, 100) < 10)
-            {
-                Console.WriteLine($"{attacker.Name}의 공격이 빗나갔습니다!");
-            }
-            else
-            {
-                int damage = CalculateDamage(attacker);
-                target.TakeDamage(damage);
-            }
-        }
-
         public int CalculateDamage(Living attacker)
         {
             int min = (int)(attacker.Atk * 0.9f);
