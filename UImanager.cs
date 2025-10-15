@@ -45,11 +45,11 @@ namespace TeamTextRPG
             Console.Clear();
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.\n이제 전투를 시작할 수 있습니다.");
             Console.WriteLine();
-            Console.WriteLine("1. 상태 보기\n2. 전투 시작");
+            Console.WriteLine("1. 상태 보기\n2. 전투 시작\n3.회복 아이템");
             Console.WriteLine();
             Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
 
-            int choice = Input(2);
+            int choice = Input(3);
             if (choice == 1)
             {
                 StatusUI();
@@ -57,6 +57,10 @@ namespace TeamTextRPG
             else if (choice == 2)
             {
                 gameManager.StartBattle();
+            }
+            else if (choice == 3)
+            {
+                HealItem();
             }
         }
 
@@ -263,6 +267,28 @@ namespace TeamTextRPG
             if (choice == 0)
             {
                 MainmenuUI();
+            }
+        }
+
+        public void HealItem()
+        {
+            Console.Clear();
+            Console.WriteLine("회복");
+            Console.WriteLine("포션을 사용하면 체력을 30 회복 할 수 있습니다. (남은 포션 : 3 )");
+            Console.WriteLine();
+            Console.WriteLine("1. 사용하기");
+            Console.WriteLine("0. 나가기");
+            Console.WriteLine();
+            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
+
+            int choice = Input(1);
+            if (choice == 0)
+            {
+                MainmenuUI();
+            }
+            else if (choice == 1)
+            {
+                
             }
         }
     }
