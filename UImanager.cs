@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -40,7 +41,20 @@ namespace TeamTextRPG
                 }
             }
         }
+        public void CreateName()
+        {
+            Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.\n원하시는 이름을 설정해주세요.");
+            Console.WriteLine("원하시는 이름을 입력해주세요.\n>>");
+            string name = Console.ReadLine();
 
+        }
+        public JobType CreateJob()
+        {
+            Console.WriteLine("원하시는 직업의 이름을 입력해주세요. [전사, 마법사, 궁수]\n>>");
+            int jobCount = Enum.GetValues<JobType>().Length; // jobCount - 1
+            return Enum.TryParse(Console.ReadLine(), out JobType selectJob) ? selectJob : JobType.전사;
+
+        }
         public void MainmenuUI() // 게임 시작 화면
         {
             Console.Clear();
