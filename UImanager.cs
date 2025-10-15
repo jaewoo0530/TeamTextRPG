@@ -21,6 +21,7 @@ namespace TeamTextRPG
 
         private Character Player => gameManager.Player;
         private List<Monster> Monsters => gameManager.Monsters;
+        private BattleManager Battle => gameManager.Battle;
 
         private int Input(int maxOption)
         {
@@ -181,7 +182,21 @@ namespace TeamTextRPG
             Console.Clear();
             Console.WriteLine("Battle!!");
             Console.WriteLine($"{Player.Name}의 공격!");
-            Console.WriteLine($"Lv.{target.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
+            if(Battle.isEvaded)
+            {
+                Console.WriteLine($"{Player.Name}의 공격이 빗나갔습니다!!");
+            }
+            else
+            {
+                Console.Write($"Lv.{target.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
+                if (Battle.isCritical == true)
+                {
+
+                    Console.Write(" - 치명타 공격!!");
+
+                }
+            }
+
             Console.WriteLine();
             Console.WriteLine($"Lv.{target.Name}");
 
@@ -212,7 +227,20 @@ namespace TeamTextRPG
             Console.Clear();
             Console.WriteLine("Battle!!");
             Console.WriteLine($"{attacker.Name}의 공격!");
-            Console.WriteLine($"Lv.{Player.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
+            if (Battle.isEvaded)
+            {
+                Console.WriteLine($"{attacker.Name}의 공격이 빗나갔습니다!!");
+            }
+            else
+            {
+                Console.Write($"Lv.{Player.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
+                if (Battle.isCritical == true)
+                {
+
+                    Console.Write(" - 치명타 공격!!");
+
+                }
+            }
             Console.WriteLine();
             Console.WriteLine($"Lv.{Player.Name}");
 
