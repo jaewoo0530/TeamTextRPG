@@ -22,7 +22,6 @@ namespace TeamTextRPG
         private List<Monster> Monsters => gameManager.Monsters;
         public int Input()
         {
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
             return int.TryParse(Console.ReadLine(), out int choice) ? choice : -1;
         }
 
