@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace TeamTextRPG
 {
+    public enum JobType { 전사, 궁수, 마법사 }
     internal class Character : Living
     {
-        public enum JobType { 전사, 궁수, 마법사 }
-
         private Random random = new Random();
-        public string Job { get; }
+        public JobType Job { get; }
 
         private int stamina = 100;
         public int Stamina
@@ -31,25 +30,19 @@ namespace TeamTextRPG
         public int Gold { get; private set; } = 500;
         public int Exp { get; private set; } = 0;
 
-        public Character(string name, string job)
+        public Character(string name, JobType job)
         {
-            Job = job.ToString();
+            Job = job;
             Level = 1;
 
             switch (job)
             {
-                case "전사": Atk = 5; Def = 10; break;
-                case "궁수": Atk = 10; Def = 5; break;
-                case "마법사": Atk = 3; Def = 5; break;
+                case JobType.전사: Atk = 5; Def = 10; break;
+                case JobType.궁수: Atk = 10; Def = 5; break;
+                case JobType.마법사: Atk = 3; Def = 5; break;
             }
-        }
 
-        public override int CalculateDamage()
-        {
-            int min = (int)(Atk * 0.9f);
-            int max = (int)(Atk * 1.1f) + 1;
-            int randDamage = random.Next(min, max);
-            return randDamage;
+            Hp = 100;
         }
     }
 }
