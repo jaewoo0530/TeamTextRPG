@@ -51,6 +51,8 @@ namespace TeamTextRPG
             {
                 UI.BattleMainUI();
             }
+
+            Monsters.Clear();
         }
 
         public void PlayerAttack(Monster target)
@@ -81,7 +83,6 @@ namespace TeamTextRPG
 
         public void BattleWin()
         {
-            Monsters.Clear();
         }
     }
 }

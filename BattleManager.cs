@@ -18,7 +18,8 @@ namespace TeamTextRPG
 
         Random random = new Random();
 
-        public bool isCritical;
+        public bool isCritical = false;
+        public bool isEvaded = false;
 
         public BattleManager(GameManager gameManager)
         {
@@ -34,6 +35,7 @@ namespace TeamTextRPG
 
             if (random.Next(0, 100) < 10)
             {
+                isEvaded = true;
                 Console.WriteLine($"{attacker}의 공격이 빗나갔습니다!!");
                 return 0;
             }
@@ -46,6 +48,7 @@ namespace TeamTextRPG
             }
             else
             {
+                isEvaded = false;
                 isCritical = false;
                 return finalDamage;
             }
@@ -99,6 +102,11 @@ namespace TeamTextRPG
                         target.TakeDamage(damage);
                     }
                 }
+            }
+
+            void Meteo()
+            {
+
             }
         }
     }
