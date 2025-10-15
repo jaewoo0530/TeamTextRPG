@@ -28,22 +28,20 @@ namespace TeamTextRPG
         private List<Monster> Monsters => gameManager.Monsters;
         public int CalculateDamage(Living attacker, Living target)
         {
-            int min = (int)(attacker.Atk * 0.9f);
-            int max = (int)(attacker.Atk * 1.1f) + 1;
+            int min = (int)Math.Round(attacker.Atk * 0.9f);
+            int max = (int)Math.Round(attacker.Atk * 1.1f) + 1;
             int randDamage = random.Next(min, max);
             int finalDamage = Math.Max(randDamage - target.Def, 0);
 
             if (random.Next(0, 100) < 10)
             {
                 isEvaded = true;
-                Console.WriteLine($"{attacker}의 공격이 빗나갔습니다!!");
                 return 0;
             }
             else if (random.Next(0, 100) < 15)
             {
-                int CriticalDamage = (int)(finalDamage * 1.6f);
+                int CriticalDamage = (int)Math.Round(finalDamage * 1.6f);
                 isCritical = true;
-                Console.WriteLine("치명타!");
                 return CriticalDamage;
             }
             else
