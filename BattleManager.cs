@@ -40,7 +40,7 @@ namespace TeamTextRPG
             }
             else if (random.Next(0, 100) < 15)
             {
-                int CriticalDamage = (int)Math.Round(finalDamage * 1.6f);
+                int CriticalDamage = (int)Math.Round(randDamage * 1.6f);
                 isCritical = true;
                 return CriticalDamage;
             }
