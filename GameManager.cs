@@ -42,7 +42,15 @@ namespace TeamTextRPG
                 Monsters.Add(monsterData.GetRandomMonster());
             }
 
-            UI.BattleMainUI();
+            ProcessBattle();
+        }
+
+        public void ProcessBattle()
+        {
+            while (Monsters.Any(m => !m.IsDead) && !Player.IsDead)
+            {
+                UI.BattleMainUI();
+            }
         }
 
         public void PlayerAttack(Monster target)
