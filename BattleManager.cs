@@ -48,8 +48,6 @@ namespace TeamTextRPG
             }
             else
             {
-                isEvaded = false;
-                isCritical = false;
                 return finalDamage;
             }
         }
