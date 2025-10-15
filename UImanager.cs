@@ -229,11 +229,11 @@ namespace TeamTextRPG
             Console.WriteLine($"{attacker.Name}의 공격!");
             if (Battle.isEvaded)
             {
-                Console.WriteLine($"{Player.Name}의 공격이 빗나갔습니다!!");
+                Console.WriteLine($"{attacker.Name}의 공격이 빗나갔습니다!!");
             }
             else
             {
-                Console.WriteLine($"Lv.{Player.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
+                Console.Write($"Lv.{Player.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
                 if (Battle.isCritical == true)
                 {
 
