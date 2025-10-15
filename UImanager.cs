@@ -182,7 +182,6 @@ namespace TeamTextRPG
             {
                 BattleMainUI();
             }
-
             if (choice > 0 && choice <= Monsters.Count)
             {
                 if (!Monsters[choice - 1].IsDead)
@@ -198,23 +197,26 @@ namespace TeamTextRPG
             Console.Clear();
             Console.WriteLine("Battle!!");
             Console.WriteLine($"{Player.Name}의 공격!");
+
             if(Battle.isEvaded)
             {
                 Console.WriteLine($"{Player.Name}의 공격이 빗나갔습니다!!");
             }
             else
             {
-                Console.Write($"Lv.{target.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
+                Console.Write($"Lv.{target.Level} {target.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
                 if (Battle.isCritical == true)
                 {
-
-                    Console.Write(" - 치명타 공격!!");
-
+                    Console.WriteLine(" - 치명타 공격!!");
+                }
+                else
+                {
+                    Console.WriteLine();
                 }
             }
 
             Console.WriteLine();
-            Console.WriteLine($"Lv.{target.Name}");
+            Console.WriteLine($"Lv.{target.Level} {target.Name}");
 
             if (target.Hp == 0)
             {
@@ -241,23 +243,26 @@ namespace TeamTextRPG
             Console.Clear();
             Console.WriteLine("Battle!!");
             Console.WriteLine($"{attacker.Name}의 공격!");
+
             if (Battle.isEvaded)
             {
                 Console.WriteLine($"{attacker.Name}의 공격이 빗나갔습니다!!");
             }
             else
             {
-                Console.Write($"Lv.{Player.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
+                Console.Write($"Lv.{Player.Level} {Player.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
                 if (Battle.isCritical == true)
                 {
-
-                    Console.Write(" - 치명타 공격!!");
-
+                    Console.WriteLine(" - 치명타 공격!!");
+                }
+                else
+                {
+                    Console.WriteLine();
                 }
             }
-            Console.WriteLine();
-            Console.WriteLine($"Lv.{Player.Name}");
 
+            Console.WriteLine();
+            Console.WriteLine($"Lv.{Player.Level} {Player.Name}");
             Console.WriteLine($"HP {beforePlayerHp} -> {Player.Hp}");
             Console.WriteLine();
             Console.WriteLine("0. 다음");
