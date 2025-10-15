@@ -33,7 +33,7 @@ namespace TeamTextRPG
         public int Mp
         {
             get { return mp; }
-            private set
+            set
             {
                 if (value < 0)
                     mp = 0;
