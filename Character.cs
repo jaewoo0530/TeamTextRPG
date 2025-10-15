@@ -31,6 +31,7 @@ namespace TeamTextRPG
 
         public Character(string name, JobType job)
         {
+            Name = name;
             Job = job;
             Level = 1;
 
