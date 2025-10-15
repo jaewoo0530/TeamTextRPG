@@ -12,9 +12,10 @@ namespace TeamTextRPG
 {
     internal class UIManager
     {
-        public UIManager() // 생성자
+        private GameManager gameManager;
+        public UIManager(GameManager gameManager) // 생성자
         {
-
+            this.gameManager = gameManager;
         }
 
         public int Input()
