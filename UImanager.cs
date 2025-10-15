@@ -12,11 +12,12 @@ namespace TeamTextRPG
 {
     internal class UIManager
     {
-        public UIManager() // 생성자
+        private GameManager gameManager;
+        public UIManager(GameManager gameManager) // 생성자
         {
-
+            this.gameManager = gameManager;
         }
-
+        private Character player => gameManager.Player;
         public int Input()
         {
             Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
@@ -24,7 +25,7 @@ namespace TeamTextRPG
         }
 
 
-        public void Mainmenu(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp) // 게임 시작 화면
+        public void Mainmenu(Character player, List<Monster> monsters, Monster monster, int damage, int beforeMonsterHp, int beforeDungeonHp) // 게임 시작 화면
         {
             while (true)
             {
@@ -37,11 +38,11 @@ namespace TeamTextRPG
                 Input();
                 if (choice == 1)
                 {
-                    Status(player, monster, monsters, damage, beforeMonsterHp, beforeDungeonHp);
+                    Status(player, monsters, monster, damage, beforeMonsterHp, beforeDungeonHp);
                 }
                 else if (choice == 2)
                 {
-                    BattleMain(player, monster, monsters, damage, beforeMonsterHp, beforeDungeonHp);
+                    BattleMain(player, monsters, monster, damage, beforeMonsterHp, beforeDungeonHp);
                 }
                 else
                 {
@@ -52,7 +53,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void Status(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp) // 1. 상태 보기
+        public void Status(Character player, List<Monster> monsters, Monster monster, int damage, int beforeMonsterHp, int beforeDungeonHp) // 1. 상태 보기
         {
             while (true)
             {
@@ -73,7 +74,7 @@ namespace TeamTextRPG
                 Input();
                 if (choice == 0)
                 {
-                    Mainmenu(player, monster, monsters, damage, beforeMonsterHp, beforeDungeonHp);
+                    Mainmenu(player, monsters, monster, damage, beforeMonsterHp, beforeDungeonHp);
                 }
                 else
                 {
@@ -84,24 +85,24 @@ namespace TeamTextRPG
             }
         }
 
-        public void BattleMain(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp) // 2. 전투 시작
+        public void BattleMain(Character player, List<Monster> monsters, Monster monster, int damage, int beforeMonsterHp, int beforeDungeonHp) // 2. 전투 시작
         {
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine("Battle!!");
                 Console.WriteLine();
-                for (int i = 0; i < monster.Count; i++)
+                for (int i = 0; i < monsters.Count; i++)
                 {
-                    if (monster[i].Hp == 0)
+                    if (monsters[i].Hp == 0)
                     {
                         Console.ForegroundColor = ConsoleColor.DarkBlue;
-                        Console.WriteLine($"Lv.{monster[i].Level} {monster[i].Name} Dead");
+                        Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name} Dead");
                         Console.ResetColor();
                     }
                     else
                     {
-                        Console.WriteLine($"Lv.{monster[i].Level} {monster[i].Name} HP {monster[i].Hp}");
+                        Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name} HP {monsters[i].Hp}");
                     }
                 }
                 Console.WriteLine();
@@ -117,7 +118,7 @@ namespace TeamTextRPG
                 Input();
                 if (choice == 1)
                 {
-                    PlayerAttack(player, monsters, damage, beforeMonsterHp, beforeDungeonHp);
+                    PlayerAttack(player, monster, damage, beforeMonsterHp, beforeDungeonHp);
                 }
                 else
                 {
@@ -128,7 +129,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void PlayerAttack(Character player, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp) // 플레이어 공격
+        public void PlayerAttack(Character player, Monster monster, int damage, int beforeMonsterHp, int beforeDungeonHp) // 플레이어 공격
 
         {
             while (true)
@@ -136,16 +137,16 @@ namespace TeamTextRPG
                 Console.Clear();
                 Console.WriteLine("Battle!!");
                 Console.WriteLine($"{player.Name}의 공격!");
-                Console.WriteLine($"Lv.{monsters.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
+                Console.WriteLine($"Lv.{monster.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
                 Console.WriteLine();
-                Console.WriteLine($"Lv.{monsters.Name}");
-                if (monsters.Hp == 0)
+                Console.WriteLine($"Lv.{monster.Name}");
+                if (monster.Hp == 0)
                 {
                     Console.WriteLine($"HP {beforeMonsterHp} -> Dead");
                 }
                 else
                 {
-                    Console.WriteLine($"HP {beforeMonsterHp} -> {monsters.Hp}");
+                    Console.WriteLine($"HP {beforeMonsterHp} -> {monster.Hp}");
                 }
                 Console.WriteLine();
                 Console.WriteLine("0. 다음");
@@ -155,7 +156,7 @@ namespace TeamTextRPG
                 Input();
                 if (choice == 0)
                 {
-                    MonsterAttack(player, monsters, damage, beforeMonsterHp, beforeDungeonHp);
+                    MonsterAttack(player, monster, damage, beforeMonsterHp, beforeDungeonHp);
                 }
                 else
                 {
@@ -166,14 +167,14 @@ namespace TeamTextRPG
             }
         }
 
-        public void MonsterAttack(Character player, Monster monsters, int damage, int beforePlayerHp, int beforeDungeonHp) // 몬스터 공격
+        public void MonsterAttack(Character player, Monster monster, int damage, int beforePlayerHp, int beforeDungeonHp) // 몬스터 공격
                                                                                                                            // 몬스터의 한 차례씩 3회 공격
         {
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine("Battle!!");
-                Console.WriteLine($"{monsters.Name}의 공격!");
+                Console.WriteLine($"{monster.Name}의 공격!");
                 Console.WriteLine($"Lv.{player.Name}을(를) 맞췄습니다. [데미지 : {damage}]");
                 Console.WriteLine();
                 Console.WriteLine($"Lv.{player.Name}");
@@ -192,7 +193,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void BattlePlayerWin(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp) // 플레이어 승리 결과창
+        public void BattlePlayerWin(Character player, List<Monster> monsters, Monster monster, int damage, int beforeMonsterHp, int beforeDungeonHp) // 플레이어 승리 결과창
         {
             while (true)
             {
@@ -201,7 +202,7 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine("Victory");
                 Console.WriteLine();
-                Console.WriteLine($"던전에서 몬스터 {monsters}마리를 잡았습니다.");
+                Console.WriteLine($"던전에서 몬스터 {monster}마리를 잡았습니다.");
                 Console.WriteLine();
                 Console.WriteLine($"Lv.{player.Name}");
                 Console.WriteLine($"HP {beforeDungeonHp} -> {player.Hp}");
@@ -213,7 +214,7 @@ namespace TeamTextRPG
                 Input();
                 if (choice == 0)
                 {
-                    Mainmenu(player, monster, monsters, damage, beforeMonsterHp, beforeDungeonHp);
+                    Mainmenu(player, monsters, monster, damage, beforeMonsterHp, beforeDungeonHp);
                 }
                 else
                 {
@@ -223,7 +224,7 @@ namespace TeamTextRPG
                 }
             }
         }
-        public void BattlePlayerLose(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp)
+        public void BattlePlayerLose(Character player, List<Monster> monsters, Monster monster, int damage, int beforeMonsterHp, int beforeDungeonHp)
         {
             while (true)
             {
@@ -232,7 +233,7 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine("You Lose");
                 Console.WriteLine();
-                Console.WriteLine($"던전에서 몬스터 {monsters}마리를 잡았습니다.");
+                Console.WriteLine($"던전에서 몬스터 {monster}마리를 잡았습니다.");
                 Console.WriteLine();
                 Console.WriteLine($"Lv.{player.Name}");
                 Console.WriteLine($"HP {beforeDungeonHp} -> 0");
@@ -244,7 +245,7 @@ namespace TeamTextRPG
                 Input();
                 if (choice == 0)
                 {
-                    Mainmenu(player, monster, monsters, damage, beforeMonsterHp, beforeDungeonHp);
+                    Mainmenu(player, monsters, monster, damage, beforeMonsterHp, beforeDungeonHp);
                 }
                 else
                 {
