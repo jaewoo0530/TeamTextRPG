@@ -52,7 +52,17 @@ namespace TeamTextRPG
                 UI.BattleMainUI();
             }
 
+            if (!Player.IsDead)
+            {
+
+            }
+            else
+            {
+
+            }
+
             Monsters.Clear();
+
         }
 
         public void PlayerAttack(Monster target)
@@ -61,6 +71,8 @@ namespace TeamTextRPG
             int damage = Battle.CalculateDamage(Player, target);
             Player.Attack(target, damage);
             UI.PlayerAttackUI(target, damage, beforeMonsterHp);
+            Battle.isCritical = false;
+            Battle.isEvaded = false;
         }
 
         public void MonsterAttack(Character player)
@@ -77,6 +89,8 @@ namespace TeamTextRPG
                     int damage = Battle.CalculateDamage(Monsters[i], Player);
                     Monsters[i].Attack(player, damage);
                     UI.MonsterAttackUI(Monsters[i], damage, beforePlayerHp);
+                    Battle.isCritical = false;
+                    Battle.isEvaded = false;
                 }
             }
         }
