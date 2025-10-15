@@ -127,7 +127,8 @@ namespace TeamTextRPG
             }
         }
 
-        public void PlayerAttack(Character player, Monster monsters, int damage, int beforeMonsterHp) // 플레이어 공격
+        public void PlayerAttack(Character player, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp) // 플레이어 공격
+
         {
             while (true)
             {
@@ -149,10 +150,23 @@ namespace TeamTextRPG
                 Console.WriteLine("0. 다음");
                 Console.WriteLine();
                 Console.WriteLine(">>");
+                int choice = Input();
+                Input();
+                if (choice == 0)
+                {
+                    MonsterAttack(player, monsters, damage, beforeMonsterHp, beforeDungeonHp);
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(800);
+                }
             }
         }
 
         public void MonsterAttack(Character player, Monster monsters, int damage, int beforePlayerHp, int beforeDungeonHp) // 몬스터 공격
+                                                                                                                           // 몬스터의 한 차례씩 3회 공격
         {
             while (true)
             {
