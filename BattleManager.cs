@@ -6,6 +6,7 @@ using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -14,7 +15,10 @@ namespace TeamTextRPG
     internal class BattleManager
     {
         private GameManager gameManager;
+
         Random random = new Random();
+
+        public bool isCritical;
 
         public BattleManager(GameManager gameManager)
         {
@@ -26,7 +30,6 @@ namespace TeamTextRPG
             int min = (int)(attacker.Atk * 0.9f);
             int max = (int)(attacker.Atk * 1.1f) + 1;
             int randDamage = random.Next(min, max);
-
             int finalDamage = Math.Max(randDamage - target.Def, 0);
 
             if (random.Next(0, 100) < 10)
@@ -37,10 +40,15 @@ namespace TeamTextRPG
             else if (random.Next(0, 100) < 15)
             {
                 int CriticalDamage = (int)(finalDamage * 1.6f);
+                isCritical = true;
                 Console.WriteLine("치명타!");
                 return CriticalDamage;
             }
-            else { return finalDamage; }
+            else
+            {
+                isCritical = false;
+                return finalDamage;
+            }
         }
 
         Character player;
