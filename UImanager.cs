@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TeamTextRPG
 {
@@ -23,7 +24,7 @@ namespace TeamTextRPG
         }
 
 
-        public void Mainmenu(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp) // 게임 시작 화면
+        public void Mainmenu(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp) // 게임 시작 화면
         {
             while (true)
             {
@@ -36,11 +37,11 @@ namespace TeamTextRPG
                 Input();
                 if (choice == 1)
                 {
-                    Status(player, monster, monsters, damage, beforeMonsterHp);
+                    Status(player, monster, monsters, damage, beforeMonsterHp, beforeDungeonHp);
                 }
                 else if (choice == 2)
                 {
-                    BattleMain(player, monster, monsters, damage, beforeMonsterHp);
+                    BattleMain(player, monster, monsters, damage, beforeMonsterHp, beforeDungeonHp);
                 }
                 else
                 {
@@ -51,7 +52,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void Status(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp) // 1. 상태 보기
+        public void Status(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp) // 1. 상태 보기
         {
             while (true)
             {
@@ -72,7 +73,7 @@ namespace TeamTextRPG
                 Input();
                 if (choice == 0)
                 {
-                    Mainmenu(player, monster, monsters, damage, beforeMonsterHp);
+                    Mainmenu(player, monster, monsters, damage, beforeMonsterHp, beforeDungeonHp);
                 }
                 else
                 {
@@ -83,7 +84,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void BattleMain(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp) // 2. 전투 시작
+        public void BattleMain(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp) // 2. 전투 시작
         {
             while (true)
             {
@@ -116,7 +117,7 @@ namespace TeamTextRPG
                 Input();
                 if (choice == 1)
                 {
-                    PlayerAttack(player, monsters, damage, beforeMonsterHp);
+                    PlayerAttack(player, monsters, damage, beforeMonsterHp, beforeDungeonHp);
                 }
                 else
                 {
@@ -191,7 +192,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void BattlePlayerWin(Character player, Monster monsters, int beforeDungeonHp) // 플레이어 승리 결과창
+        public void BattlePlayerWin(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp) // 플레이어 승리 결과창
         {
             while (true)
             {
@@ -208,9 +209,21 @@ namespace TeamTextRPG
                 Console.WriteLine("0. 다음");
                 Console.WriteLine();
                 Console.WriteLine(">>");
+                int choice = Input();
+                Input();
+                if (choice == 0)
+                {
+                    Mainmenu(player, monster, monsters, damage, beforeMonsterHp, beforeDungeonHp);
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(800);
+                }
             }
         }
-        public void BattlePlayerLose(Character player, Monster monsters, int beforeDungeonHp)
+        public void BattlePlayerLose(Character player, List<Monster> monster, Monster monsters, int damage, int beforeMonsterHp, int beforeDungeonHp)
         {
             while (true)
             {
@@ -227,6 +240,18 @@ namespace TeamTextRPG
                 Console.WriteLine("0. 다음");
                 Console.WriteLine();
                 Console.WriteLine(">>");
+                int choice = Input();
+                Input();
+                if (choice == 0)
+                {
+                    Mainmenu(player, monster, monsters, damage, beforeMonsterHp, beforeDungeonHp);
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(800);
+                }
             }
         }
     }
