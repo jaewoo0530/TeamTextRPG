@@ -43,7 +43,7 @@ namespace TeamTextRPG
 
         public void Attack(Living target, BattleManager battleManager)
         {
-            int damage = BattleManager.CalculateDamage(this, target);
+            int damage = battleManager.CalculateDamage(this);
                 target.TakeDamage(damage);
         }
 
