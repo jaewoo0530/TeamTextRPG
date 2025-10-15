@@ -16,10 +16,10 @@ namespace TeamTextRPG
         {
             monsters = new List<Monster>
             {
-                new Monster("저글링", 3, 0, 20, 0),
-                new Monster("히드라", 7, 3, 40, 0),
-                new Monster("뮤탈", 10, 6, 100, 0),
-                new Monster("울라리", 25, 15, 200, 0)
+                new Monster("저글링", 0, 0, 20, 1),
+                new Monster("히드라", 0, 3, 40, 3),
+                new Monster("뮤탈", 0, 6, 100, 5),
+                new Monster("울라리", 0, 15, 200, 10)
             };
         }
 
