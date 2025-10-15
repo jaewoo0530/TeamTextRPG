@@ -18,6 +18,8 @@ namespace TeamTextRPG
             this.gameManager = gameManager;
         }
         private Character Player => gameManager.Player;
+
+        private List<Monster> Monsters => gameManager.Monsters;
         public int Input()
         {
             Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
