@@ -201,7 +201,7 @@ namespace TeamTextRPG
                 }
                 else
                 {
-                    Console.WriteLine($"HP {beforeMonsterHp} -> {Monsters[i - 1].Hp}");
+                    Console.WriteLine($"HP {beforeMonsterHp} -> {target.Hp}");
                 }
                 Console.WriteLine();
                 Console.WriteLine("0. 다음");
@@ -210,7 +210,7 @@ namespace TeamTextRPG
                 int choice = Input();
                 if (choice == 0)
                 {
-                    MonsterAttack(Character Player);
+                    gameManager.MonsterAttack(Player);
                 }
                 else
                 {
@@ -256,7 +256,7 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine("Victory");
                 Console.WriteLine();
-                Console.WriteLine($"던전에서 몬스터 {monster}마리를 잡았습니다.");
+                Console.WriteLine($"던전에서 몬스터 {Monsters.Count}마리를 잡았습니다.");
                 Console.WriteLine();
                 Console.WriteLine($"Lv.{Player.Name}");
                 Console.WriteLine($"HP {beforeDungeonHp} -> {Player.Hp}");
@@ -286,7 +286,7 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine("You Lose");
                 Console.WriteLine();
-                Console.WriteLine($"던전에서 몬스터 {monster}마리를 잡았습니다.");
+                Console.WriteLine($"던전에서 몬스터 {Monsters.Count}마리를 잡았습니다.");
                 Console.WriteLine();
                 Console.WriteLine($"Lv.{Player.Name}");
                 Console.WriteLine($"HP {beforeDungeonHp} -> 0");
