@@ -25,7 +25,7 @@ namespace TeamTextRPG
         }
 
 
-        public void Mainmenu() // 게임 시작 화면
+        public void MainmenuUI() // 게임 시작 화면
         {
             while (true)
             {
@@ -37,7 +37,7 @@ namespace TeamTextRPG
                 int choice = Input();
                 if (choice == 1)
                 {
-                    Status();
+                    StatusUI();
                 }
                 else if (choice == 2)
                 {
@@ -52,7 +52,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void Status() // 1. 상태 보기
+        public void StatusUI() // 1. 상태 보기
         {
             while (true)
             {
@@ -72,7 +72,7 @@ namespace TeamTextRPG
                 int choice = Input();
                 if (choice == 0)
                 {
-                    Mainmenu();
+                    MainmenuUI();
                 }
                 else
                 {
@@ -83,7 +83,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void BattleMain(List<Monster> monsters) // 2. 전투 시작 // 1~4 마리의 몬스터가 랜덤으로 출현
+        public void BattleMainUI(List<Monster> monsters) // 2. 전투 시작 // 1~4 마리의 몬스터가 랜덤으로 출현
         {
             while (true)
             {
@@ -115,7 +115,7 @@ namespace TeamTextRPG
                 int choice = Input();
                 if (choice == 1)
                 {
-                    PlayerAttack(damage, beforeMonsterHp);
+                    PlayerAttackUI(damage, beforeMonsterHp);
                 }
                 else
                 {
@@ -126,7 +126,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void PlayerAttack(int damage, int beforeMonsterHp) // 플레이어 공격
+        public void PlayerAttackUI(int damage, int beforeMonsterHp) // 플레이어 공격
 
         {
             while (true)
@@ -152,7 +152,7 @@ namespace TeamTextRPG
                 int choice = Input();
                 if (choice == 0)
                 {
-                    MonsterAttack(damage, beforeMonsterHp);
+                    MonsterAttackUI(damage, beforeMonsterHp);
                 }
                 else
                 {
@@ -163,8 +163,8 @@ namespace TeamTextRPG
             }
         }
 
-        public void MonsterAttack(int damage, int beforePlayerHp) // 몬스터 공격
-                                                                                                                           // 몬스터의 한 차례씩 3회 공격
+        public void MonsterAttackUI(int damage, int beforePlayerHp) // 몬스터 공격
+                                                                    // 몬스터의 한 차례씩 3회 공격
         {
             while (true)
             {
@@ -189,7 +189,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void BattlePlayerWin(int damage, int beforeDungeonHp) // 플레이어 승리 결과창
+        public void BattlePlayerWinUI(int damage, int beforeDungeonHp) // 플레이어 승리 결과창
         {
             while (true)
             {
@@ -209,7 +209,7 @@ namespace TeamTextRPG
                 int choice = Input();
                 if (choice == 0)
                 {
-                    Mainmenu();
+                    MainmenuUI();
                 }
                 else
                 {
@@ -219,7 +219,7 @@ namespace TeamTextRPG
                 }
             }
         }
-        public void BattlePlayerLose(int damage, int beforeDungeonHp)
+        public void BattlePlayerLoseUI(int damage, int beforeDungeonHp)
         {
             while (true)
             {
@@ -239,7 +239,7 @@ namespace TeamTextRPG
                 int choice = Input();
                 if (choice == 0)
                 {
-                    Mainmenu();
+                    MainmenuUI();
                 }
                 else
                 {
