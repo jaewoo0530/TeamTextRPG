@@ -11,19 +11,27 @@ namespace TeamTextRPG
 {
     internal class BattleManager
     {
-        Character player;
-        public void Attack(Living attacker, Living target)
+        Random random = new Random();
+        public void PreocessAttack(Living attacker, Living target)
         {
-            Random random = new Random();
+
             if (random.Next(0, 100) < 10)
             {
-                Console.WriteLine($"{player.Name}의 공격이 빗나갔습니다!");
+                Console.WriteLine($"{attacker.Name}의 공격이 빗나갔습니다!");
             }
             else
             {
-            int damage = attacker.CalculateDamage();
-            target.TakeDamage(damage);
+                int damage = attacker.CalculateDamage();
+                target.TakeDamage(damage);
             }
+        }
+
+        public int CalculateDamage(Living attacker)
+        {
+            int min = (int)(attacker.Atk * 0.9f);
+            int max = (int)(attacker.Atk * 1.1f) + 1;
+            int randDamage = random.Next(min, max);
+            return randDamage;
         }
     }
 }
