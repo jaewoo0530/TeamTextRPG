@@ -35,6 +35,7 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine("1. 상태 보기\n2. 전투 시작");
                 Console.WriteLine();
+                Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
                 int choice = Input();
                 if (choice == 1)
                 {
@@ -70,6 +71,7 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine("0. 나가기");
                 Console.WriteLine();
+                Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
                 int choice = Input();
                 if (choice == 0)
                 {
@@ -257,13 +259,16 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine($"던전에서 몬스터 {Monsters.Count}마리를 잡았습니다.");
                 Console.WriteLine();
+                Console.WriteLine("[캐릭터 정보]");
                 Console.WriteLine($"Lv.{Player.Level}{Player.Name} -> Lv.{Player.Level}{Player.Name}");
                 Console.WriteLine($"exp.{Player.Exp} -> exp.{Player.Exp}");
                 Console.WriteLine($"HP {beforeDungeonHp} -> {Player.Hp}");
                 Console.WriteLine();
+                Console.WriteLine("[획득 아이템]");
+                Console.WriteLine();
                 Console.WriteLine("0. 다음");
                 Console.WriteLine();
-                Console.WriteLine(">>");
+                Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
                 int choice = Input();
                 if (choice == 0)
                 {
