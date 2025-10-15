@@ -47,7 +47,7 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine("1. 상태 보기\n2. 전투 시작\n3. 회복 아이템");
             Console.WriteLine();
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
+            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
 
             int choice = Input(3);
             if (choice == 1)
@@ -79,7 +79,7 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
+            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
 
             int choice = Input(0);
             if (choice == 0)
@@ -114,14 +114,18 @@ namespace TeamTextRPG
             Console.WriteLine($"Lv.{Player.Level} {Player.Name} ({Player.Job})");
             Console.WriteLine($"HP {Player.Hp}/100");
             Console.WriteLine();
-            Console.WriteLine("1. 공격");
+            Console.WriteLine("1. 공격\n2. 스킬");
             Console.WriteLine();
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
+            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
 
-            int choice = Input(1);
+            int choice = Input(2);
             if (choice == 1)
             {
                 PlayerAttackStartUI();
+            }
+            else if (choice == 2)
+            {
+
             }
 
         }
@@ -154,7 +158,7 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine("0. 취소");
             Console.WriteLine();
-            Console.WriteLine("대상을 선택해주세요.\n >>");
+            Console.WriteLine("대상을 선택해주세요.\n>>");
 
             int choice = Input(Monsters.Count);
             if (choice == 0)
@@ -238,7 +242,7 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine("0. 다음");
             Console.WriteLine();
-            Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
+            Console.WriteLine("원하시는 행동을 입력해주세요.\n>>");
 
             int choice = Input(0);
             if (choice == 0)
