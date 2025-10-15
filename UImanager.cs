@@ -35,7 +35,6 @@ namespace TeamTextRPG
                 Console.WriteLine("1. 상태 보기\n2. 전투 시작");
                 Console.WriteLine();
                 int choice = Input();
-                Input();
                 if (choice == 1)
                 {
                     Status();
@@ -71,7 +70,6 @@ namespace TeamTextRPG
                 Console.WriteLine("0. 나가기");
                 Console.WriteLine();
                 int choice = Input();
-                Input();
                 if (choice == 0)
                 {
                     Mainmenu();
@@ -115,7 +113,6 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
                 int choice = Input();
-                Input();
                 if (choice == 1)
                 {
                     PlayerAttack(damage, beforeMonsterHp);
@@ -153,7 +150,6 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine(">>");
                 int choice = Input();
-                Input();
                 if (choice == 0)
                 {
                     MonsterAttack(damage, beforeMonsterHp);
@@ -211,7 +207,6 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine(">>");
                 int choice = Input();
-                Input();
                 if (choice == 0)
                 {
                     Mainmenu();
@@ -242,7 +237,6 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine(">>");
                 int choice = Input();
-                Input();
                 if (choice == 0)
                 {
                     Mainmenu();
