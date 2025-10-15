@@ -10,12 +10,13 @@ namespace TeamTextRPG
 {
     internal class GameManager
     {
+        private Random random = new Random();
         public Character Player { get; private set; }
 
         public UIManager UI { get; private set; }
         public BattleManager Battle { get; private set; }
 
-        private MonsterData monsterData;
+        private MonsterData monsterData = new MonsterData();
 
         public void StartGame()
         {
@@ -31,7 +32,13 @@ namespace TeamTextRPG
 
         public void StartBattle()
         {
-
+            int monsterCount = random.Next(1, 5);
+            List<Monster> monsters = new List<Monster>();
+            for (int i = 0; i < monsterCount; i++)
+            {
+                monsters.Add(monsterData.GetRandomMonster());
+            }
+            UI.BattleMain(monsters);
         }
     }
 }
