@@ -12,7 +12,12 @@ namespace TeamTextRPG
     internal class BattleManager
     {
         Random random = new Random();
-        public void PreocessAttack(Living attacker, Living target)
+
+        public BattleManager()
+        {
+
+        }
+        public void ProcessAttack(Living attacker, Living target)
         {
 
             if (random.Next(0, 100) < 10)
@@ -21,7 +26,7 @@ namespace TeamTextRPG
             }
             else
             {
-                int damage = attacker.CalculateDamage();
+                int damage = CalculateDamage(attacker);
                 target.TakeDamage(damage);
             }
         }
@@ -31,7 +36,12 @@ namespace TeamTextRPG
             int min = (int)(attacker.Atk * 0.9f);
             int max = (int)(attacker.Atk * 1.1f) + 1;
             int randDamage = random.Next(min, max);
-            return randDamage;
+            if (random.Next(0, 100) < 15)
+            {
+                int CriticalDamage = (int)(randDamage * 1.6f);
+                return CriticalDamage;
+            }
+            else { return randDamage; }
         }
     }
 }
