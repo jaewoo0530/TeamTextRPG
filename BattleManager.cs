@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TeamTextRPG
 {
@@ -20,11 +21,14 @@ namespace TeamTextRPG
             this.gameManager = gameManager;
         }
         private List<Monster> Monsters => gameManager.Monsters;
-        public int CalculateDamage(Living attacker)
+        public int CalculateDamage(Living attacker, Living target)
         {
             int min = (int)(attacker.Atk * 0.9f);
             int max = (int)(attacker.Atk * 1.1f) + 1;
             int randDamage = random.Next(min, max);
+
+            int finalDamage = Math.Max(randDamage - target.Def, 0);
+
             if (random.Next(0, 100) < 10)
             {
                 Console.WriteLine($"{attacker}의 공격이 빗나갔습니다!!");
@@ -32,11 +36,11 @@ namespace TeamTextRPG
             }
             else if (random.Next(0, 100) < 15)
             {
-                int CriticalDamage = (int)(randDamage * 1.6f);
+                int CriticalDamage = (int)(finalDamage * 1.6f);
                 Console.WriteLine("치명타!");
                 return CriticalDamage;
             }
-            else { return randDamage; }
+            else { return finalDamage; }
         }
 
         Character player;

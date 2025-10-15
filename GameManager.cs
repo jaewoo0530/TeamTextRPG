@@ -56,7 +56,7 @@ namespace TeamTextRPG
         public void PlayerAttack(Monster target)
         {
             int beforeMonsterHp = target.Hp;
-            int damage = Battle.CalculateDamage(Player);
+            int damage = Battle.CalculateDamage(Player, target);
             Player.Attack(target, damage);
             UI.PlayerAttackUI(target, damage, beforeMonsterHp);
         }
@@ -72,7 +72,7 @@ namespace TeamTextRPG
                 else
                 {
                     int beforePlayerHp = player.Hp;
-                    int damage = Battle.CalculateDamage(Monsters[i]);
+                    int damage = Battle.CalculateDamage(Monsters[i], Player);
                     Monsters[i].Attack(player, damage);
                     UI.MonsterAttackUI(Monsters[i], damage, beforePlayerHp);
                 }

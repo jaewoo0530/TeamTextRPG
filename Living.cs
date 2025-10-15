@@ -48,9 +48,7 @@ namespace TeamTextRPG
 
         public void TakeDamage(int damage)
         {
-            int finalDamage = Math.Max(damage-Def, 0);
-            Hp -= finalDamage;
-            
+            Hp -= damage;
         }
         // 죽음판단
         public bool IsDead => Hp <= 0;
