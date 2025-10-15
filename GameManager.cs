@@ -26,7 +26,7 @@ namespace TeamTextRPG
             JobType job = Enum.TryParse(Console.ReadLine(), out JobType selectJob) ? selectJob : JobType.전사;
 
             Player = new Character(name, job);
-            Battle = new BattleManager();
+            Battle = new BattleManager(this);
             UI = new UIManager(this);
 
             UI.MainmenuUI();
