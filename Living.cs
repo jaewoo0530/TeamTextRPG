@@ -41,9 +41,10 @@ namespace TeamTextRPG
         // 🔹 캐릭터용 기본 생성자 (나중에 직접 세팅)
         public Living() { }
 
-        public virtual int CalculateDamage()
+        public void Attack(Living target, BattleManager battleManager)
         {
-            return Atk;
+            int damage = BattleManager.CalculateDamage(this, target);
+                target.TakeDamage(damage);
         }
 
         public void TakeDamage(int damage)
