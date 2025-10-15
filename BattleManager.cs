@@ -27,7 +27,7 @@ namespace TeamTextRPG
                 Console.WriteLine($"{attacker}의 공격이 빗나갔습니다!!");
                 return 0;
             }
-            if (random.Next(0, 100) < 15)
+            else if (random.Next(0, 100) < 15)
             {
                 int CriticalDamage = (int)(randDamage * 1.6f);
                 Console.WriteLine("치명타!");
