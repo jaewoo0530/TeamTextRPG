@@ -17,7 +17,7 @@ namespace TeamTextRPG
         {
             this.gameManager = gameManager;
         }
-        private Character player => gameManager.Player;
+        private Character Player => gameManager.Player;
         public int Input()
         {
             Console.WriteLine("원하시는 행동을 입력해주세요.\n >>");
