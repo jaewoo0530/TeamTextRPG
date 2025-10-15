@@ -257,7 +257,8 @@ namespace TeamTextRPG
                 Console.WriteLine();
                 Console.WriteLine($"던전에서 몬스터 {Monsters.Count}마리를 잡았습니다.");
                 Console.WriteLine();
-                Console.WriteLine($"Lv.{Player.Name}");
+                Console.WriteLine($"Lv.{Player.Level}{Player.Name} -> Lv.{Player.Level}{Player.Name}");
+                Console.WriteLine($"exp.{Player.Exp} -> exp.{Player.Exp}");
                 Console.WriteLine($"HP {beforeDungeonHp} -> {Player.Hp}");
                 Console.WriteLine();
                 Console.WriteLine("0. 다음");
