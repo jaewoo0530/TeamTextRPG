@@ -12,6 +12,11 @@ namespace TeamTextRPG
     internal class BattleManager
     {
         Random random = new Random();
+
+        public BattleManager()
+        {
+
+        }
         public void ProcessAttack(Living attacker, Living target)
         {
 
@@ -21,7 +26,7 @@ namespace TeamTextRPG
             }
             else
             {
-                int damage = attacker.CalculateDamage();
+                int damage = CalculateDamage(attacker);
                 target.TakeDamage(damage);
             }
         }
