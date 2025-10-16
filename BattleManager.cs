@@ -16,6 +16,8 @@ namespace TeamTextRPG
     internal class BattleManager
     {
         private GameManager gameManager;
+        private Character Player => gameManager.Player;
+
 
         Random random = new Random();
 
@@ -54,6 +56,7 @@ namespace TeamTextRPG
             }
         }
 
+<<<<<<< HEAD
         //Skill 정보
         public void FullpowerAttack(Living target)//마나 15를 소모하여, 전력으로 돌진해서 적 하나에게 공력력의 5배의 피해를 입힙니다. 
         {
@@ -125,6 +128,29 @@ namespace TeamTextRPG
                     Console.WriteLine($"→ {monster.Name}이(가) {damage} 피해를 입었습니다! (남은 HP: {monster.Hp})");
                 }
             }
+=======
+        //Skill Use
+        public void UseSkill(int SkillNum, Monster target)
+        {
+            Skill skillSystem = new Skill(Player, Monsters);
+
+            switch (SkillNum)
+            {
+                case 1:
+                    skillSystem.FullpowerAttack(Player, target);
+                    break;
+                case 2:
+                    skillSystem.ChainAttack(Player);
+                    break;
+                case 3:
+                    skillSystem.FullSmash(Player);
+                    break;
+                default:
+                    Console.WriteLine("잘못된 선택입니다");
+                    break;
+            }
+
+>>>>>>> JSJ
         }
     }
 }
