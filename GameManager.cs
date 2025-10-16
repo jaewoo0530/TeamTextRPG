@@ -20,6 +20,8 @@ namespace TeamTextRPG
 
         private int beforeDungeonHp;
 
+        public int stageNumber = 1;
+
         public void StartGame()
         {
             UI = new UIManager(this);
@@ -43,7 +45,7 @@ namespace TeamTextRPG
 
             for (int i = 0; i < monsterCount; i++)
             {
-                Monsters.Add(monsterData.GetRandomMonster());
+                Monsters.Add(monsterData.GetRandomMonster(stageNumber));
             }
 
             ProcessBattle();
@@ -112,6 +114,7 @@ namespace TeamTextRPG
         public void BattleWin()
         {
             UI.BattlePlayerWinUI(beforeDungeonHp);
+            stageNumber++;
         }
 
         public void BattleLose()

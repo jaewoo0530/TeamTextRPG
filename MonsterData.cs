@@ -23,9 +23,9 @@ namespace TeamTextRPG
             };
         }
 
-        public Monster GetRandomMonster()
+        public Monster GetRandomMonster(int stageNumber)
         {
-            int index = random.Next(0, monsters.Count);
+            int index = random.Next(0, stageNumber);
             return new Monster(monsters[index]);
         }
     }

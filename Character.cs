@@ -29,7 +29,7 @@ namespace TeamTextRPG
         public int Gold { get; private set; } = 500;
         public int Exp { get; private set; } = 0;
 
-        private int mp = 100;
+        private int mp;
         public int Mp
         {
             get { return mp; }
