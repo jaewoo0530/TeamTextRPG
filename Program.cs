@@ -1,4 +1,6 @@
-﻿namespace TeamTextRPG
+﻿using TeamTextRPG.Manager;
+
+namespace TeamTextRPG
 {
     internal class Program
     {

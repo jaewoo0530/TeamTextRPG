@@ -7,9 +7,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using TeamTextRPG.Entities;
+using TeamTextRPG.Items;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Manager
 {
     internal class UIManager
     {
@@ -31,7 +33,7 @@ namespace TeamTextRPG
                 Console.Write("\n>> ");
                 bool valid = int.TryParse(Console.ReadLine(), out int choice);
 
-                if (valid && (choice >= 0 && choice <= maxOption))
+                if (valid && choice >= 0 && choice <= maxOption)
                 {
                     return choice;
                 }
@@ -179,7 +181,7 @@ namespace TeamTextRPG
             }
             else if (choice == 2)
             {
-                PlayerSkillSelectUI();
+                SkillSelectUI();
             }
         }
 
@@ -224,7 +226,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void PlayerSkillSelectUI()
+        public void SkillSelectUI()
         {
             Console.Clear();
             Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
@@ -239,7 +241,7 @@ namespace TeamTextRPG
             }
             if (choice == 1)
             {
-                PlayerSkillStartUI(choice);
+                SkillTargetUI(choice);
             }
             if (choice == 2)
             {
@@ -247,7 +249,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void PlayerSkillStartUI(int skillNumber)
+        public void SkillTargetUI(int skillNumber)
         {
             Console.Clear();
             Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");

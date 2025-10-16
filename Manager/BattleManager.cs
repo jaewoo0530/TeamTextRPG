@@ -9,9 +9,11 @@ using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using TeamTextRPG.Entities;
+using TeamTextRPG.Skills;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Manager
 {
     internal class BattleManager
     {
@@ -27,7 +29,7 @@ namespace TeamTextRPG
             this.gameManager = gameManager;
         }
 
-        public int CalculateDamage(Living attacker, Living target)
+        public int CalculateDamage(Entity attacker, Entity target)
         {
             int min = (int)Math.Round(attacker.Atk * 0.9f);
             int max = (int)Math.Round(attacker.Atk * 1.1f) + 1;
@@ -50,23 +52,25 @@ namespace TeamTextRPG
                 return finalDamage;
             }
         }
-
-        public void UseSkill(int SkillNum, Monster? target = null)
+        public void UseSkill(int skillNumber, Monster? target = null)
         {
-            Skill skillSystem = new Skill(gameManager);
+            Skill skill;
 
-            switch (SkillNum)
+            if (skillNumber == 1)
             {
-                case 1:
-                    skillSystem.FullpowerAttack(target);
-                    break;
-                case 2:
-                    skillSystem.FullSmash();
-                    break;
-                default:
-                    Console.WriteLine("잘못된 선택입니다");
-                    break;
+                skill = new FullpowerAttack(gameManager);
             }
+            else if (skillNumber == 2)
+            {
+                skill = new FullSmash(gameManager);
+            }
+            else
+            {
+                skill = null;
+            }
+
+            skill.Execute(target);
         }
+
     }
 }

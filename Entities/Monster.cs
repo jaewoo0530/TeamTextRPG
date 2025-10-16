@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Entities
 {
-    internal class Monster: Living
+    internal class Monster: Entity
     {
         public int RewardExp { get; private set; }
 

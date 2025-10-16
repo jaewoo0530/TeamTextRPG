@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeamTextRPG.Entities;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Data
 {
     internal class MonsterData
     {
