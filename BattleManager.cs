@@ -46,11 +46,9 @@ namespace TeamTextRPG
             }
         }
 
-        Character player;
-
         public void Skill()
         {
-            void FullpowerAttack(Living attacker, Living target)//마나 15를 소모하여, 전력으로 돌진해서 적 하나에게 공력력의 3배의 피해를 입힙니다. 
+            void FullpowerAttack(Character player, Living target)//마나 15를 소모하여, 전력으로 돌진해서 적 하나에게 공력력의 3배의 피해를 입힙니다. 
             {
                 int manacount = 15;
                 if (player.Mp < 15)
@@ -67,7 +65,7 @@ namespace TeamTextRPG
                 }
             }
 
-            void ChainAttack(Living attacker)//마나를 20소모하여 랜덤한 3명에게 공격력의 2배의 피해를 입힙니다.
+            void ChainAttack(Character player)//마나를 20소모하여 랜덤한 3명에게 공격력의 2배의 피해를 입힙니다.
             {
                 int manacount = 20;
                 if (player.Mp < 20)
