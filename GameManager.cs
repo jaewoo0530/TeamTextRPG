@@ -104,17 +104,7 @@ namespace TeamTextRPG
                 return;
             }
 
-            if (skillNumber == 1)
-            {
-            }
-
-            if (skillNumber == 2)
-            {
-            }
-
-            if (skillNumber == 3)
-            {
-            }
+            Battle.UseSkill(skillNumber, target);
 
             MonsterAttack();
         }

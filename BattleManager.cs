@@ -60,13 +60,13 @@ namespace TeamTextRPG
             switch (SkillNum)
             {
                 case 1:
-                    skillSystem.FullpowerAttack(Player, target);
+                    skillSystem.FullpowerAttack(target);
                     break;
                 case 2:
-                    skillSystem.ChainAttack(Player);
+                    skillSystem.ChainAttack();
                     break;
                 case 3:
-                    skillSystem.FullSmash(Player);
+                    skillSystem.FullSmash();
                     break;
                 default:
                     Console.WriteLine("잘못된 선택입니다");
