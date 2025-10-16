@@ -179,7 +179,7 @@ namespace TeamTextRPG
             }
             else if (choice == 2)
             {
-
+                PlayerSkillSelectUI();
             }
         }
 
@@ -220,12 +220,49 @@ namespace TeamTextRPG
             }
             if (choice > 0 && choice <= Monsters.Count)
             {
-                if (!Monsters[choice - 1].IsDead)
+                gameManager.PlayerAttack(choice);
+            }
+        }
+
+        public void PlayerSkillStartUI(int skillNumber)
+        {
+            Console.Clear();
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
+            Console.WriteLine();
+
+            for (int i = 0; i < Monsters.Count; i++) // 단순 출력 기능
+            {
+                if (Monsters[i].Hp == 0)
                 {
-                    gameManager.PlayerAttack(Monsters[choice - 1]);
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.WriteLine($"{i + 1} Lv.{Monsters[i].Level} {Monsters[i].Name} Dead");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.WriteLine($"{i + 1} Lv.{Monsters[i].Level} {Monsters[i].Name} HP {Monsters[i].Hp}");
                 }
             }
 
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("[내정보]");
+            Console.WriteLine($"Lv.{Player.Level} {Player.Name} ({Player.Job})");
+            Console.WriteLine($"HP {Player.Hp}/100");
+            Console.WriteLine();
+            Console.WriteLine("0. 취소");
+            Console.WriteLine();
+            Console.Write("대상을 선택해주세요.");
+
+            int choice = Input(Monsters.Count);
+            if (choice == 0)
+            {
+                BattleMainUI();
+            }
+            if (choice > 0 && choice <= Monsters.Count)
+            {
+                gameManager.PlayerUseSkill(skillNumber, choice);
+            }
         }
 
         public void PlayerAttackUI(Monster target, int damage, int beforeMonsterHp) // 플레이어 공격
@@ -271,7 +308,24 @@ namespace TeamTextRPG
             {
                 gameManager.MonsterAttack(Player);
             }
+        }
 
+        public void PlayerSkillSelectUI()
+        {
+            Console.Clear();
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
+
+            //skill 선택
+
+            int choice = Input(3);
+            if (choice == 0)
+            {
+                BattleMainUI();
+            }
+            if (choice > 0 && choice <= 3)
+            {
+                PlayerSkillStartUI(choice);
+            }
         }
 
         public void MonsterAttackUI(Monster attacker, int damage, int beforePlayerHp) // 몬스터 공격
