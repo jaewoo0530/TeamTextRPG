@@ -52,12 +52,12 @@ namespace TeamTextRPG
 
             switch (job)
             {
-                case JobType.전사: Atk = 5; Def = 10; break;
-                case JobType.궁수: Atk = 10; Def = 5; break;
-                case JobType.마법사: Atk = 3; Def = 5; break;
+                case JobType.전사: Atk = 5; Def = 10; MaxHp = 100; break;
+                case JobType.궁수: Atk = 10; Def = 5; MaxHp = 100; break;
+                case JobType.마법사: Atk = 3; Def = 5; MaxHp = 100; break;
             }
 
-            Hp = 100;
+            Hp = MaxHp;
             Mp = 100;
         }
 

@@ -128,7 +128,7 @@ namespace TeamTextRPG
             }
             Player.AddExp(acquireExp);
 
-            UI.BattlePlayerWinUI(beforeLevel, beforeExp, beforeDungeonHp);
+            UI.BattlePlayerWinUI(beforeDungeonHp, beforeLevel, beforeExp);
         }
 
         public void BattleLose()
