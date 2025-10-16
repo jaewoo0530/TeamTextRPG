@@ -59,7 +59,7 @@ namespace TeamTextRPG
                 int manacount = 15;
                 if (player.Mp < 15)
                 {
-                    Console.WriteLine($"MP가 부족합니다! (현재 MP: {player.Mp}, 필요 MP: {manacount})"); 
+                    Console.WriteLine($"MP가 부족합니다! (현재 MP: {player.Mp}, 필요 MP: {manacount})");
                     return;
                 }
                 else
@@ -98,11 +98,6 @@ namespace TeamTextRPG
                         target.TakeDamage(damage);
                     }
                 }
-            }
-
-            void Meteo()
-            {
-
             }
         }
     }
