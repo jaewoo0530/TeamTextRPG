@@ -20,22 +20,25 @@ namespace TeamTextRPG.Entities
         public int Hp
         {
             get => hp;
-            protected set
+            set
             {
-                hp = value;
-                if (hp < 0)
+                if (value < 0)
                     hp = 0;
+                else if (value > MaxHp)
+                    hp = MaxHp;
+                else
+                    hp = value;
             }
         }
 
-
         // 🔹 몬스터용 생성자 (값 다 넘김)
-        public Entity(string name, int attack, int defense, int hp, int level)
+        public Entity(string name, int attack, int defense, int maxHp, int level)
         {
             Name = name;
             Atk = attack;
             Def = defense;
-            Hp = hp;
+            MaxHp = maxHp;
+            Hp = MaxHp;
             Level = level;
         }
 
@@ -51,6 +54,7 @@ namespace TeamTextRPG.Entities
         {
             Hp -= damage;
         }
+
         // 죽음판단
         public bool IsDead => Hp <= 0;
 
@@ -58,9 +62,6 @@ namespace TeamTextRPG.Entities
         public void Heal(int amount)
         {
             Hp += amount;
-            if (Hp > MaxHp)
-                Hp = MaxHp;
-
         }
     }
 }

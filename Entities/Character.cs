@@ -11,28 +11,13 @@ namespace TeamTextRPG.Entities
     {
         public JobType Job { get; }
 
-        private int stamina = 100;
-        public int Stamina
-        {
-            get { return stamina; }
-            private set
-            {
-                if (value < 0)
-                    stamina = 0;
-                else if (value > 100)
-                    stamina = 100;
-                else
-                    stamina = value;
-            }
-        }
-
         public int Gold { get; private set; } = 500;
         public int Exp { get; private set; } = 0;
 
         private int mp;
         public int Mp
         {
-            get { return mp; }
+            get => mp;
             set
             {
                 if (value < 0)
