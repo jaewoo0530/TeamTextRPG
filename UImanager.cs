@@ -46,16 +46,46 @@ namespace TeamTextRPG
         public string CreateName()
         {
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
-            Console.Write("원하시는 이름을 입력해주세요.\n>> ");
+            Console.Write("원하시는 이름을 입력해주세요.\n\n>> ");
             string name = Console.ReadLine();
             return name;
         }
 
         public JobType CreateJob()
         {
-            Console.Write("원하시는 직업의 이름을 입력해주세요. [전사, 궁수, 마법사]\n>> ");
-            int jobCount = Enum.GetValues<JobType>().Length; // jobCount - 1
-            return Enum.TryParse(Console.ReadLine(), out JobType selectJob) ? selectJob : JobType.전사;
+            while (true)
+            {
+                Console.WriteLine("\n\n원하시는 직업의 이름을 입력해주세요.");
+                Console.WriteLine("\n1.전사\n2.궁수\n3.마법사");
+                Console.Write("\n\n>> ");
+                string input = Console.ReadLine();
+                JobType selectedJob;
+
+                if (int.TryParse(input, out int number))
+                {
+                    int jobCount = Enum.GetValues<JobType>().Length;
+
+                    if (number >= 1 && number <= jobCount)
+                    {
+                        selectedJob = (JobType)(number - 1);
+                    }
+                    else
+                    {
+                        Console.WriteLine("다시 입력해주세요.");
+                        continue;
+                    }
+                }
+                else if (Enum.TryParse(input, out JobType parsedJob))
+                {
+                    selectedJob = parsedJob;
+                }
+                else
+                {
+                    Console.WriteLine("다시 입력해주세요.");
+                    continue;
+                }
+                return selectedJob;
+            }
         }
 
         public void MainmenuUI() // 게임 시작 화면
@@ -78,7 +108,7 @@ namespace TeamTextRPG
             }
             else if (choice == 3)
             {
-                HealItem();
+                HealItemUI();
             }
         }
 
@@ -311,7 +341,7 @@ namespace TeamTextRPG
             int choice = Input(0);
         }
 
-        public void HealItem()
+        public void HealItemUI()
         {
             Console.Clear();
             Console.WriteLine("회복");
