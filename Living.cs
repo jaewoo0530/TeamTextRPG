@@ -25,8 +25,6 @@ namespace TeamTextRPG
                 hp = value;
                 if (hp < 0)
                     hp = 0;
-                if (hp > MaxHp)
-                    hp = MaxHp;
             }
         }
 
