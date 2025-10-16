@@ -68,56 +68,15 @@ namespace TeamTextRPG
             }
         }
 
-        public void PlayerAttack(int choice)
+        public void PlayerAttack(Monster target)
         {
             Monster target = Monsters[choice - 1];
 
-<<<<<<< HEAD
             if (target.IsDead)
-=======
-            if (!target.IsDead)
->>>>>>> dev
             {
                 return;
             }
 
-<<<<<<< HEAD
-=======
-            int beforeMonsterHp = target.Hp;
-
-            int damage = Battle.CalculateDamage(Player, target);
-            Player.Attack(target, damage);
-            UI.PlayerAttackUI(target, damage, beforeMonsterHp);
-
-            Battle.isCritical = false;
-            Battle.isEvaded = false;
-        }
-
-        public void PlayerUseSkill(int skillNumber, int choice)
-        {
-            Monster target = Monsters[choice - 1];
-
-            if (!target.IsDead)
-            {
-                return;
-            }
-
-            if (skillNumber == 1)
-            {
-                Battle.FullpowerAttack(target);
-            }
-
-            if (skillNumber == 2)
-            {
-                Battle.ChainAttack();
-            }
-
-            if (skillNumber == 3)
-            {
-                Battle.FullSmash(target);
-            }
-
->>>>>>> dev
             int beforeMonsterHp = target.Hp;
 
             int damage = Battle.CalculateDamage(Player, target);

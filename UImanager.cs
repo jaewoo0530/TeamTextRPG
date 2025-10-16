@@ -304,12 +304,6 @@ namespace TeamTextRPG
             Console.WriteLine("0. 다음");
 
             int choice = Input(0);
-<<<<<<< HEAD
-=======
-            if (choice == 0)
-            {
-                gameManager.MonsterAttack(Player);
-            }
         }
 
         public void PlayerSkillSelectUI()
@@ -328,10 +322,7 @@ namespace TeamTextRPG
             {
                 PlayerSkillStartUI(choice);
             }
->>>>>>> dev
         }
-
-        
 
         public void MonsterAttackUI(Monster attacker, int damage, int beforePlayerHp) // 몬스터 공격
         {
