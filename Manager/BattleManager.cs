@@ -9,9 +9,11 @@ using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using TeamTextRPG.Entities;
+using TeamTextRPG.Skills;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Manager
 {
     internal class BattleManager
     {
@@ -27,7 +29,7 @@ namespace TeamTextRPG
             this.gameManager = gameManager;
         }
 
-        public int CalculateDamage(Living attacker, Living target)
+        public int CalculateDamage(Entity attacker, Entity target)
         {
             int min = (int)Math.Round(attacker.Atk * 0.9f);
             int max = (int)Math.Round(attacker.Atk * 1.1f) + 1;

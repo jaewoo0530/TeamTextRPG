@@ -4,8 +4,10 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using TeamTextRPG.Entities;
+using TeamTextRPG.Manager;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Skills
 {
     internal abstract class Skill
     {

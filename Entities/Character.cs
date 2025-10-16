@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Entities
 {
     public enum JobType { 전사, 궁수, 마법사 }
-    internal class Character : Living
+    internal class Character : Entity
     {
         public JobType Job { get; }
 

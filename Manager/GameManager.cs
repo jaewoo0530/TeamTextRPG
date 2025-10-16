@@ -5,8 +5,10 @@ using System.Numerics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TeamTextRPG.Data;
+using TeamTextRPG.Entities;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Manager
 {
     internal class GameManager
     {

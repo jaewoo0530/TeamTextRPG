@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
+using TeamTextRPG.Entities;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Manager
 {
     internal static class SaveManager
     {

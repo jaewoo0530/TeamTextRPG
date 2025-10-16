@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Items
 {
     public enum ItemType { 방어구, 무기 }
     internal class Item

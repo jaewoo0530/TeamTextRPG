@@ -7,9 +7,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using TeamTextRPG.Entities;
+using TeamTextRPG.Items;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Manager
 {
     internal class UIManager
     {
@@ -31,7 +33,7 @@ namespace TeamTextRPG
                 Console.Write("\n>> ");
                 bool valid = int.TryParse(Console.ReadLine(), out int choice);
 
-                if (valid && (choice >= 0 && choice <= maxOption))
+                if (valid && choice >= 0 && choice <= maxOption)
                 {
                     return choice;
                 }

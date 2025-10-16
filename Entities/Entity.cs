@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamTextRPG
+namespace TeamTextRPG.Entities
 {
-    internal class Living
+    internal class Entity
     {
 
         private int hp;
@@ -30,7 +30,7 @@ namespace TeamTextRPG
 
 
         // 🔹 몬스터용 생성자 (값 다 넘김)
-        public Living(string name, int attack, int defense, int hp, int level)
+        public Entity(string name, int attack, int defense, int hp, int level)
         {
             Name = name;
             Atk = attack;
@@ -40,9 +40,9 @@ namespace TeamTextRPG
         }
 
         // 🔹 캐릭터용 기본 생성자 (나중에 직접 세팅)
-        public Living() { }
+        public Entity() { }
 
-        public void Attack(Living target, int damage)
+        public void Attack(Entity target, int damage)
         {
             target.TakeDamage(damage);
         }
