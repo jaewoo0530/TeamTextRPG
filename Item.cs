@@ -16,14 +16,16 @@ namespace TeamTextRPG
         public int value;
         public string info;
         public bool isEquip;
+        public bool isHave;
 
-        public Item(string name, ItemType itemType, int value, string info, bool isEquip)
+        public Item(string name, ItemType itemType, int value, string info, bool isEquip, bool isHave)
         {
             this.name = name;
             ItemType = itemType;
             this.value = value;
             this.info = info;
             this.isEquip = false;
+            this.isHave = false;
         }
     }
 }
