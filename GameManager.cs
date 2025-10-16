@@ -113,8 +113,8 @@ namespace TeamTextRPG
 
         public void BattleWin()
         {
-            UI.BattlePlayerWinUI(beforeDungeonHp);
             stageNumber++;
+            UI.BattlePlayerWinUI(beforeDungeonHp);
         }
 
         public void BattleLose()
