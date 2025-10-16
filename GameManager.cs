@@ -113,7 +113,10 @@ namespace TeamTextRPG
 
         public void BattleWin()
         {
-            stageNumber++;
+            if (stageNumber < monsterData.MonsterDex.Count)
+            {
+                stageNumber++;
+            }
             UI.BattlePlayerWinUI(beforeDungeonHp);
         }
 
