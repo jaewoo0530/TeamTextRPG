@@ -66,8 +66,6 @@ namespace TeamTextRPG
             {
                 BattleLose();
             }
-
-            Monsters.Clear();
         }
 
         public void PlayerAttack(Monster target)
@@ -117,6 +115,19 @@ namespace TeamTextRPG
             {
                 stageNumber++;
             }
+
+            int beforeLevel = Player.Level;
+            int beforeExp = Player.Exp;
+
+            int acquireExp = 0;
+
+            foreach (var monster in Monsters)
+            {
+                int expFromMonster = monster.RewardExp;
+                acquireExp += expFromMonster;
+            }
+            Player.AddExp(acquireExp);
+
             UI.BattlePlayerWinUI(beforeDungeonHp);
         }
 
