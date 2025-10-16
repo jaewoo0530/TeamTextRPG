@@ -10,58 +10,91 @@ namespace TeamTextRPG
 {
     internal class BattleManager
     {
-        Monster monster;
-        Character character;
-        public void BattleDisPlayer()
+        private GameManager gameManager;
+
+        Random random = new Random();
+
+        public bool isCritical = false;
+        public bool isEvaded = false;
+
+        public BattleManager(GameManager gameManager)
         {
-            Console.Clear();
-            Console.WriteLine("Battle!!");
-            Console.WriteLine();
-            Console.WriteLine($"Lv.{monster.Attack} {monster.Name} Hp. {monster.Hp}");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("\n[내정보]");
-            Console.WriteLine($"Lv.{character.Level} {character.Name}({character.Job})");
-            Console.WriteLine($"HP {character.Hp}/{character.Hp}");
-            Console.WriteLine();
-            Console.WriteLine("1. 공격");
-            Console.WriteLine("2. 도주");
-            Console.WriteLine();
-            Console.WriteLine("원하는 행동을 입력");
-            Console.Write(">>");
-            int act1;
-            if (int.TryParse(Console.ReadLine(), out act1))
+            this.gameManager = gameManager;
+        }
+        private List<Monster> Monsters => gameManager.Monsters;
+        public int CalculateDamage(Living attacker, Living target)
+        {
+            int min = (int)Math.Round(attacker.Atk * 0.9f);
+            int max = (int)Math.Round(attacker.Atk * 1.1f) + 1;
+            int randDamage = random.Next(min, max);
+            int finalDamage = Math.Max(randDamage - target.Def, 0);
+
+            if (random.Next(0, 100) < 10)
             {
-                switch (act1)
-                {
-                    case 1:
-                        Console.Clear();
-                        AttackDisplayer();
-                        break;
-                }
+                isEvaded = true;
+                return 0;
+            }
+            else if (random.Next(0, 100) < 15)
+            {
+                int CriticalDamage = (int)Math.Round(randDamage * 1.6f);
+                isCritical = true;
+                return CriticalDamage;
             }
             else
             {
-                Console.Clear();
-                BattleDisPlayer();
+                return finalDamage;
             }
         }
 
-        public void AttackDisplayer()
+        Character player;
+
+        public void Skill()
         {
-            Console.Clear();
-            Console.WriteLine("Battle!!");
-            Console.WriteLine();
-            Console.WriteLine($"1  Lv.{monster.Attack} {monster.Name} Hp. {monster.Hp}");
-            Console.WriteLine("\n[내정보]");
-            Console.WriteLine($"Lv.{character.Level} {character.Name}({character.Job})");
-            Console.WriteLine($"HP {character.Hp}/{character.Hp}");
-            Console.WriteLine();
-            Console.WriteLine("0. 취소");
-            Console.WriteLine();
-            Console.WriteLine("대상을 선택 하세요.");
-            Console.Write(">>");
-            Console.ReadLine();
+            void FullpowerAttack(Living attacker, Living target)//마나 15를 소모하여, 전력으로 돌진해서 적 하나에게 공력력의 3배의 피해를 입힙니다. 
+            {
+                int manacount = 15;
+                if (player.Mp < 15)
+                {
+                    Console.WriteLine($"MP가 부족합니다! (현재 MP: {player.Mp}, 필요 MP: {manacount})");
+                    return;
+                }
+                else
+                {
+                    int damage = (int)(attacker.Atk * 3);
+                    target.TakeDamage(damage);
+                    player.Mp -= manacount;
+                    Console.WriteLine($"MP {manacount}를 소모했습니다. 남은 MP: {player.Mp}");
+                }
+            }
+
+            void ChainAttack(Living attacker)//마나를 20소모하여 랜덤한 3명에게 공격력의 2배의 피해를 입힙니다.
+            {
+                int manacount = 20;
+                if (player.Mp < 20)
+                {
+                    Console.WriteLine($"MP가 부족합니다! (현재 MP: {player.Mp}, 필요 MP: {manacount})");
+                    return;
+                }
+                else
+                {
+                    if (Monsters == null || Monsters.Count == 0)
+                    {
+                        Console.WriteLine("공격할 몬스터가 없습니다!");
+                        return;
+                    }
+                    player.Mp -= manacount;
+                    Console.WriteLine($"MP {manacount}를 소모했습니다. 남은 MP: {player.Mp}");
+                    // 랜덤으로 3회 공격
+                    for (int i = 0; i < 3; i++)
+                    {
+                        // 등장한 몬스터 중 하나를 무작위로 선택
+                        Monster target = Monsters[random.Next(Monsters.Count)];
+
+                        int damage = (int)(attacker.Atk * 2);
+                        target.TakeDamage(damage);
+                    }
+                }
+            }
         }
     }
 }
