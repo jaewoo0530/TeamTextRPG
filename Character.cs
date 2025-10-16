@@ -60,5 +60,22 @@ namespace TeamTextRPG
             Hp = 100;
             Mp = 100;
         }
+
+        public void AddExp(int value)
+        {
+            Exp += value;
+            LevelUp();
+        }
+
+        public void LevelUp()
+        {
+            while (Exp >= 100)
+            {
+                Exp -= 100;
+                Level++;
+                Atk++;
+                Def++;
+            }
+        }
     }
 }
