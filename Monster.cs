@@ -22,6 +22,7 @@ namespace TeamTextRPG
             Atk = template.Atk;
             Hp = template.Hp;
             Def = template.Def;
+            RewardExp = template.RewardExp;
         }
     }
 }
