@@ -10,11 +10,11 @@ namespace TeamTextRPG
     {
         private Random random = new Random();
 
-        private List<Monster> monsters;
+        public List<Monster> MonsterDex {get; private set;}
 
         public MonsterData()
         {
-            monsters = new List<Monster>
+            MonsterDex = new List<Monster>
             {
                 new Monster("저글링", 1, 0, 20, 1),
                 new Monster("히드라", 3, 0, 40, 3),
@@ -26,7 +26,7 @@ namespace TeamTextRPG
         public Monster GetRandomMonster(int stageNumber)
         {
             int index = random.Next(0, stageNumber);
-            return new Monster(monsters[index]);
+            return new Monster(MonsterDex[index]);
         }
     }
 }
