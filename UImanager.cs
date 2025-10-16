@@ -378,16 +378,13 @@ namespace TeamTextRPG
             Console.WriteLine("[아이템 목록]");
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].ItemType == ItemType.방어구 && items[i].isHave)
+                if (items[i].isHave)
                 {
-                    Console.WriteLine($" - {items[i].name}   | 방어력 + {items[i].value}  | {items[i].info}");
-                }
-                else if (items[i].ItemType == ItemType.무기 && items[i].isHave)
-                {
-                    Console.WriteLine($" - {items[i].name}   | 공격력 + {items[i].value}  | {items[i].info}");
+                    string typeText = items[i].ItemType == ItemType.무기 ? "공격력" : "방어력";
+                    Console.WriteLine($" - {items[i].name}   | {typeText} + {items[i].value}  | {items[i].info}");
                 }
             }
-            Console.WriteLine("=========================");
+            Console.WriteLine();
             Console.WriteLine("1. 장착 관리\n0. 나가기");
             int choice = Input(1);
             if (choice == 0)
@@ -396,12 +393,36 @@ namespace TeamTextRPG
             }
             else if (choice == 1)
             {
-
+                EquipManagment(items);
             }
         }
-        public void EquipManagment()
+        public void EquipManagment(List<Item> items)
         {
+            Console.Clear();
+            Console.WriteLine("인벤토리 - 장착관리");
+            Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
+            Console.WriteLine();
+            Console.WriteLine("[아이템 목록]");
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].isHave)
+                {
+                    string equipMark = items[i].isEquip ? "[E] " : "";
+                    string typeText = items[i].ItemType == ItemType.무기 ? "공격력" : "방어력";
+                    Console.WriteLine($"- {i + 1} - {equipMark}{items[i].name}   | {typeText} + {items[i].value}  | {items[i].info}");
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("0. 나가기");
+            int choice = Input(items.Count);
+            if (choice == 0)
+            {
+                MainmenuUI();
+            }
+            else if (choice == 1)
+            {
 
+            }
         }
     }
 }
