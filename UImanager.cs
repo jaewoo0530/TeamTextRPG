@@ -114,7 +114,7 @@ namespace TeamTextRPG
             }
             else if (choice == 4)
             {
-                
+                // InventoryUI();
             }
         }
 
@@ -305,7 +305,7 @@ namespace TeamTextRPG
             Input(0);
         }
 
-        public void BattlePlayerWinUI(int beforeDungeonHp) // 플레이어 승리 결과창
+        public void BattlePlayerWinUI(int beforeDungeonHp, int beforeLevel, int beforeExp) // 플레이어 승리 결과창
         {
             Console.Clear();
             Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber} Result");
@@ -315,8 +315,8 @@ namespace TeamTextRPG
             Console.WriteLine($"던전에서 몬스터 {Monsters.Count}마리를 잡았습니다.");
             Console.WriteLine();
             Console.WriteLine("[캐릭터 정보]");
-            Console.WriteLine($"Lv.{Player.Level} {Player.Name} -> Lv.{Player.Level} {Player.Name}");
-            Console.WriteLine($"exp.{Player.Exp} -> exp.{Player.Exp}");
+            Console.WriteLine($"Lv.{beforeLevel} {Player.Name} -> Lv.{Player.Level} {Player.Name}");
+            Console.WriteLine($"exp.{beforeExp} -> exp.{Player.Exp}");
             Console.WriteLine($"HP {beforeDungeonHp} -> {Player.Hp}");
             Console.WriteLine();
             Console.WriteLine("[획득 아이템]");
