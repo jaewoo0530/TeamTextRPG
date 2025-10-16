@@ -110,7 +110,7 @@ namespace TeamTextRPG
             }
             else if (choice == 3)
             {
-                HealItemUI();
+                // HealItemUI();
             }
             else if (choice == 4)
             {
@@ -402,7 +402,7 @@ namespace TeamTextRPG
             int choice = Input(0);
         }
 
-        public void HealItemUI()
+        public void HealItemUI(int beforePlayerHp)
         {
             Console.Clear();
             Console.WriteLine("회복");
@@ -420,7 +420,10 @@ namespace TeamTextRPG
             }
             else if (choice == 1)
             {
-
+                Console.WriteLine();
+                Console.WriteLine("포션을 사용했습니다.");
+                Console.WriteLine($"HP {beforePlayerHp} -> {Player.Hp}");
+                Thread.Sleep(800);
             }
         }
 
