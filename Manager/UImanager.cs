@@ -230,9 +230,32 @@ namespace TeamTextRPG.Manager
         {
             Console.Clear();
             Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
+            Console.WriteLine();
 
-            Console.WriteLine("\n1. FullpowerAttack");
-            Console.WriteLine("2. FullSmash\n");
+            for (int i = 0; i < Monsters.Count; i++) // 단순 출력 기능
+            {
+                if (Monsters[i].Hp == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.WriteLine($"{i + 1} Lv.{Monsters[i].Level} {Monsters[i].Name} Dead");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.WriteLine($"{i + 1} Lv.{Monsters[i].Level} {Monsters[i].Name} HP {Monsters[i].Hp}");
+                }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("[내정보]");
+            Console.WriteLine($"Lv.{Player.Level} {Player.Name} ({Player.Job})");
+            Console.WriteLine($"HP {Player.Hp}/100");
+            Console.WriteLine();
+            Console.WriteLine("1. FullpowerAttack");
+            Console.WriteLine("2. FullSmash");
+            Console.WriteLine();
+            Console.Write("사용할 스킬을 선택해주세요.");
 
             int choice = Input(2);
             if (choice == 0)
@@ -288,6 +311,39 @@ namespace TeamTextRPG.Manager
             {
                 gameManager.PlayerUseSkill(skillNumber, choice);
             }
+        }
+
+        public void NotEnoughManaUI()
+        {
+            Console.Clear();
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
+            Console.WriteLine();
+
+            for (int i = 0; i < Monsters.Count; i++) // 단순 출력 기능
+            {
+                if (Monsters[i].Hp == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.WriteLine($"{i + 1} Lv.{Monsters[i].Level} {Monsters[i].Name} Dead");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.WriteLine($"{i + 1} Lv.{Monsters[i].Level} {Monsters[i].Name} HP {Monsters[i].Hp}");
+                }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("[내정보]");
+            Console.WriteLine($"Lv.{Player.Level} {Player.Name} ({Player.Job})");
+            Console.WriteLine($"HP {Player.Hp}/100");
+
+            Console.WriteLine("\n마나가 부족합니다.");
+
+            Console.WriteLine();
+            Console.WriteLine("0. 다음");
+            Input(0);
         }
 
         public void PlayerAttackUI(Monster target, int damage, int beforeMonsterHp) // 플레이어 공격

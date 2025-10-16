@@ -15,6 +15,8 @@ namespace TeamTextRPG.Skills
         protected Character Player => gameManager.Player;
         protected List<Monster> Monsters => gameManager.Monsters;
 
+        public int manaCost;
+
         protected Skill(GameManager gameManager)
         {
             this.gameManager = gameManager;

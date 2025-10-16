@@ -23,11 +23,14 @@ namespace TeamTextRPG.Manager
 
         public bool isCritical = false;
         public bool isEvaded = false;
+        public bool isEnoughMana;
 
         public BattleManager(GameManager gameManager)
         {
             this.gameManager = gameManager;
         }
+
+        private Character Player => gameManager.Player;
 
         public int CalculateDamage(Entity attacker, Entity target)
         {
@@ -59,15 +62,28 @@ namespace TeamTextRPG.Manager
             if (skillNumber == 1)
             {
                 skill = new FullpowerAttack(gameManager);
+                if (Player.Mp < skill.manaCost)
+                {
+                    isEnoughMana = false;
+                    return;
+                }
             }
             else if (skillNumber == 2)
             {
                 skill = new FullSmash(gameManager);
+                if (Player.Mp < skill.manaCost)
+                {
+                    isEnoughMana = false;
+                    return;
+                }
             }
             else
             {
-                skill = null;
+                isEnoughMana = false;
+                return;
             }
+
+            isEnoughMana = true;
 
             skill.Execute(target);
         }

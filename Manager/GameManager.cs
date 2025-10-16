@@ -90,6 +90,39 @@ namespace TeamTextRPG.Manager
             MonsterAttack();
         }
 
+        public void PlayerUseSkill(int skillNumber, int? choice = null)
+        {
+            // 광역 스킬
+            if (choice == null)
+            {
+                Battle.UseSkill(skillNumber);
+
+                if (!Battle.isEnoughMana)
+                {
+                    UI.NotEnoughManaUI();
+                    return;
+                }
+
+                MonsterAttack();
+                return;
+            }
+
+            // 단일 스킬
+            Monster target = Monsters[(int)choice - 1];
+
+            if (target.IsDead)
+                return;
+
+            Battle.UseSkill(skillNumber, target);
+            if (!Battle.isEnoughMana)
+            {
+                UI.NotEnoughManaUI();
+                return;
+            }
+
+            MonsterAttack();
+        }
+
         public void PlayerSkillAttack(Monster target, int damage)
         {
             int beforeMonsterHp = target.Hp;
@@ -110,27 +143,6 @@ namespace TeamTextRPG.Manager
 
                 UI.PlayerAttackUI(monster, damage, beforeMonsterHp);
             }
-        }
-
-        public void PlayerUseSkill(int skillNumber, int? choice = null)
-        {
-            // 광역 스킬
-            if (choice == null)
-            {
-                Battle.UseSkill(skillNumber);
-                MonsterAttack();
-                return;
-            }
-
-            // 단일 스킬
-            Monster target = Monsters[(int)choice - 1];
-
-            if (target.IsDead)
-                return;
-
-            Battle.UseSkill(skillNumber, target);
-
-            MonsterAttack();
         }
 
         public void MonsterAttack()

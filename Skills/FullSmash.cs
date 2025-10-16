@@ -11,22 +11,13 @@ namespace TeamTextRPG.Skills
 {
     internal class FullSmash : Skill
     {
-        private int manaCost = 30;
-
-        public FullSmash(GameManager gameManager) : base(gameManager) { }
+        public FullSmash(GameManager gameManager) : base(gameManager)
+        {
+            manaCost = 30;
+        }
 
         public override void Execute(Monster? target = null)
         {
-            if (Player.Mp < manaCost)
-            {
-                return;
-            }
-
-            if (Monsters == null || Monsters.Count == 0)
-            {
-                return;
-            }
-
             int damage = Player.Atk * 10;
             Player.Mp -= manaCost;
 
