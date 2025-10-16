@@ -68,7 +68,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void PlayerAttack(Monster target)
+        public void PlayerAttack(int choice)
         {
             Monster target = Monsters[choice - 1];
 
@@ -106,17 +106,14 @@ namespace TeamTextRPG
 
             if (skillNumber == 1)
             {
-                Battle.FullpowerAttack(target);
             }
 
             if (skillNumber == 2)
             {
-                Battle.ChainAttack();
             }
 
             if (skillNumber == 3)
             {
-                Battle.FullSmash(target);
             }
 
             MonsterAttack();
