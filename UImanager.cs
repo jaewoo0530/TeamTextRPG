@@ -399,5 +399,9 @@ namespace TeamTextRPG
 
             }
         }
+        public void EquipManagment()
+        {
+
+        }
     }
 }
