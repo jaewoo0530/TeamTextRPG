@@ -47,7 +47,7 @@ namespace TeamTextRPG
             target.TakeDamage(damage);
         }
 
-        public void TakeDamage(int damage)
+        private void TakeDamage(int damage)
         {
             Hp -= damage;
         }
