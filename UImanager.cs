@@ -179,7 +179,7 @@ namespace TeamTextRPG
             }
             else if (choice == 2)
             {
-                PlayerSkillSelectUI();
+                SkillSelectUI();
             }
         }
 
@@ -224,7 +224,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void PlayerSkillSelectUI()
+        public void SkillSelectUI()
         {
             Console.Clear();
             Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
@@ -239,7 +239,7 @@ namespace TeamTextRPG
             }
             if (choice == 1)
             {
-                PlayerSkillStartUI(choice);
+                SkillTargetUI(choice);
             }
             if (choice == 2)
             {
@@ -247,7 +247,7 @@ namespace TeamTextRPG
             }
         }
 
-        public void PlayerSkillStartUI(int skillNumber)
+        public void SkillTargetUI(int skillNumber)
         {
             Console.Clear();
             Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");

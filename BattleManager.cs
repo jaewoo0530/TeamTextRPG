@@ -50,23 +50,25 @@ namespace TeamTextRPG
                 return finalDamage;
             }
         }
-
-        public void UseSkill(int SkillNum, Monster? target = null)
+        public void UseSkill(int skillNumber, Monster? target = null)
         {
-            Skill skillSystem = new Skill(gameManager);
+            Skill skill;
 
-            switch (SkillNum)
+            if (skillNumber == 1)
             {
-                case 1:
-                    skillSystem.FullpowerAttack(target);
-                    break;
-                case 2:
-                    skillSystem.FullSmash();
-                    break;
-                default:
-                    Console.WriteLine("잘못된 선택입니다");
-                    break;
+                skill = new FullpowerAttack(gameManager);
             }
+            else if (skillNumber == 2)
+            {
+                skill = new FullSmash(gameManager);
+            }
+            else
+            {
+                skill = null;
+            }
+
+            skill.Execute(target);
         }
+
     }
 }
