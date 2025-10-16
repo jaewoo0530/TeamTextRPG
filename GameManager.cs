@@ -95,14 +95,36 @@ namespace TeamTextRPG
             UI.PlayerAttackUI(target, damage, beforeMonsterHp);
         }
 
-        public void PlayerUseSkill(int skillNumber, int choice)
+        public void PlayerSkillAttackAll(int damage)
         {
-            Monster target = Monsters[choice - 1];
-
-            if (target.IsDead)
+            foreach (var monster in Monsters)
             {
+                if (monster.IsDead)
+                    continue;
+
+                int beforeMonsterHp = monster.Hp;
+
+                Player.Attack(monster, damage);
+
+                UI.PlayerAttackUI(monster, damage, beforeMonsterHp);
+            }
+        }
+
+        public void PlayerUseSkill(int skillNumber, int? choice = null)
+        {
+            // 광역 스킬
+            if (choice == null)
+            {
+                Battle.UseSkill(skillNumber);
+                MonsterAttack();
                 return;
             }
+
+            // 단일 스킬
+            Monster target = Monsters[(int)choice - 1];
+
+            if (target.IsDead)
+                return;
 
             Battle.UseSkill(skillNumber, target);
 

@@ -224,6 +224,29 @@ namespace TeamTextRPG
             }
         }
 
+        public void PlayerSkillSelectUI()
+        {
+            Console.Clear();
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
+
+            Console.WriteLine("\n1. FullpowerAttack");
+            Console.WriteLine("2. FullSmash\n");
+
+            int choice = Input(2);
+            if (choice == 0)
+            {
+                BattleMainUI();
+            }
+            if (choice == 1)
+            {
+                PlayerSkillStartUI(choice);
+            }
+            if (choice == 2)
+            {
+                gameManager.PlayerUseSkill(choice);
+            }
+        }
+
         public void PlayerSkillStartUI(int skillNumber)
         {
             Console.Clear();
@@ -304,24 +327,6 @@ namespace TeamTextRPG
             Console.WriteLine("0. 다음");
 
             int choice = Input(0);
-        }
-
-        public void PlayerSkillSelectUI()
-        {
-            Console.Clear();
-            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
-
-            //skill 선택
-
-            int choice = Input(3);
-            if (choice == 0)
-            {
-                BattleMainUI();
-            }
-            if (choice > 0 && choice <= 3)
-            {
-                PlayerSkillStartUI(choice);
-            }
         }
 
         public void MonsterAttackUI(Monster attacker, int damage, int beforePlayerHp) // 몬스터 공격

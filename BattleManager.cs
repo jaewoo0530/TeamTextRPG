@@ -27,9 +27,6 @@ namespace TeamTextRPG
             this.gameManager = gameManager;
         }
 
-        private List<Monster> Monsters => gameManager.Monsters;
-        private Character Player => gameManager.Player;
-
         public int CalculateDamage(Living attacker, Living target)
         {
             int min = (int)Math.Round(attacker.Atk * 0.9f);
@@ -53,9 +50,10 @@ namespace TeamTextRPG
                 return finalDamage;
             }
         }
-        public void UseSkill(int SkillNum, Monster target)
+
+        public void UseSkill(int SkillNum, Monster? target = null)
         {
-            Skill skillSystem = new Skill(Player, Monsters);
+            Skill skillSystem = new Skill(gameManager);
 
             switch (SkillNum)
             {
@@ -63,9 +61,6 @@ namespace TeamTextRPG
                     skillSystem.FullpowerAttack(target);
                     break;
                 case 2:
-                    skillSystem.ChainAttack();
-                    break;
-                case 3:
                     skillSystem.FullSmash();
                     break;
                 default:
