@@ -93,13 +93,13 @@ namespace TeamTextRPG
             Console.Clear();
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.\n이제 전투를 시작할 수 있습니다.");
             Console.WriteLine();
-            Console.WriteLine("1. 상태 보기\n2. 전투 시작\n3. 회복 아이템");
+            Console.WriteLine("1. 상태 보기\n2. 전투 시작\n3. 회복 아이템\n4. 인벤토리");
             Console.WriteLine();
             Console.WriteLine("9. 불러오기\n0. 저장");
             Console.WriteLine();
             Console.Write("원하시는 행동을 입력해주세요.");
 
-            int choice = Input(3);
+            int choice = Input(4);
             if (choice == 1)
             {
                 StatusUI();
@@ -111,6 +111,10 @@ namespace TeamTextRPG
             else if (choice == 3)
             {
                 HealItemUI();
+            }
+            else if (choice == 4)
+            {
+                // InventoryUI();
             }
         }
 
@@ -301,7 +305,7 @@ namespace TeamTextRPG
             Input(0);
         }
 
-        public void BattlePlayerWinUI(int beforeDungeonHp) // 플레이어 승리 결과창
+        public void BattlePlayerWinUI(int beforeDungeonHp, int beforeLevel, int beforeExp) // 플레이어 승리 결과창
         {
             Console.Clear();
             Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber} Result");
@@ -311,8 +315,8 @@ namespace TeamTextRPG
             Console.WriteLine($"던전에서 몬스터 {Monsters.Count}마리를 잡았습니다.");
             Console.WriteLine();
             Console.WriteLine("[캐릭터 정보]");
-            Console.WriteLine($"Lv.{Player.Level} {Player.Name} -> Lv.{Player.Level} {Player.Name}");
-            Console.WriteLine($"exp.{Player.Exp} -> exp.{Player.Exp}");
+            Console.WriteLine($"Lv.{beforeLevel} {Player.Name} -> Lv.{Player.Level} {Player.Name}");
+            Console.WriteLine($"exp.{beforeExp} -> exp.{Player.Exp}");
             Console.WriteLine($"HP {beforeDungeonHp} -> {Player.Hp}");
             Console.WriteLine();
             Console.WriteLine("[획득 아이템]");
@@ -363,6 +367,41 @@ namespace TeamTextRPG
             {
 
             }
+        }
+
+        public void InventoryUI(List<Item> items)
+        {
+            Console.Clear();
+            Console.WriteLine("인벤토리");
+            Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
+            Console.WriteLine();
+            Console.WriteLine("[아이템 목록]");
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].ItemType == ItemType.방어구 && items[i].isHave)
+                {
+                    Console.WriteLine($" - {items[i].name}   | 방어력 + {items[i].value}  | {items[i].info}");
+                }
+                else if (items[i].ItemType == ItemType.무기 && items[i].isHave)
+                {
+                    Console.WriteLine($" - {items[i].name}   | 공격력 + {items[i].value}  | {items[i].info}");
+                }
+            }
+            Console.WriteLine("=========================");
+            Console.WriteLine("1. 장착 관리\n0. 나가기");
+            int choice = Input(1);
+            if (choice == 0)
+            {
+                MainmenuUI();
+            }
+            else if (choice == 1)
+            {
+
+            }
+        }
+        public void EquipManagment()
+        {
+
         }
     }
 }
