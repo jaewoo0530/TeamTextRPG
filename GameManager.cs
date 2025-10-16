@@ -70,6 +70,13 @@ namespace TeamTextRPG
 
         public void PlayerAttack(Monster target)
         {
+            Monster target = Monsters[choice - 1];
+
+            if (target.IsDead)
+            {
+                return;
+            }
+
             int beforeMonsterHp = target.Hp;
 
             int damage = Battle.CalculateDamage(Player, target);
@@ -78,9 +85,44 @@ namespace TeamTextRPG
 
             Battle.isCritical = false;
             Battle.isEvaded = false;
+            MonsterAttack();
         }
 
-        public void MonsterAttack(Character player)
+        public void PlayerSkillAttack(Monster target, int damage)
+        {
+            int beforeMonsterHp = target.Hp;
+            Player.Attack(target, damage);
+            UI.PlayerAttackUI(target, damage, beforeMonsterHp);
+        }
+
+        public void PlayerUseSkill(int skillNumber, int choice)
+        {
+            Monster target = Monsters[choice - 1];
+
+            if (target.IsDead)
+            {
+                return;
+            }
+
+            if (skillNumber == 1)
+            {
+                Battle.FullpowerAttack(target);
+            }
+
+            if (skillNumber == 2)
+            {
+                Battle.ChainAttack();
+            }
+
+            if (skillNumber == 3)
+            {
+                Battle.FullSmash(target);
+            }
+
+            MonsterAttack();
+        }
+
+        public void MonsterAttack()
         {
             for (int i = 0; i < Monsters.Count; i++)
             {
@@ -92,10 +134,10 @@ namespace TeamTextRPG
                 {
                     if (!Player.IsDead)
                     {
-                        int beforePlayerHp = player.Hp;
+                        int beforePlayerHp = Player.Hp;
 
                         int damage = Battle.CalculateDamage(Monsters[i], Player);
-                        Monsters[i].Attack(player, damage);
+                        Monsters[i].Attack(Player, damage);
                         UI.MonsterAttackUI(Monsters[i], damage, beforePlayerHp);
 
                         Battle.isCritical = false;

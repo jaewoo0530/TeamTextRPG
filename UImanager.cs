@@ -267,12 +267,9 @@ namespace TeamTextRPG
             Console.WriteLine("0. 다음");
 
             int choice = Input(0);
-            if (choice == 0)
-            {
-                gameManager.MonsterAttack(Player);
-            }
-
         }
+
+        
 
         public void MonsterAttackUI(Monster attacker, int damage, int beforePlayerHp) // 몬스터 공격
         {
