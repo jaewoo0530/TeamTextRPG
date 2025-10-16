@@ -179,7 +179,7 @@ namespace TeamTextRPG
             }
             else if (choice == 2)
             {
-
+                PlayerSkillSelectUI();
             }
         }
 
@@ -220,12 +220,49 @@ namespace TeamTextRPG
             }
             if (choice > 0 && choice <= Monsters.Count)
             {
-                if (!Monsters[choice - 1].IsDead)
+                gameManager.PlayerAttack(choice);
+            }
+        }
+
+        public void PlayerSkillStartUI(int skillNumber)
+        {
+            Console.Clear();
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
+            Console.WriteLine();
+
+            for (int i = 0; i < Monsters.Count; i++) // 단순 출력 기능
+            {
+                if (Monsters[i].Hp == 0)
                 {
-                    gameManager.PlayerAttack(Monsters[choice - 1]);
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.WriteLine($"{i + 1} Lv.{Monsters[i].Level} {Monsters[i].Name} Dead");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.WriteLine($"{i + 1} Lv.{Monsters[i].Level} {Monsters[i].Name} HP {Monsters[i].Hp}");
                 }
             }
 
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("[내정보]");
+            Console.WriteLine($"Lv.{Player.Level} {Player.Name} ({Player.Job})");
+            Console.WriteLine($"HP {Player.Hp}/100");
+            Console.WriteLine();
+            Console.WriteLine("0. 취소");
+            Console.WriteLine();
+            Console.Write("대상을 선택해주세요.");
+
+            int choice = Input(Monsters.Count);
+            if (choice == 0)
+            {
+                BattleMainUI();
+            }
+            if (choice > 0 && choice <= Monsters.Count)
+            {
+                gameManager.PlayerUseSkill(skillNumber, choice);
+            }
         }
 
         public void PlayerAttackUI(Monster target, int damage, int beforeMonsterHp) // 플레이어 공격
@@ -267,6 +304,31 @@ namespace TeamTextRPG
             Console.WriteLine("0. 다음");
 
             int choice = Input(0);
+<<<<<<< HEAD
+=======
+            if (choice == 0)
+            {
+                gameManager.MonsterAttack(Player);
+            }
+        }
+
+        public void PlayerSkillSelectUI()
+        {
+            Console.Clear();
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
+
+            //skill 선택
+
+            int choice = Input(3);
+            if (choice == 0)
+            {
+                BattleMainUI();
+            }
+            if (choice > 0 && choice <= 3)
+            {
+                PlayerSkillStartUI(choice);
+            }
+>>>>>>> dev
         }
 
         
@@ -375,16 +437,13 @@ namespace TeamTextRPG
             Console.WriteLine("[아이템 목록]");
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].ItemType == ItemType.방어구 && items[i].isHave)
+                if (items[i].isHave)
                 {
-                    Console.WriteLine($" - {items[i].name}   | 방어력 + {items[i].value}  | {items[i].info}");
-                }
-                else if (items[i].ItemType == ItemType.무기 && items[i].isHave)
-                {
-                    Console.WriteLine($" - {items[i].name}   | 공격력 + {items[i].value}  | {items[i].info}");
+                    string typeText = items[i].ItemType == ItemType.무기 ? "공격력" : "방어력";
+                    Console.WriteLine($" - {items[i].name}   | {typeText} + {items[i].value}  | {items[i].info}");
                 }
             }
-            Console.WriteLine("=========================");
+            Console.WriteLine();
             Console.WriteLine("1. 장착 관리\n0. 나가기");
             int choice = Input(1);
             if (choice == 0)
@@ -393,12 +452,36 @@ namespace TeamTextRPG
             }
             else if (choice == 1)
             {
-
+                EquipManagment(items);
             }
         }
-        public void EquipManagment()
+        public void EquipManagment(List<Item> items)
         {
+            Console.Clear();
+            Console.WriteLine("인벤토리 - 장착관리");
+            Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
+            Console.WriteLine();
+            Console.WriteLine("[아이템 목록]");
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].isHave)
+                {
+                    string equipMark = items[i].isEquip ? "[E] " : "";
+                    string typeText = items[i].ItemType == ItemType.무기 ? "공격력" : "방어력";
+                    Console.WriteLine($"- {i + 1} - {equipMark}{items[i].name}   | {typeText} + {items[i].value}  | {items[i].info}");
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("0. 나가기");
+            int choice = Input(items.Count);
+            if (choice == 0)
+            {
+                MainmenuUI();
+            }
+            else if (choice == 1)
+            {
 
+            }
         }
     }
 }
