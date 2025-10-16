@@ -95,6 +95,8 @@ namespace TeamTextRPG
             Console.WriteLine();
             Console.WriteLine("1. 상태 보기\n2. 전투 시작\n3. 회복 아이템");
             Console.WriteLine();
+            Console.WriteLine("9. 불러오기\n0. 저장");
+            Console.WriteLine();
             Console.Write("원하시는 행동을 입력해주세요.");
 
             int choice = Input(3);
@@ -139,7 +141,7 @@ namespace TeamTextRPG
         public void BattleMainUI() // 2. 전투 시작 // 1~4 마리의 몬스터가 랜덤으로 출현
         {
             Console.Clear();
-            Console.WriteLine("Battle!!");
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
             Console.WriteLine();
 
             for (int i = 0; i < Monsters.Count; i++)
@@ -180,7 +182,7 @@ namespace TeamTextRPG
         public void PlayerAttackStartUI()
         {
             Console.Clear();
-            Console.WriteLine("Battle!!");
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
             Console.WriteLine();
 
             for (int i = 0; i < Monsters.Count; i++) // 단순 출력 기능
@@ -225,7 +227,7 @@ namespace TeamTextRPG
         public void PlayerAttackUI(Monster target, int damage, int beforeMonsterHp) // 플레이어 공격
         {
             Console.Clear();
-            Console.WriteLine("Battle!!");
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
             Console.WriteLine($"{Player.Name}의 공격!");
 
             if(Battle.isEvaded)
@@ -271,7 +273,7 @@ namespace TeamTextRPG
         public void MonsterAttackUI(Monster attacker, int damage, int beforePlayerHp) // 몬스터 공격
         {
             Console.Clear();
-            Console.WriteLine("Battle!!");
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
             Console.WriteLine($"{attacker.Name}의 공격!");
 
             if (Battle.isEvaded)
@@ -302,7 +304,7 @@ namespace TeamTextRPG
         public void BattlePlayerWinUI(int beforeDungeonHp) // 플레이어 승리 결과창
         {
             Console.Clear();
-            Console.WriteLine("Battle!! - Result");
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber} Result");
             Console.WriteLine();
             Console.WriteLine("Victory");
             Console.WriteLine();
@@ -329,7 +331,7 @@ namespace TeamTextRPG
         public void BattlePlayerLoseUI(int beforeDungeonHp)
         {
             Console.Clear();
-            Console.WriteLine("Battle!! - Result");
+            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber} Result");
             Console.WriteLine();
             Console.WriteLine("You Lose");
             Console.WriteLine();
