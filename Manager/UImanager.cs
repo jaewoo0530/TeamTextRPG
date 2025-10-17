@@ -535,9 +535,9 @@ namespace TeamTextRPG.Manager
             {
                 MainmenuUI();
             }
-            else if (choice == 1)
+            else if (choice > 0 && choice <= items.Count)
             {
-
+                gameManager.ItemEquip(choice);
             }
         }
     }

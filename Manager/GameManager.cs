@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TeamTextRPG.Data;
 using TeamTextRPG.Entities;
+using TeamTextRPG.Items;
 
 namespace TeamTextRPG.Manager
 {
@@ -20,6 +21,9 @@ namespace TeamTextRPG.Manager
 
         private MonsterData monsterData = new MonsterData();
 
+        private Inventory inventory;
+        public List<Item> inventoryList;
+
         private int beforeDungeonHp;
 
         public int stageNumber = 1;
@@ -29,12 +33,21 @@ namespace TeamTextRPG.Manager
             UI = new UIManager(this);
             Battle = new BattleManager(this);
 
+            inventory = new Inventory();
+
+            inventoryList = inventory.items;
+
             string name = UI.CreateName();
             JobType job = UI.CreateJob();
 
             Player = new Character(name, job);
 
             UI.MainmenuUI();
+        }
+
+        public void ItemEquip(int choice)
+        {
+            inventory.InventoryEquip(inventoryList, choice);
         }
 
         public void StartBattle()
