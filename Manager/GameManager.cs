@@ -47,7 +47,18 @@ namespace TeamTextRPG.Manager
 
         public void ItemEquip(int choice)
         {
-            inventory.InventoryEquip(InventoryList, choice);
+            Item selectedItem = InventoryList[choice - 1];
+
+            if (!selectedItem.isEquip)
+            {
+                inventory.EquipItem(InventoryList, selectedItem);
+            }
+            else
+            {
+                inventory.UnEquipItem(InventoryList, selectedItem);
+            }
+
+            Player.ApplyItem(selectedItem);
             UI.EquipManagement();
         }
 
