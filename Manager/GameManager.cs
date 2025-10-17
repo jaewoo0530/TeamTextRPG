@@ -22,7 +22,7 @@ namespace TeamTextRPG.Manager
         private MonsterData monsterData = new MonsterData();
 
         private Inventory inventory;
-        public List<Item> inventoryList;
+        public List<Item> InventoryList { get; private set; }
 
         private int beforeDungeonHp;
 
@@ -35,7 +35,7 @@ namespace TeamTextRPG.Manager
 
             inventory = new Inventory();
 
-            inventoryList = inventory.items;
+            InventoryList = inventory.items;
 
             string name = UI.CreateName();
             JobType job = UI.CreateJob();
@@ -47,7 +47,7 @@ namespace TeamTextRPG.Manager
 
         public void ItemEquip(int choice)
         {
-            inventory.InventoryEquip(inventoryList, choice);
+            inventory.InventoryEquip(InventoryList, choice);
         }
 
         public void StartBattle()

@@ -24,8 +24,8 @@ namespace TeamTextRPG.Items
             ItemType = itemType;
             this.value = value;
             this.info = info;
-            this.isEquip = false;
-            this.isHave = false;
+            this.isEquip = isEquip;
+            this.isHave = isHave;
         }
     }
 }

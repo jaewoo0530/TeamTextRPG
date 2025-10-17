@@ -25,6 +25,7 @@ namespace TeamTextRPG.Manager
         private Character Player => gameManager.Player;
         private List<Monster> Monsters => gameManager.Monsters;
         private BattleManager Battle => gameManager.Battle;
+        private List<Item> InventoryList => gameManager.InventoryList;
 
         private int Input(int maxOption)
         {
@@ -116,7 +117,7 @@ namespace TeamTextRPG.Manager
             }
             else if (choice == 4)
             {
-                // InventoryUI();
+                InventoryUI();
             }
         }
 
@@ -485,19 +486,19 @@ namespace TeamTextRPG.Manager
             }
         }
 
-        public void InventoryUI(List<Item> items)
+        public void InventoryUI()
         {
             Console.Clear();
             Console.WriteLine("인벤토리");
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < InventoryList.Count; i++)
             {
-                if (items[i].isHave)
+                if (InventoryList[i].isHave)
                 {
-                    string typeText = items[i].ItemType == ItemType.무기 ? "공격력" : "방어력";
-                    Console.WriteLine($" - {items[i].name}   | {typeText} + {items[i].value}  | {items[i].info}");
+                    string typeText = InventoryList[i].ItemType == ItemType.무기 ? "공격력" : "방어력";
+                    Console.WriteLine($" - {InventoryList[i].name}   | {typeText} + {InventoryList[i].value}  | {InventoryList[i].info}");
                 }
             }
             Console.WriteLine();
@@ -509,33 +510,33 @@ namespace TeamTextRPG.Manager
             }
             else if (choice == 1)
             {
-                EquipManagment(items);
+                EquipManagment();
             }
         }
-        public void EquipManagment(List<Item> items)
+        public void EquipManagment()
         {
             Console.Clear();
             Console.WriteLine("인벤토리 - 장착관리");
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < InventoryList.Count; i++)
             {
-                if (items[i].isHave)
+                if (InventoryList[i].isHave)
                 {
-                    string equipMark = items[i].isEquip ? "[E] " : "";
-                    string typeText = items[i].ItemType == ItemType.무기 ? "공격력" : "방어력";
-                    Console.WriteLine($"- {i + 1} - {equipMark}{items[i].name}   | {typeText} + {items[i].value}  | {items[i].info}");
+                    string equipMark = InventoryList[i].isEquip ? "[E] " : "";
+                    string typeText = InventoryList[i].ItemType == ItemType.무기 ? "공격력" : "방어력";
+                    Console.WriteLine($"- {i + 1} - {equipMark}{InventoryList[i].name}   | {typeText} + {InventoryList[i].value}  | {InventoryList[i].info}");
                 }
             }
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
-            int choice = Input(items.Count);
+            int choice = Input(InventoryList.Count);
             if (choice == 0)
             {
                 MainmenuUI();
             }
-            else if (choice > 0 && choice <= items.Count)
+            else if (choice > 0 && choice <= InventoryList.Count)
             {
                 gameManager.ItemEquip(choice);
             }

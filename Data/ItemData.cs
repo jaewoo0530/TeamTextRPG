@@ -29,7 +29,7 @@ namespace TeamTextRPG.Data
             };
         }
         
-        public Item GetRandomReward()
+        /*public Item GetRandomReward()
         {
             int randomDrop = random.Next(0, 100);
 
@@ -48,6 +48,6 @@ namespace TeamTextRPG.Data
             {
                 return null;
             }
-        }
+        }*/
     }
 }
