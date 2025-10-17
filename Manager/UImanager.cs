@@ -131,8 +131,8 @@ namespace TeamTextRPG.Manager
             Console.WriteLine();
             Console.WriteLine($"Lv. {Player.Level}");
             Console.WriteLine($"{Player.Name} ({Player.Job})");
-            Console.WriteLine($"공격력 : {Player.Atk} + ()"); // 총공격력 + (아이템으로 올라가는 수치)
-            Console.WriteLine($"방어력 : {Player.Def} + ()");
+            Console.WriteLine($"공격력 : {Player.Atk} + (/*EquipableItems.value*/)"); // ItemType == 무기
+            Console.WriteLine($"방어력 : {Player.Def} + (/*EquipableItems.value*/)"); // ItemType == 방어구
             Console.WriteLine($"체 력 : {Player.Hp}");
             Console.WriteLine($"Gold : {Player.Gold} G");
             Console.WriteLine();
@@ -485,6 +485,9 @@ namespace TeamTextRPG.Manager
             else if (choice == 1)
             {
                 gameManager.UseConsumableItem(choice);
+                Console.WriteLine("포션을 사용했습니다.");
+                Console.WriteLine($"Lv. {Player.Level} {Player.Name} {Player.Hp}/100");
+                Thread.Sleep(800);
             }
         }
 
@@ -553,7 +556,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("[퀘스트 목록]");
             for (int i = 0; i < quests.Count; i++)
             {
-                if (quest.IsCompleted == true)
+                if (quest.IsCompleted == false)
                 {
                     Console.WriteLine($"{quest.Title} | {quest.Description}");
                 }
