@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamTextRPG.Items
 {
-    public enum ItemType { 방어구, 무기 }
+    public enum ItemType { 방어구, 무기, 소모템 }
     internal class Item
     {
         public ItemType ItemType { get; set; }
