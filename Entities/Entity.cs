@@ -38,7 +38,7 @@ namespace TeamTextRPG.Entities
             Atk = attack;
             Def = defense;
             MaxHp = maxHp;
-            Hp = MaxHp;
+            Hp = maxHp;
             Level = level;
         }
 
