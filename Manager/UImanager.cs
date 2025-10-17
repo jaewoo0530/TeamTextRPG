@@ -497,8 +497,7 @@ namespace TeamTextRPG.Manager
             {
                 if (InventoryList[i].isHave)
                 {
-                    string typeText = InventoryList[i].ItemType == ItemType.무기 ? "공격력" : "방어력";
-                    Console.WriteLine($" - {InventoryList[i].name}   | {typeText} + {InventoryList[i].value}  | {InventoryList[i].info}");
+                    Console.WriteLine($" - {InventoryList[i].name}   | {InventoryList[i].TypeName} + {InventoryList[i].value}  | {InventoryList[i].info}");
                 }
             }
             Console.WriteLine();
@@ -525,8 +524,7 @@ namespace TeamTextRPG.Manager
                 if (InventoryList[i].isHave)
                 {
                     string equipMark = InventoryList[i].isEquip ? "[E] " : "";
-                    string typeText = InventoryList[i].ItemType == ItemType.무기 ? "공격력" : "방어력";
-                    Console.WriteLine($"- {i + 1} - {equipMark}{InventoryList[i].name}   | {typeText} + {InventoryList[i].value}  | {InventoryList[i].info}");
+                    Console.WriteLine($"- {i + 1} - {equipMark}{InventoryList[i].name}   | {InventoryList[i].TypeName} + {InventoryList[i].value}  | {InventoryList[i].info}");
                 }
             }
             Console.WriteLine();
