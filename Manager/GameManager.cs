@@ -66,7 +66,11 @@ namespace TeamTextRPG.Manager
 
         public void UseConsumableItem(int choice)
         {
-            Player.UseItem(ConsumableItems[choice - 1]);
+            if (ConsumableItems[choice - 1].count > 0)
+            {
+                Player.UseItem(ConsumableItems[choice - 1]);
+                //회복 실패 ui
+            }
             UI.HealItemUI();
         }
 

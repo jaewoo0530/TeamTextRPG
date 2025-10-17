@@ -11,7 +11,7 @@ namespace TeamTextRPG.Items
     {
         public int HealAmount { get; private set; }
 
-        public Consumable(string name, ItemType itemType, int value, string info) : base(name, itemType, value, info)
+        public Consumable(string name, ItemType itemType, int value, string info, int count) : base(name, itemType, value, info, count)
         {
             HealAmount = value;
         }
@@ -19,6 +19,7 @@ namespace TeamTextRPG.Items
         public override void Use(Character player)
         {
             player.Heal(HealAmount);
+            count--;
         }
     }
 }
