@@ -462,34 +462,6 @@ namespace TeamTextRPG.Manager
             int choice = Input(0);
         }
 
-        public void HealItemUI()
-        {
-            Console.Clear();
-            Console.WriteLine("인벤토리");
-            Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
-            Console.WriteLine();
-            Console.WriteLine("[아이템 목록]");
-            for (int i = 0; i < Inventory.consumableItems.Count; i++)
-            {
-                Console.WriteLine($" - {Inventory.consumableItems[i].name}   | {Inventory.consumableItems[i].TypeName} + {Inventory.consumableItems[i].value}  | {Inventory.consumableItems[i].info}");
-            }
-            Console.WriteLine();
-            Console.WriteLine("1. 아이템 사용\n0. 나가기");
-
-            int choice = Input(1);
-            if (choice == 0)
-            {
-                MainmenuUI();
-            }
-            else if (choice == 1)
-            {
-                gameManager.UseConsumableItem(choice);
-                Console.WriteLine("포션을 사용했습니다.");
-                Console.WriteLine($"Lv. {Player.Level} {Player.Name} {Player.Hp}/100");
-                Thread.Sleep(800);
-            }
-        }
-
         public void InventoryUI()
         {
             Console.Clear();
@@ -497,15 +469,20 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
+            Console.WriteLine();
+            Console.WriteLine("[장착 아이템]");
             for (int i = 0; i < Inventory.equipableItems.Count; i++)
             {
-                if (Inventory.equipableItems[i].isHave)
-                {
-                    Console.WriteLine($" - {Inventory.equipableItems[i].name}   | {Inventory.equipableItems[i].TypeName}  +  {Inventory.equipableItems[i].value}  | {Inventory.equipableItems[i].info}");
-                }
+                Console.WriteLine($" - {i + 1}. {Inventory.equipableItems[i].name}   | {Inventory.equipableItems[i].TypeName}  +  {Inventory.equipableItems[i].value}  | {Inventory.equipableItems[i].info}");
             }
             Console.WriteLine();
-            Console.WriteLine("1. 장착 관리\n2. 회복 아이템\n0. 나가기");
+            Console.WriteLine("[소모 아이템]");
+            for (int i = 0; i < Inventory.consumableItems.Count; i++)
+            {
+                Console.WriteLine($" - {i + 1}. {Inventory.consumableItems[i].name}   | {Inventory.consumableItems[i].TypeName} + {Inventory.consumableItems[i].value}  | {Inventory.consumableItems[i].info}");
+            }
+            Console.WriteLine();
+            Console.WriteLine("1. 장착 관리\n2. 소모템 사용\n0. 나가기");
             int choice = Input(2);
             if (choice == 0)
             {
@@ -513,39 +490,86 @@ namespace TeamTextRPG.Manager
             }
             else if (choice == 1)
             {
-                EquipManagement();
+                EquipManagementUI();
             }
             else if (choice == 2)
             {
-                HealItemUI();
+                ConsumableItemUI();
             }
         }
-        public void EquipManagement()
+        public void EquipManagementUI()
         {
             Console.Clear();
             Console.WriteLine("인벤토리 - 장착관리");
-            Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
+            Console.WriteLine("보유 중인 장착 아이템을 장착할 수 있습니다.");
             Console.WriteLine();
-            Console.WriteLine("[아이템 목록]");
+            Console.WriteLine("[장착 아이템]");
             for (int i = 0; i < Inventory.equipableItems.Count; i++)
             {
-                if (Inventory.equipableItems[i].isHave)
-                {
-                    string equipMark = Inventory.equipableItems[i].isEquip ? "[E] " : "";
-                    Console.WriteLine($"- {i + 1} - {equipMark}{Inventory.equipableItems[i].name}   | {Inventory.equipableItems[i].TypeName} + {Inventory.equipableItems[i].value}  | {Inventory.equipableItems[i].info}");
-                }
+                string equipMark = Inventory.equipableItems[i].isEquip ? "[E] " : "";
+                Console.WriteLine($"- {equipMark} {i + 1}. {Inventory.equipableItems[i].name}   | {Inventory.equipableItems[i].TypeName} + {Inventory.equipableItems[i].value}  | {Inventory.equipableItems[i].info}");
             }
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
             int choice = Input(Inventory.equipableItems.Count);
             if (choice == 0)
             {
-                MainmenuUI();
+                InventoryUI();
             }
             else if (choice > 0 && choice <= Inventory.equipableItems.Count)
             {
                 gameManager.ItemEquip(choice);
             }
+        }
+
+        public void ConsumableItemUI()
+        {
+            Console.Clear();
+            Console.WriteLine("인벤토리 - 소모템 사용");
+            Console.WriteLine("소모 아이템을 사용할 수 있습니다.");
+            Console.WriteLine();
+            Console.WriteLine("[소모 아이템]");
+            for (int i = 0; i < Inventory.consumableItems.Count; i++)
+            {
+                Console.WriteLine($" - {i + 1}. {Inventory.consumableItems[i].name}   | {Inventory.consumableItems[i].TypeName} + {Inventory.consumableItems[i].value}  | {Inventory.consumableItems[i].info}");
+            }
+            Console.WriteLine();
+            Console.WriteLine("\n0. 나가기");
+
+            int choice = Input(Inventory.consumableItems.Count);
+            if (choice == 0)
+            {
+                InventoryUI();
+            }
+            else if (choice > 0 && choice <= Inventory.equipableItems.Count)
+            {
+                gameManager.UseConsumableItem(choice);
+            }
+        }
+
+        public void ItemUseSuccessUI(int beforeHp)
+        {
+            Console.Clear();
+
+            Console.WriteLine("성공");
+            Console.WriteLine($"{beforeHp} HP-> {Player.Hp} HP (회복량: {beforeHp - Player.Hp})");
+
+            Console.WriteLine();
+            Console.WriteLine("\n0. 나가기");
+            Input(0);
+            ConsumableItemUI();
+        }
+
+        public void ItemUseFailUI()
+        {
+            Console.Clear();
+
+            Console.WriteLine("실패");
+
+            Console.WriteLine();
+            Console.WriteLine("\n0. 나가기");
+            Input(0);
+            ConsumableItemUI();
         }
 
         public void QuestUI()

@@ -20,11 +20,8 @@ namespace TeamTextRPG.Manager
         public BattleManager Battle { get; private set; }
 
         private MonsterData monsterData = new MonsterData();
-
         public Inventory Inventory { get; private set; }
-
         public QuestManager QuestManager { get; private set; }
-        public List<Quest> Quests { get; private set; }
 
         private int beforeDungeonHp;
 
@@ -60,18 +57,22 @@ namespace TeamTextRPG.Manager
             }
 
             Player.ApplyItem(selectedItem);
-            UI.EquipManagement();
+            UI.EquipManagementUI();
         }
 
         public void UseConsumableItem(int choice)
         {
+            int beforeHp = Player.Hp;
             Item item = Inventory.consumableItems[choice - 1];
             if (item.count > 0)
             {
                 Player.UseItem(item);
+                UI.ItemUseSuccessUI(beforeHp);
             }
-
-            UI.HealItemUI();
+            else
+            {
+                UI.ItemUseFailUI();
+            }
         }
 
         public void StartBattle()
