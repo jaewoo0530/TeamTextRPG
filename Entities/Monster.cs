@@ -10,7 +10,7 @@ namespace TeamTextRPG.Entities
     {
         public int RewardExp { get; private set; }
 
-        public Monster(string name, int attack, int defense, int hp, int level, int rewardExp) : base(name, attack, defense, hp, level)
+        public Monster(string name, int attack, int defense, int maxHp, int hp, int level, int rewardExp) : base(name, attack, defense, maxHp, hp, level)
         {
             RewardExp = rewardExp;
         }
@@ -20,6 +20,7 @@ namespace TeamTextRPG.Entities
             Name = template.Name;
             Level = template.Level;
             Atk = template.Atk;
+            MaxHp = template.MaxHp;
             Hp = template.Hp;
             Def = template.Def;
             RewardExp = template.RewardExp;

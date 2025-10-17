@@ -32,13 +32,13 @@ namespace TeamTextRPG.Entities
         }
 
         // 🔹 몬스터용 생성자 (값 다 넘김)
-        public Entity(string name, int attack, int defense, int maxHp, int level)
+        public Entity(string name, int attack, int defense, int maxHp, int hp, int level)
         {
             Name = name;
             Atk = attack;
             Def = defense;
             MaxHp = maxHp;
-            Hp = MaxHp;
+            Hp = hp;
             Level = level;
         }
 
