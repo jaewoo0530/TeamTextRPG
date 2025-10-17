@@ -540,5 +540,32 @@ namespace TeamTextRPG.Manager
                 gameManager.ItemEquip(choice);
             }
         }
+
+        public void QuestUI(List<Quest> quests, Quest quest)
+        {
+            Console.Clear();
+            Console.WriteLine("퀘스트\n");
+            Console.WriteLine("[퀘스트 목록]");
+            for (int i = 0; i < quests.Count; i++)
+            {
+                if (quest.IsCompleted == true)
+                {
+                    Console.WriteLine($"{quest.Title} | {quest.Description}");
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("원하시는 퀘스트를 선택해주세요.");
+            Console.WriteLine();
+            Console.WriteLine("0. 나가기");
+            int choice = Input(quests.Count);
+            if (choice == 0)
+            {
+                MainmenuUI();
+            }
+            else if (choice > 0 && choice <= quests.Count)
+            {
+
+            }
+        }
     }
 }
