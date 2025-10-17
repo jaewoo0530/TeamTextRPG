@@ -14,6 +14,7 @@ namespace TeamTextRPG.Items
         public bool isEquip;
         public bool isHave;
 
+        public int count;
         //장착템
         public Item(string name, ItemType itemType, int value, string info, bool isEquip, bool isHave)
         {
@@ -26,12 +27,13 @@ namespace TeamTextRPG.Items
         }
 
         //소모템
-        public Item(string name, ItemType itemType, int value, string info)
+        public Item(string name, ItemType itemType, int value, string info, int count)
         {
             this.name = name;
             ItemType = itemType;
             this.value = value;
             this.info = info;
+            this.count = count;
         }
 
         public string TypeName => ItemType switch
