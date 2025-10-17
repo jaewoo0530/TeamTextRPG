@@ -479,7 +479,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("[소모 아이템]");
             for (int i = 0; i < Inventory.consumableItems.Count; i++)
             {
-                Console.WriteLine($" - {i + 1}. {Inventory.consumableItems[i].name}   | {Inventory.consumableItems[i].TypeName} + {Inventory.consumableItems[i].value}  | {Inventory.consumableItems[i].info}");
+                Console.WriteLine($" - {i + 1}. {Inventory.consumableItems[i].name}   | {Inventory.consumableItems[i].TypeName} + {Inventory.consumableItems[i].value}  | {Inventory.consumableItems[i].info} (보유 개수: {Inventory.consumableItems[i].count})");
             }
             Console.WriteLine();
             Console.WriteLine("1. 장착 관리\n2. 소모템 사용\n0. 나가기");
@@ -531,7 +531,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("[소모 아이템]");
             for (int i = 0; i < Inventory.consumableItems.Count; i++)
             {
-                Console.WriteLine($" - {i + 1}. {Inventory.consumableItems[i].name}   | {Inventory.consumableItems[i].TypeName} + {Inventory.consumableItems[i].value}  | {Inventory.consumableItems[i].info}");
+                Console.WriteLine($" - {i + 1}. {Inventory.consumableItems[i].name}   | {Inventory.consumableItems[i].TypeName} + {Inventory.consumableItems[i].value}  | {Inventory.consumableItems[i].info} (보유 개수: {Inventory.consumableItems[i].count})");
             }
             Console.WriteLine();
             Console.WriteLine("\n0. 나가기");
