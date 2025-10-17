@@ -129,8 +129,8 @@ namespace TeamTextRPG.Manager
             Console.WriteLine();
             Console.WriteLine($"Lv. {Player.Level}");
             Console.WriteLine($"{Player.Name} ({Player.Job})");
-            Console.WriteLine($"공격력 : {Player.Atk}");
-            Console.WriteLine($"방어력 : {Player.Def}");
+            Console.WriteLine($"공격력 : {Player.Atk} + ()"); // 총공격력 + (아이템으로 올라가는 수치)
+            Console.WriteLine($"방어력 : {Player.Def} + ()");
             Console.WriteLine($"체 력 : {Player.Hp}");
             Console.WriteLine($"Gold : {Player.Gold} G");
             Console.WriteLine();
