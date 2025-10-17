@@ -48,6 +48,7 @@ namespace TeamTextRPG.Manager
         public void ItemEquip(int choice)
         {
             inventory.InventoryEquip(InventoryList, choice);
+            UI.EquipManagement();
         }
 
         public void StartBattle()

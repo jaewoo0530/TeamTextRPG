@@ -513,7 +513,7 @@ namespace TeamTextRPG.Manager
                 EquipManagment();
             }
         }
-        public void EquipManagment()
+        public void EquipManagement()
         {
             Console.Clear();
             Console.WriteLine("인벤토리 - 장착관리");
