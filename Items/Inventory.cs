@@ -21,20 +21,25 @@ namespace TeamTextRPG.Items
             };
         }
 
-        public void InventoryEquip(List<Item> items, int choice)
+        public Item EquipItem(List<Item> items, Item selectedItem)
         {
-            if (choice < 1 || choice > items.Count)
-                return;
-
-            Item selected = items[choice - 1];
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].isEquip && items[i].ItemType == selected.ItemType)
+                if (items[i].isEquip && items[i].ItemType == selectedItem.ItemType)
                 {
                     items[i].isEquip = false;
                 }
             }
-            selected.isEquip = !selected.isEquip;
+
+            selectedItem.isEquip = true;
+
+            return selectedItem;
+        }
+
+        public Item UnEquipItem(List<Item> items, Item selectedItem)
+        {
+            selectedItem.isEquip = false;
+            return selectedItem;
         }
     }
 }
