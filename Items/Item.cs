@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TeamTextRPG.Entities;
 
 namespace TeamTextRPG.Items
 {
@@ -18,6 +14,7 @@ namespace TeamTextRPG.Items
         public bool isEquip;
         public bool isHave;
 
+        //장착템
         public Item(string name, ItemType itemType, int value, string info, bool isEquip, bool isHave)
         {
             this.name = name;
@@ -27,5 +24,24 @@ namespace TeamTextRPG.Items
             this.isEquip = isEquip;
             this.isHave = isHave;
         }
+
+        //소모템
+        public Item(string name, ItemType itemType, int value, string info)
+        {
+            this.name = name;
+            ItemType = itemType;
+            this.value = value;
+            this.info = info;
+        }
+
+        public string TypeName => ItemType switch
+        {
+            ItemType.무기 => "공격력",
+            ItemType.방어구 => "방어력",
+            _ => "체력"
+        };
+
+        public virtual void Use(Character player)
+        { }
     }
 }

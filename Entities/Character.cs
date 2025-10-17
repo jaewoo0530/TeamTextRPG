@@ -73,7 +73,7 @@ namespace TeamTextRPG.Entities
                     equippedDefenseItem = item.isEquip ? item : null;
                     break;
                 case ItemType.소모템:
-                    Hp += item.value;
+                    UseItem(item);
                     break;
             }
 
@@ -104,6 +104,11 @@ namespace TeamTextRPG.Entities
                 Atk++;
                 Def++;
             }
+        }
+
+        public void UseItem(Item item)
+        {
+            item.Use(this);
         }
     }
 }
