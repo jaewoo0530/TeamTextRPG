@@ -503,8 +503,8 @@ namespace TeamTextRPG.Manager
                 }
             }
             Console.WriteLine();
-            Console.WriteLine("1. 장착 관리\n2.회복 아이템\n0. 나가기");
-            int choice = Input(1);
+            Console.WriteLine("1. 장착 관리\n2. 회복 아이템\n0. 나가기");
+            int choice = Input(2);
             if (choice == 0)
             {
                 MainmenuUI();
