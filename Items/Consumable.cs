@@ -19,6 +19,7 @@ namespace TeamTextRPG.Items
         public override void Use(Character player)
         {
             player.Heal(HealAmount);
+            count--;
         }
     }
 }
