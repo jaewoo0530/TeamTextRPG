@@ -72,9 +72,6 @@ namespace TeamTextRPG.Entities
                 case ItemType.방어구:
                     equippedDefenseItem = item.isEquip ? item : null;
                     break;
-                case ItemType.소모템:
-                    UseItem(item);
-                    break;
             }
 
             CalculateItemStat();

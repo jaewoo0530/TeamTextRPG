@@ -25,7 +25,8 @@ namespace TeamTextRPG.Manager
         private Character Player => gameManager.Player;
         private List<Monster> Monsters => gameManager.Monsters;
         private BattleManager Battle => gameManager.Battle;
-        private List<Item> InventoryList => gameManager.InventoryList;
+        private List<Item> EquipableItems => gameManager.EquipableItems;
+        private List<Item> ConsumableItems => gameManager.ConsumableItems;
 
         private int Input(int maxOption)
         {
@@ -113,7 +114,7 @@ namespace TeamTextRPG.Manager
             }
             else if (choice == 3)
             {
-                // HealItemUI();
+                HealItemUI();
             }
             else if (choice == 4)
             {
@@ -461,16 +462,19 @@ namespace TeamTextRPG.Manager
             int choice = Input(0);
         }
 
-        public void HealItemUI(int beforePlayerHp)
+        public void HealItemUI()
         {
             Console.Clear();
-            Console.WriteLine("회복");
-            Console.WriteLine("포션을 사용하면 체력을 30 회복 할 수 있습니다. (남은 포션 : 3 )");
+            Console.WriteLine("인벤토리");
+            Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine();
-            Console.WriteLine("1. 사용하기");
-            Console.WriteLine("0. 나가기");
+            Console.WriteLine("[아이템 목록]");
+            for (int i = 0; i < ConsumableItems.Count; i++)
+            {
+                Console.WriteLine($" - {ConsumableItems[i].name}   | {ConsumableItems[i].TypeName} + {ConsumableItems[i].value}  | {ConsumableItems[i].info}");
+            }
             Console.WriteLine();
-            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            Console.WriteLine("1. 아이템 사용\n0. 나가기");
 
             int choice = Input(1);
             if (choice == 0)
@@ -479,10 +483,7 @@ namespace TeamTextRPG.Manager
             }
             else if (choice == 1)
             {
-                Console.WriteLine();
-                Console.WriteLine("포션을 사용했습니다.");
-                Console.WriteLine($"HP {beforePlayerHp} -> {Player.Hp}");
-                Thread.Sleep(800);
+                gameManager.UseConsumableItem(choice);
             }
         }
 
@@ -493,11 +494,11 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
-            for (int i = 0; i < InventoryList.Count; i++)
+            for (int i = 0; i < EquipableItems.Count; i++)
             {
-                if (InventoryList[i].isHave)
+                if (EquipableItems[i].isHave)
                 {
-                    Console.WriteLine($" - {InventoryList[i].name}   | {InventoryList[i].TypeName} + {InventoryList[i].value}  | {InventoryList[i].info}");
+                    Console.WriteLine($" - {EquipableItems[i].name}   | {EquipableItems[i].TypeName} + {EquipableItems[i].value}  | {EquipableItems[i].info}");
                 }
             }
             Console.WriteLine();
@@ -519,22 +520,22 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
-            for (int i = 0; i < InventoryList.Count; i++)
+            for (int i = 0; i < EquipableItems.Count; i++)
             {
-                if (InventoryList[i].isHave)
+                if (EquipableItems[i].isHave)
                 {
-                    string equipMark = InventoryList[i].isEquip ? "[E] " : "";
-                    Console.WriteLine($"- {i + 1} - {equipMark}{InventoryList[i].name}   | {InventoryList[i].TypeName} + {InventoryList[i].value}  | {InventoryList[i].info}");
+                    string equipMark = EquipableItems[i].isEquip ? "[E] " : "";
+                    Console.WriteLine($"- {i + 1} - {equipMark}{EquipableItems[i].name}   | {EquipableItems[i].TypeName} + {EquipableItems[i].value}  | {EquipableItems[i].info}");
                 }
             }
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
-            int choice = Input(InventoryList.Count);
+            int choice = Input(EquipableItems.Count);
             if (choice == 0)
             {
                 MainmenuUI();
             }
-            else if (choice > 0 && choice <= InventoryList.Count)
+            else if (choice > 0 && choice <= EquipableItems.Count)
             {
                 gameManager.ItemEquip(choice);
             }

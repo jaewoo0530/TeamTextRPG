@@ -22,7 +22,8 @@ namespace TeamTextRPG.Manager
         private MonsterData monsterData = new MonsterData();
 
         private Inventory inventory;
-        public List<Item> InventoryList { get; private set; }
+        public List<Item> EquipableItems { get; private set; }
+        public List<Item> ConsumableItems { get; private set; }
 
         private int beforeDungeonHp;
 
@@ -35,7 +36,8 @@ namespace TeamTextRPG.Manager
 
             inventory = new Inventory();
 
-            InventoryList = inventory.items;
+            EquipableItems = inventory.equipableItems;
+            ConsumableItems = inventory.consumableItems;
 
             string name = UI.CreateName();
             JobType job = UI.CreateJob();
@@ -47,19 +49,25 @@ namespace TeamTextRPG.Manager
 
         public void ItemEquip(int choice)
         {
-            Item selectedItem = InventoryList[choice - 1];
+            Item selectedItem = EquipableItems[choice - 1];
 
             if (!selectedItem.isEquip)
             {
-                inventory.EquipItem(InventoryList, selectedItem);
+                inventory.EquipItem(EquipableItems, selectedItem);
             }
             else
             {
-                inventory.UnEquipItem(InventoryList, selectedItem);
+                inventory.UnEquipItem(EquipableItems, selectedItem);
             }
 
             Player.ApplyItem(selectedItem);
             UI.EquipManagement();
+        }
+
+        public void UseConsumableItem(int choice)
+        {
+            Player.UseItem(ConsumableItems[choice - 1]);
+            UI.HealItemUI();
         }
 
         public void StartBattle()
