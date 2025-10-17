@@ -510,7 +510,7 @@ namespace TeamTextRPG.Manager
             }
             else if (choice == 1)
             {
-                EquipManagment();
+                EquipManagement();
             }
         }
         public void EquipManagement()
