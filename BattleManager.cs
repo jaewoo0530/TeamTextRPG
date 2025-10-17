@@ -79,6 +79,5 @@ namespace TeamTextRPG.Manager
 
             skill.Execute(target);
         }
-
     }
 }
