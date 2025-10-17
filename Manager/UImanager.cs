@@ -97,7 +97,7 @@ namespace TeamTextRPG.Manager
             Console.Clear();
             Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.\n이제 전투를 시작할 수 있습니다.");
             Console.WriteLine();
-            Console.WriteLine("1. 상태 보기\n2. 전투 시작\n3. 회복 아이템\n4. 인벤토리");
+            Console.WriteLine("1. 상태 보기\n2. 전투 시작\n3. 인벤토리\n4. 퀘스트");
             Console.WriteLine();
             Console.WriteLine("9. 불러오기\n0. 저장");
             Console.WriteLine();
@@ -114,12 +114,13 @@ namespace TeamTextRPG.Manager
             }
             else if (choice == 3)
             {
-                HealItemUI();
-            }
-            else if (choice == 4)
-            {
                 InventoryUI();
             }
+            else if (choice == 4) 
+            {
+                // QuestUI();
+            }
+
         }
 
         public void StatusUI() // 1. 상태 보기
@@ -502,7 +503,7 @@ namespace TeamTextRPG.Manager
                 }
             }
             Console.WriteLine();
-            Console.WriteLine("1. 장착 관리\n0. 나가기");
+            Console.WriteLine("1. 장착 관리\n2.회복 아이템\n0. 나가기");
             int choice = Input(1);
             if (choice == 0)
             {
@@ -511,6 +512,10 @@ namespace TeamTextRPG.Manager
             else if (choice == 1)
             {
                 EquipManagement();
+            }
+            else if (choice == 2)
+            {
+                HealItemUI();
             }
         }
         public void EquipManagement()
