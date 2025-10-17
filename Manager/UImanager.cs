@@ -25,8 +25,8 @@ namespace TeamTextRPG.Manager
         private Character Player => gameManager.Player;
         private List<Monster> Monsters => gameManager.Monsters;
         private BattleManager Battle => gameManager.Battle;
-        private List<Item> EquipableItems => gameManager.EquipableItems;
-        private List<Item> ConsumableItems => gameManager.ConsumableItems;
+        private Inventory Inventory => gameManager.Inventory;
+        private QuestManager QuestManager => gameManager.QuestManager;
 
         private int Input(int maxOption)
         {
@@ -118,9 +118,8 @@ namespace TeamTextRPG.Manager
             }
             else if (choice == 4) 
             {
-                // QuestUI();
+                QuestUI();
             }
-
         }
 
         public void StatusUI() // 1. 상태 보기
@@ -470,9 +469,9 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
-            for (int i = 0; i < ConsumableItems.Count; i++)
+            for (int i = 0; i < Inventory.consumableItems.Count; i++)
             {
-                Console.WriteLine($" - {ConsumableItems[i].name}   | {ConsumableItems[i].TypeName} + {ConsumableItems[i].value}  | {ConsumableItems[i].info}");
+                Console.WriteLine($" - {Inventory.consumableItems[i].name}   | {Inventory.consumableItems[i].TypeName} + {Inventory.consumableItems[i].value}  | {Inventory.consumableItems[i].info}");
             }
             Console.WriteLine();
             Console.WriteLine("1. 아이템 사용\n0. 나가기");
@@ -498,11 +497,11 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
-            for (int i = 0; i < EquipableItems.Count; i++)
+            for (int i = 0; i < Inventory.equipableItems.Count; i++)
             {
-                if (EquipableItems[i].isHave)
+                if (Inventory.equipableItems[i].isHave)
                 {
-                    Console.WriteLine($" - {EquipableItems[i].name}   | {EquipableItems[i].TypeName} + {EquipableItems[i].value}  | {EquipableItems[i].info}");
+                    Console.WriteLine($" - {Inventory.equipableItems[i].name}   | {Inventory.equipableItems[i].TypeName}  +  {Inventory.equipableItems[i].value}  | {Inventory.equipableItems[i].info}");
                 }
             }
             Console.WriteLine();
@@ -528,49 +527,49 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
-            for (int i = 0; i < EquipableItems.Count; i++)
+            for (int i = 0; i < Inventory.equipableItems.Count; i++)
             {
-                if (EquipableItems[i].isHave)
+                if (Inventory.equipableItems[i].isHave)
                 {
-                    string equipMark = EquipableItems[i].isEquip ? "[E] " : "";
-                    Console.WriteLine($"- {i + 1} - {equipMark}{EquipableItems[i].name}   | {EquipableItems[i].TypeName} + {EquipableItems[i].value}  | {EquipableItems[i].info}");
+                    string equipMark = Inventory.equipableItems[i].isEquip ? "[E] " : "";
+                    Console.WriteLine($"- {i + 1} - {equipMark}{Inventory.equipableItems[i].name}   | {Inventory.equipableItems[i].TypeName} + {Inventory.equipableItems[i].value}  | {Inventory.equipableItems[i].info}");
                 }
             }
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
-            int choice = Input(EquipableItems.Count);
+            int choice = Input(Inventory.equipableItems.Count);
             if (choice == 0)
             {
                 MainmenuUI();
             }
-            else if (choice > 0 && choice <= EquipableItems.Count)
+            else if (choice > 0 && choice <= Inventory.equipableItems.Count)
             {
                 gameManager.ItemEquip(choice);
             }
         }
 
-        public void QuestUI(List<Quest> quests, Quest quest)
+        public void QuestUI()
         {
             Console.Clear();
             Console.WriteLine("퀘스트\n");
             Console.WriteLine("[퀘스트 목록]");
-            for (int i = 0; i < quests.Count; i++)
+            for (int i = 0; i < QuestManager.quests.Count; i++)
             {
-                if (quest.IsCompleted == false)
+                if (QuestManager.quests[i].IsCompleted == false)
                 {
-                    Console.WriteLine($"{quest.Title} | {quest.Description}");
+                    Console.WriteLine($"{QuestManager.quests[i].Title} | {QuestManager.quests[i].Description}");
                 }
             }
             Console.WriteLine();
             Console.WriteLine("원하시는 퀘스트를 선택해주세요.");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
-            int choice = Input(quests.Count);
+            int choice = Input(QuestManager.quests.Count);
             if (choice == 0)
             {
                 MainmenuUI();
             }
-            else if (choice > 0 && choice <= quests.Count)
+            else if (choice > 0 && choice <= QuestManager.quests.Count)
             {
 
             }

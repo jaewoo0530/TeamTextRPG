@@ -40,7 +40,6 @@ namespace TeamTextRPG.Manager
             }
 
             return null;    //실패시 null반환
-            
         }
     }
 

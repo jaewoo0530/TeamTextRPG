@@ -21,9 +21,10 @@ namespace TeamTextRPG.Manager
 
         private MonsterData monsterData = new MonsterData();
 
-        private Inventory inventory;
-        public List<Item> EquipableItems { get; private set; }
-        public List<Item> ConsumableItems { get; private set; }
+        public Inventory Inventory { get; private set; }
+
+        public QuestManager QuestManager { get; private set; }
+        public List<Quest> Quests { get; private set; }
 
         private int beforeDungeonHp;
 
@@ -34,10 +35,8 @@ namespace TeamTextRPG.Manager
             UI = new UIManager(this);
             Battle = new BattleManager(this);
 
-            inventory = new Inventory();
-
-            EquipableItems = inventory.equipableItems;
-            ConsumableItems = inventory.consumableItems;
+            Inventory = new Inventory();
+            QuestManager = new QuestManager();
 
             string name = UI.CreateName();
             JobType job = UI.CreateJob();
@@ -49,15 +48,15 @@ namespace TeamTextRPG.Manager
 
         public void ItemEquip(int choice)
         {
-            Item selectedItem = EquipableItems[choice - 1];
+            Item selectedItem = Inventory.equipableItems[choice - 1];
 
             if (!selectedItem.isEquip)
             {
-                inventory.EquipItem(EquipableItems, selectedItem);
+                Inventory.EquipItem(Inventory.equipableItems, selectedItem);
             }
             else
             {
-                inventory.UnEquipItem(EquipableItems, selectedItem);
+                Inventory.UnEquipItem(Inventory.equipableItems, selectedItem);
             }
 
             Player.ApplyItem(selectedItem);
@@ -66,11 +65,12 @@ namespace TeamTextRPG.Manager
 
         public void UseConsumableItem(int choice)
         {
-            if (ConsumableItems[choice - 1].count > 0)
+            Item item = Inventory.consumableItems[choice - 1];
+            if (item.count > 0)
             {
-                Player.UseItem(ConsumableItems[choice - 1]);
-                //회복 실패 ui
+                Player.UseItem(item);
             }
+
             UI.HealItemUI();
         }
 
