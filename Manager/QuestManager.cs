@@ -9,7 +9,7 @@ namespace TeamTextRPG.Manager
     internal class QuestManager
     {
         public List<Quest> quests = new List<Quest>();
-        private int currentQuestIndex = 0;
+        public int currentQuestIndex = 0;
 
         public QuestManager()
         {
@@ -28,6 +28,7 @@ namespace TeamTextRPG.Manager
                 return quests[currentQuestIndex];   //퀘스트 번호
             else
                 return null;
+
         }
 
         public bool UpdateQuestProgress(string monsterName, out Quest currentQuest)     //true면 퀘스트 완 false면 퀘스트 진행

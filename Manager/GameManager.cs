@@ -40,6 +40,7 @@ namespace TeamTextRPG.Manager
 
             Player = new Character(name, job);
 
+            Quest firstQuest = QuestManager.GetCurrentQuest();
             UI.MainmenuUI();
         }
 
@@ -73,6 +74,18 @@ namespace TeamTextRPG.Manager
             {
                 UI.ItemUseFailUI();
             }
+        }
+
+        public void AcceptQuest(int choice)
+        {
+            if (choice - 1 < 0 || choice - 1 >= QuestManager.quests.Count)
+                return;
+
+            // 선택한 퀘스트를 현재 퀘스트로 설정
+            QuestManager.currentQuestIndex = choice - 1;
+            Quest current = QuestManager.GetCurrentQuest();
+
+            UI.ShowQuestUI(current);
         }
 
         public void StartBattle()
@@ -226,8 +239,19 @@ namespace TeamTextRPG.Manager
 
             foreach (var monster in Monsters)
             {
-                int expFromMonster = monster.RewardExp;
-                acquireExp += expFromMonster;
+                acquireExp += monster.RewardExp;
+
+                if (QuestManager.UpdateQuestProgress(monster.Name, out Quest currentQuest))
+                {
+                    UI.QuestProgressUI(currentQuest); // 진행 중인 퀘스트 출력
+
+                    if (currentQuest.IsCompleted)
+                    {
+                        UI.QuestCompleteUI(currentQuest); // 완료 UI 표시
+                        QuestManager.MoveToNextQuest();
+                        UI.ShowQuestUI(QuestManager.GetCurrentQuest()); // 다음 퀘스트 자동 표시
+                    }
+                }
             }
             Player.AddExp(acquireExp);
 

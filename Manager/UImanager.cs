@@ -595,8 +595,57 @@ namespace TeamTextRPG.Manager
             }
             else if (choice > 0 && choice <= QuestManager.quests.Count)
             {
-
+                gameManager.AcceptQuest(choice);
             }
+        }
+
+        public void ShowQuestUI(Quest quest)
+        {
+            Console.Clear();
+
+            if (quest == null)
+            {
+                Console.WriteLine("현재 진행 중인 퀘스트가 없습니다.");
+                Console.WriteLine("\n0. 다음");
+                Input(0);
+                return;
+            }
+
+            Console.WriteLine("[퀘스트 수락]");
+            Console.WriteLine($"제목: {quest.Title}");
+            Console.WriteLine($"내용: {quest.Description}");
+            Console.WriteLine();
+            Console.WriteLine($"목표: {quest.TargetMonster} {quest.TargetCount}마리 처치");
+            Console.WriteLine($"진행도: {quest.CurrentCount}/{quest.TargetCount}");
+            Console.WriteLine();
+            Console.WriteLine("0. 다음");
+            int choice = Input(0);
+
+            if (choice == 0)
+            {
+                QuestUI();
+            }
+        }
+
+        public void QuestProgressUI(Quest quest)
+        {
+            if (quest == null) return;
+
+            Console.WriteLine();
+            Console.WriteLine($"[퀘스트 진행 중] {quest.TargetMonster} 처치 {quest.CurrentCount}/{quest.TargetCount}");
+        }
+
+        public void QuestCompleteUI(Quest quest)
+        {
+            if (quest == null) return;
+
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"[퀘스트 완료!] '{quest.Title}'을(를) 달성했습니다!");
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.WriteLine("0. 다음");
+            Input(0);
         }
     }
 }
