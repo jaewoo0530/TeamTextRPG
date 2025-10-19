@@ -177,7 +177,11 @@ namespace TeamTextRPG.Manager
             Console.Write("원하시는 행동을 입력해주세요.");
 
             int choice = Input(2);
-            if (choice == 1)
+            if (choice == 0)
+            {
+                BattleMainUI();
+            }
+            else if (choice == 1)
             {
                 PlayerAttackStartUI();
             }
@@ -541,7 +545,7 @@ namespace TeamTextRPG.Manager
             {
                 InventoryUI();
             }
-            else if (choice > 0 && choice <= Inventory.equipableItems.Count)
+            else if (choice > 0 && choice <= Inventory.consumableItems.Count)
             {
                 gameManager.UseConsumableItem(choice);
             }
@@ -552,7 +556,7 @@ namespace TeamTextRPG.Manager
             Console.Clear();
 
             Console.WriteLine("성공");
-            Console.WriteLine($"{beforeHp} HP-> {Player.Hp} HP (회복량: {beforeHp - Player.Hp})");
+            Console.WriteLine($"{beforeHp} HP -> {Player.Hp} HP (회복량: {Player.Hp - beforeHp})");
 
             Console.WriteLine();
             Console.WriteLine("\n0. 나가기");
@@ -577,23 +581,36 @@ namespace TeamTextRPG.Manager
             Console.Clear();
             Console.WriteLine("퀘스트\n");
             Console.WriteLine("[퀘스트 목록]");
-            for (int i = 0; i < QuestManager.quests.Count; i++)
+
+            var quests = QuestManager.Quests;
+            var current = QuestManager.CurrentQuest;
+
+            for (int i = 0; i < quests.Count; i++)
             {
-                if (QuestManager.quests[i].IsCompleted == false)
-                {
-                    Console.WriteLine($"{QuestManager.quests[i].Title} | {QuestManager.quests[i].Description}");
-                }
+                string status;
+                if (quests[i] == current)
+                    status = "(진행중)";
+                else if (quests[i].IsCompleted)
+                    status = "(완료)";
+                else if (i > quests.IndexOf(current))
+                    status = "(잠김)";
+                else
+                    status = "";
+
+                Console.WriteLine($"{i + 1}. {quests[i].Title} {status}");
             }
+
             Console.WriteLine();
             Console.WriteLine("원하시는 퀘스트를 선택해주세요.");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
-            int choice = Input(QuestManager.quests.Count);
+
+            int choice = Input(QuestManager.Quests.Count);
             if (choice == 0)
             {
                 MainmenuUI();
             }
-            else if (choice > 0 && choice <= QuestManager.quests.Count)
+            else if (choice > 0 && choice <= QuestManager.Quests.Count)
             {
                 gameManager.AcceptQuest(choice);
             }
@@ -611,7 +628,6 @@ namespace TeamTextRPG.Manager
                 return;
             }
 
-            Console.WriteLine("[퀘스트 수락]");
             Console.WriteLine($"제목: {quest.Title}");
             Console.WriteLine($"내용: {quest.Description}");
             Console.WriteLine();
@@ -640,7 +656,6 @@ namespace TeamTextRPG.Manager
             if (quest == null) return;
 
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"[퀘스트 완료!] '{quest.Title}'을(를) 달성했습니다!");
             Console.ResetColor();
             Console.WriteLine();

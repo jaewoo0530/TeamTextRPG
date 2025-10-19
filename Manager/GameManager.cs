@@ -78,10 +78,9 @@ namespace TeamTextRPG.Manager
 
         public void AcceptQuest(int choice)
         {
-            if (choice - 1 < 0 || choice - 1 >= QuestManager.quests.Count)
+            if (choice - 1 < 0 || choice - 1 >= QuestManager.Quests.Count)
                 return;
 
-            // 선택한 퀘스트를 현재 퀘스트로 설정
             QuestManager.currentQuestIndex = choice - 1;
             Quest current = QuestManager.GetCurrentQuest();
 
@@ -124,18 +123,13 @@ namespace TeamTextRPG.Manager
         public void PlayerAttack(int choice)
         {
             Monster target = Monsters[choice - 1];
-
-            if (target.IsDead)
-            {
-                return;
-            }
-
+            if (target.IsDead) return;
+            
             int beforeMonsterHp = target.Hp;
-
             int damage = Battle.CalculateDamage(Player, target);
             Player.Attack(target, damage);
-            UI.PlayerAttackUI(target, damage, beforeMonsterHp);
 
+            UI.PlayerAttackUI(target, damage, beforeMonsterHp);
             Battle.isCritical = false;
             Battle.isEvaded = false;
             MonsterAttack();

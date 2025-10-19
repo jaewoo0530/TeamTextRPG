@@ -8,12 +8,14 @@ namespace TeamTextRPG.Manager
 {
     internal class QuestManager
     {
-        public List<Quest> quests = new List<Quest>();
+        public List<Quest> Quests { get; private set; }
         public int currentQuestIndex = 0;
+
+        public Quest CurrentQuest => (currentQuestIndex < Quests.Count) ? Quests[currentQuestIndex] : null;
 
         public QuestManager()
         {
-            quests = new List<Quest>
+            Quests = new List<Quest>
             {
             new Quest("저글링 숙청", "저글링 3마리 처치하기", "저글링", 3), //0
             new Quest("히드라 숙청", "히드라 3마리 처치하기", "히드라", 3),//1
@@ -24,8 +26,8 @@ namespace TeamTextRPG.Manager
         
         public Quest GetCurrentQuest()      //퀘스트 확인
         {
-            if (currentQuestIndex < quests.Count)
-                return quests[currentQuestIndex];   //퀘스트 번호
+            if (currentQuestIndex < Quests.Count)
+                return Quests[currentQuestIndex];   //퀘스트 번호
             else
                 return null;
 
@@ -42,7 +44,7 @@ namespace TeamTextRPG.Manager
 
         public bool MoveToNextQuest()
         {
-            if (currentQuestIndex + 1 < quests.Count)
+            if (currentQuestIndex + 1 < Quests.Count)
             {
                 currentQuestIndex++;
                 return true;
