@@ -15,9 +15,9 @@ namespace TeamTextRPG.Manager
         private readonly Random random;
         private readonly List<Item> items;
 
-        public RewardManager()
+        public RewardManager(ItemData sharedData)
         {
-            itemData = new ItemData();
+            itemData =  sharedData;
             random = new Random();
             items = itemData.Items;
         }
@@ -26,7 +26,7 @@ namespace TeamTextRPG.Manager
         {
             int randomDrop = random.Next(0, 100);
 
-            if (randomDrop < 50)        //50확률
+            if (randomDrop < 100)        //50확률
             {
                 var availableItems = items      //가졌나 안가졌나 판단
                     .Where(i => !i.isHave)

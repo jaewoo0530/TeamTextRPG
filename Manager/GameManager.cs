@@ -20,6 +20,7 @@ namespace TeamTextRPG.Manager
         public BattleManager Battle { get; private set; }
 
         private MonsterData monsterData = new MonsterData();
+        public ItemData ItemData { get; private set; }
         public Inventory Inventory { get; private set; }
         public QuestManager QuestManager { get; private set; }
         public RewardManager RewardManager { get; private set; }
@@ -36,7 +37,8 @@ namespace TeamTextRPG.Manager
             Inventory = new Inventory();
             QuestManager = new QuestManager();
 
-            RewardManager = new RewardManager();
+            ItemData = new ItemData();
+            RewardManager = new RewardManager(ItemData);
 
             string name = UI.CreateName();
             JobType job = UI.CreateJob();
@@ -245,17 +247,19 @@ namespace TeamTextRPG.Manager
                     if (currentQuest.IsCompleted)
                     {
                         UI.QuestCompleteUI(currentQuest); // 완료 UI 표시
-                        QuestManager.MoveToNextQuest();
-                        UI.ShowQuestUI(QuestManager.GetCurrentQuest()); // 다음 퀘스트 자동 표시
-                        
-                        if (RewardManager.GiveReward().ItemType == ItemType.소모템)
+
+                        Item reward = RewardManager.GiveReward();
+
+                        if (reward.ItemType == ItemType.소모템)
                         {
-                            Inventory.consumableItems.Add(RewardManager.GiveReward());
+                            Inventory.consumableItems.Add(reward);
                         }
                         else
                         {
-                            Inventory.equipableItems.Add(RewardManager.GiveReward());
+                            Inventory.equipableItems.Add(reward);
+                            Console.WriteLine($"획득: {reward.name}");
                         }
+                        QuestManager.MoveToNextQuest();
                     }
                 }
             }
