@@ -9,12 +9,11 @@ namespace TeamTextRPG.Data
 {
     internal class ItemData
     {
-        private Random random = new Random();
-        private List<Item> items;
+        public List<Item> Items {get; private set;}
 
         public ItemData()
         {
-            items = new List<Item>
+            Items = new List<Item>
             {
                 new Item("가죽갑옷", ItemType.방어구, 5, "가죽으로 만들어져 움직이기 편한 갑옷입니다.", false, true),
                 new Item("강철갑옷", ItemType.방어구, 8, "가죽으로 만들어져 움직이기 편한 갑옷입니다.", false, false),
@@ -28,26 +27,5 @@ namespace TeamTextRPG.Data
                 new Item("롱보우", ItemType.무기, 4, "비거리와 위력이 강해진 긴 활입니다.", false, false)
             };
         }
-        
-        /*public Item GetRandomReward()
-        {
-            int randomDrop = random.Next(0, 100);
-
-            if (randomDrop > 50)
-            {
-                foreach (var item in items)
-                {
-                    if (item.isHave == false)
-                    {
-                        item.isHave = true;
-                        return new Item(items[]);
-                    }
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }*/
     }
 }

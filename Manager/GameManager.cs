@@ -22,6 +22,7 @@ namespace TeamTextRPG.Manager
         private MonsterData monsterData = new MonsterData();
         public Inventory Inventory { get; private set; }
         public QuestManager QuestManager { get; private set; }
+        public RewardManager RewardManager { get; private set; }
 
         private int beforeDungeonHp;
 
@@ -34,6 +35,8 @@ namespace TeamTextRPG.Manager
 
             Inventory = new Inventory();
             QuestManager = new QuestManager();
+
+            RewardManager = new RewardManager();
 
             string name = UI.CreateName();
             JobType job = UI.CreateJob();
@@ -244,6 +247,15 @@ namespace TeamTextRPG.Manager
                         UI.QuestCompleteUI(currentQuest); // 완료 UI 표시
                         QuestManager.MoveToNextQuest();
                         UI.ShowQuestUI(QuestManager.GetCurrentQuest()); // 다음 퀘스트 자동 표시
+                        
+                        if (RewardManager.GiveReward().ItemType == ItemType.소모템)
+                        {
+                            Inventory.consumableItems.Add(RewardManager.GiveReward());
+                        }
+                        else
+                        {
+                            Inventory.equipableItems.Add(RewardManager.GiveReward());
+                        }
                     }
                 }
             }

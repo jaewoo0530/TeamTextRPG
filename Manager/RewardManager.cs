@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeamTextRPG.Data;
 using TeamTextRPG.Entities;
 using TeamTextRPG.Items;
 
@@ -10,13 +11,15 @@ namespace TeamTextRPG.Manager
 {
     internal class RewardManager
     {
+        private ItemData itemData;
         private readonly Random random;
         private readonly List<Item> items;
 
-        public RewardManager(List<Item> allItems)
+        public RewardManager()
         {
+            itemData = new ItemData();
             random = new Random();
-            items = allItems;       //전체아이템 리스트 참조
+            items = itemData.Items;
         }
 
         public Item GiveReward()
