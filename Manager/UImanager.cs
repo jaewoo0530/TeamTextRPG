@@ -538,7 +538,7 @@ namespace TeamTextRPG.Manager
                 Console.WriteLine($" - {i + 1}. {Inventory.consumableItems[i].name}   | {Inventory.consumableItems[i].TypeName} + {Inventory.consumableItems[i].value}  | {Inventory.consumableItems[i].info} (보유 개수: {Inventory.consumableItems[i].count})");
             }
             Console.WriteLine();
-            Console.WriteLine("\n0. 나가기");
+            Console.WriteLine("1. 사용하기\n0. 나가기");
 
             int choice = Input(Inventory.consumableItems.Count);
             if (choice == 0)
