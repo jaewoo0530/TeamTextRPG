@@ -653,13 +653,13 @@ namespace TeamTextRPG.Manager
             Console.WriteLine($"[퀘스트 진행 중] {quest.TargetMonster} 처치 {quest.CurrentCount}/{quest.TargetCount}");
         }
 
-        public void QuestCompleteUI(Quest quest)
+        public void QuestCompleteUI(Quest quest, Item reward)
         {
             if (quest == null) return;
 
             Console.WriteLine();
             Console.WriteLine($"[퀘스트 완료!] '{quest.Title}'을(를) 달성했습니다!");
-            Console.ResetColor();
+            Console.WriteLine($" - 보상으로 '{reward.name}'을(를) 획득했습니다!");
             Console.WriteLine();
             Console.WriteLine("0. 다음");
             Input(0);
