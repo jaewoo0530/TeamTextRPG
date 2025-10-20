@@ -51,5 +51,10 @@ namespace TeamTextRPG.Manager
             }
             return false;
         }
+        public void RestoreState(List<Quest> quests, int index)
+        {
+            Quests = quests;
+            currentQuestIndex = index;
+        }
     }
 }

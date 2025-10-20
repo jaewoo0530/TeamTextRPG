@@ -277,7 +277,7 @@ namespace TeamTextRPG.Manager
                 SaveManager.Save(this);
                 UI.ShowSaveSuccessMessage();
             }
-            catch(Exception ex) 
+            catch(Exception ex)
             {
                 UI.ShowSaveErrorMessage(ex.Message);
             }
@@ -290,16 +290,33 @@ namespace TeamTextRPG.Manager
                 if (data == null)
                 {
                     UI.ShowLoadErrorMessage("저장 파일이 없습니다.");
+                    Thread.Sleep(1000);
                     return;
                 }
+                //캐릭터 복원(private set으로 외부에서 대입 불가라 RestoreState를 사용해서 내부 메서드로 처리
+                Player = new Character(data.Player.Name, Enum.Parse<JobType>(data.Player.Job));
+                Player.RestoreState(
+                    data.Player.Level,
+                    data.Player.Hp,
+                    data.Player.Mp,
+                    data.Player.Exp,
+                    data.Player.Gold
+                );
+                //인벤 복원 (필드 공개라 바로 대입가능)
+                Inventory = new Inventory
+                {
+                    equipableItems = data.Inventory.Equipable,
+                    consumableItems = data.Inventory.Consumable
+                };
 
-                Player = data.Player;
-                Inventory = data.Inventory;
-                QuestManager = data.QuestManager;
+                // 퀘스트 복원 (캐릭터와 같은 이유)
+                QuestManager = new QuestManager();
+                QuestManager.RestoreState(
+                    data.Quest.Quests,
+                    data.Quest.CurrentQuestIndex
+                    );
+
                 stageNumber = data.StageNumber;
-
-                UI = new UIManager(this);
-                Battle = new BattleManager(this);
 
                 UI.ShowLoadSuccessMessage();
                 UI.MainmenuUI();
@@ -309,5 +326,7 @@ namespace TeamTextRPG.Manager
                 UI.ShowLoadErrorMessage(ex.Message);
             }
         }
+
     }
-}
+}    
+
