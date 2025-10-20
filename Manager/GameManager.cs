@@ -20,7 +20,7 @@ namespace TeamTextRPG.Manager
         public BattleManager Battle { get; private set; }
 
         private MonsterData monsterData = new MonsterData();
-        public ItemData ItemData { get; private set; }
+        public RewardData RewardData { get; private set; }
         public Inventory Inventory { get; private set; }
         public QuestManager QuestManager { get; private set; }
         public RewardManager RewardManager { get; private set; }
@@ -37,8 +37,8 @@ namespace TeamTextRPG.Manager
             Inventory = new Inventory();
             QuestManager = new QuestManager();
 
-            ItemData = new ItemData();
-            RewardManager = new RewardManager(ItemData);
+            RewardData = new RewardData();
+            RewardManager = new RewardManager(RewardData);
 
             string name = UI.CreateName();
             JobType job = UI.CreateJob();
@@ -122,7 +122,7 @@ namespace TeamTextRPG.Manager
         {
             Monster target = Monsters[choice - 1];
             if (target.IsDead) return;
-            
+
             int beforeMonsterHp = target.Hp;
             int damage = Battle.CalculateDamage(Player, target);
             Player.Attack(target, damage);

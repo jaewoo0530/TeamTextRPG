@@ -134,7 +134,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine();
             Console.WriteLine($"Lv. {Player.Level}");
             Console.WriteLine($"{Player.Name} ({Player.Job})");
-            
+
             Console.WriteLine($"공격력 : {Player.Atk} + ({Player.ItemAtk})"); // ItemType == 무기
             Console.WriteLine($"방어력 : {Player.Def} + ({Player.ItemDef})"); // ItemType == 방어구
             Console.WriteLine($"H P : {Player.Hp}");
@@ -293,7 +293,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
             Console.WriteLine();
 
-            for (int i = 0; i < Monsters.Count; i++) // 단순 출력 기능
+            for (int i = 0; i < Monsters.Count; i++) // 단순 출력 기능 
             {
                 if (Monsters[i].Hp == 0)
                 {
@@ -369,7 +369,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
             Console.WriteLine($"{Player.Name}의 공격!");
 
-            if(Battle.isEvaded)
+            if (Battle.isEvaded)
             {
                 Console.WriteLine($"{Player.Name}의 공격이 빗나갔습니다!!");
             }

@@ -25,8 +25,8 @@ namespace TeamTextRPG
             IsCompleted = false;
         }
 
-       public bool DoingQuest(string monsterName)
-       {
+        public bool DoingQuest(string monsterName)
+        {
             if (IsCompleted || string.IsNullOrEmpty(TargetMonster))
                 return false;
 
@@ -40,10 +40,10 @@ namespace TeamTextRPG
                 }
             }
             return false;
-       }
+        }
         public void Complete()
         {
             IsCompleted = true;
         }
-    } 
+    }
 }
