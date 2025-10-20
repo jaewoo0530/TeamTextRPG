@@ -137,8 +137,8 @@ namespace TeamTextRPG.Manager
 
             Console.WriteLine($"공격력 : {Player.Atk} + ({Player.ItemAtk})"); // ItemType == 무기
             Console.WriteLine($"방어력 : {Player.Def} + ({Player.ItemDef})"); // ItemType == 방어구
-            Console.WriteLine($"H P : {Player.Hp}");
-            Console.WriteLine($"M P : {Player.Mp}");
+            Console.WriteLine($"H P : {Player.Hp}/{Player.MaxHp}");
+            Console.WriteLine($"M P : {Player.Mp}/{Player.MaxMp}");
             Console.WriteLine($"Gold : {Player.Gold} G");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
@@ -177,7 +177,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("[내정보]");
             Console.WriteLine($"Lv.{Player.Level} {Player.Name} ({Player.Job})");
             Console.WriteLine($"HP {Player.Hp}/{Player.MaxHp}");
-            Console.WriteLine($"HP {Player.Mp}/{Player.MaxMp}");
+            Console.WriteLine($"MP {Player.Mp}/{Player.MaxMp}");
             Console.WriteLine();
             Console.WriteLine("1. 공격\n2. 스킬");
             Console.WriteLine();
@@ -223,7 +223,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("[내정보]");
             Console.WriteLine($"Lv.{Player.Level} {Player.Name} ({Player.Job})");
             Console.WriteLine($"HP {Player.Hp}/{Player.MaxHp}");
-            Console.WriteLine($"HP {Player.Mp}/{Player.MaxMp}");
+            Console.WriteLine($"MP {Player.Mp}/{Player.MaxMp}");
             Console.WriteLine();
             Console.WriteLine("0. 취소");
             Console.WriteLine();
@@ -312,7 +312,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("[내정보]");
             Console.WriteLine($"Lv.{Player.Level} {Player.Name} ({Player.Job})");
             Console.WriteLine($"HP {Player.Hp}/{Player.MaxHp}");
-            Console.WriteLine($"HP {Player.Mp}/{Player.MaxMp}");
+            Console.WriteLine($"MP {Player.Mp}/{Player.MaxMp}");
             Console.WriteLine();
             Console.WriteLine("0. 취소");
             Console.WriteLine();
@@ -354,7 +354,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("[내정보]");
             Console.WriteLine($"Lv.{Player.Level} {Player.Name} ({Player.Job})");
             Console.WriteLine($"HP {Player.Hp}/{Player.MaxHp}");
-            Console.WriteLine($"HP {Player.Mp}/{Player.MaxMp}");
+            Console.WriteLine($"MP {Player.Mp}/{Player.MaxMp}");
 
             Console.WriteLine("\n마나가 부족합니다.");
 
@@ -438,8 +438,6 @@ namespace TeamTextRPG.Manager
         public void BattlePlayerWinUI(int beforeDungeonHp, int beforeLevel, int beforeExp) // 플레이어 승리 결과창
         {
             Console.Clear();
-            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber} Result");
-            Console.WriteLine();
             Console.WriteLine("Victory");
             Console.WriteLine();
             Console.WriteLine($"던전에서 몬스터 {Monsters.Count}마리를 잡았습니다.");
@@ -463,8 +461,6 @@ namespace TeamTextRPG.Manager
         public void BattlePlayerLoseUI(int beforeDungeonHp)
         {
             Console.Clear();
-            Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber} Result");
-            Console.WriteLine();
             Console.WriteLine("You Lose");
             Console.WriteLine();
             Console.WriteLine($"Lv.{Player.Level} {Player.Name}");
