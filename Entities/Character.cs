@@ -64,7 +64,7 @@ namespace TeamTextRPG.Entities
 
             CalculateItemStat();
         }
-         
+
         public void CalculateItemStat()
         {
             ItemAtk = 0;
@@ -77,7 +77,7 @@ namespace TeamTextRPG.Entities
                 ItemDef += equippedDefenseItem.value;
 
             Atk = BaseAtk + ItemAtk;
-            Def = BaseDef+ ItemDef;
+            Def = BaseDef + ItemDef;
         }
 
         public void LevelUp()
@@ -88,6 +88,7 @@ namespace TeamTextRPG.Entities
                 Level++;
                 Atk++;
                 Def++;
+                Mp = MaxMp;
             }
         }
 
