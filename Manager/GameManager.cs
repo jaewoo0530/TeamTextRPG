@@ -250,7 +250,7 @@ namespace TeamTextRPG.Manager
                             Inventory.equipableItems.Add(reward);
                         }
 
-                        UI.QuestCompleteUI(currentQuest); // 완료 UI 표시
+                        UI.QuestCompleteUI(currentQuest, reward); // 완료 UI 표시
                         QuestManager.MoveToNextQuest();
                     }
                 }
