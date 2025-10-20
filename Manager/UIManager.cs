@@ -658,15 +658,6 @@ namespace TeamTextRPG.Manager
                 QuestUI();
             }
         }
-
-        public void QuestProgressUI(Quest quest)
-        {
-            if (quest == null) return;
-
-            Console.WriteLine();
-            Console.WriteLine($"[퀘스트 진행 중] {quest.TargetMonster} 처치 {quest.CurrentCount}/{quest.TargetCount}");
-        }
-
         public void QuestCompleteUI(Quest quest, Item reward)
         {
             if (quest == null) return;

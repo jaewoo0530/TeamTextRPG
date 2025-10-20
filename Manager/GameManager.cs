@@ -241,24 +241,20 @@ namespace TeamTextRPG.Manager
 
                 if (QuestManager.UpdateQuestProgress(monster.Name, out Quest currentQuest))
                 {
-                    UI.QuestProgressUI(currentQuest); // 진행 중인 퀘스트 출력
+                    Item reward = RewardManager.GiveReward();
 
-                    if (currentQuest.IsCompleted)
+                    if (reward.ItemType == ItemType.소모템)
                     {
-                        Item reward = RewardManager.GiveReward();
-
-                        if (reward.ItemType == ItemType.소모템)
-                        {
-                            Inventory.consumableItems.Add(reward);
-                        }
-                        else
-                        {
-                            Inventory.equipableItems.Add(reward);
-                        }
-
-                        UI.QuestCompleteUI(currentQuest, reward); // 완료 UI 표시
-                        QuestManager.MoveToNextQuest();
+                        Inventory.consumableItems.Add(reward);
                     }
+                    else
+                    {
+                        Inventory.equipableItems.Add(reward);
+                    }
+
+                    UI.QuestCompleteUI(currentQuest, reward); // 완료 UI 표시
+                    QuestManager.MoveToNextQuest();
+
                 }
             }
             Player.AddExp(acquireExp);
