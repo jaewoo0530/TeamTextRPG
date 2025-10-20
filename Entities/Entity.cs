@@ -57,11 +57,5 @@ namespace TeamTextRPG.Entities
 
         // 죽음판단
         public bool IsDead => Hp <= 0;
-
-        //회복매커니즘
-        public void Heal(int amount)
-        {
-            Hp += amount;
-        }
     }
 }
