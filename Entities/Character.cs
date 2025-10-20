@@ -44,12 +44,6 @@ namespace TeamTextRPG.Entities
             CalculateItemStat();
         }
 
-        public void AddExp(int value)
-        {
-            Exp += value;
-            LevelUp();
-        }
-
         public void ApplyItem(Item item)
         {
             switch (item.ItemType)
@@ -80,14 +74,20 @@ namespace TeamTextRPG.Entities
             Def = BaseDef + ItemDef;
         }
 
+        public void AddExp(int value)
+        {
+            Exp += value;
+            LevelUp();
+        }
+
         public void LevelUp()
         {
             while (Exp >= 100)
             {
                 Exp -= 100;
                 Level++;
-                Atk++;
-                Def++;
+                BaseAtk++;
+                BaseDef++;
                 Mp = MaxMp;
             }
         }
