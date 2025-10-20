@@ -1,4 +1,5 @@
-﻿using TeamTextRPG.Entities;
+﻿using System.Text.Json.Serialization;
+using TeamTextRPG.Entities;
 
 namespace TeamTextRPG.Items
 {
@@ -15,6 +16,7 @@ namespace TeamTextRPG.Items
         public bool isHave;
 
         public int count;
+        public Item() { } //load 받기위한 기본 생성자 
         //장착템
         public Item(string name, ItemType itemType, int value, string info, bool isEquip, bool isHave)
         {
@@ -35,7 +37,7 @@ namespace TeamTextRPG.Items
             this.info = info;
             this.count = count;
         }
-
+        [JsonIgnore]
         public string TypeName => ItemType switch
         {
             ItemType.무기 => "공격력",

@@ -110,5 +110,13 @@ namespace TeamTextRPG.Entities
         {
             Hp += amount;
         }
+        public void RestoreState(int level, int hp, int mp, int exp, int gold)
+        {
+            Level = level;
+            Hp = hp;
+            Mp = mp;
+            Exp = exp;
+            Gold = gold;
+        }
     }
 }
