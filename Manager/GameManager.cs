@@ -239,8 +239,6 @@ namespace TeamTextRPG.Manager
 
                     if (currentQuest.IsCompleted)
                     {
-                        UI.QuestCompleteUI(currentQuest); // 완료 UI 표시
-
                         Item reward = RewardManager.GiveReward();
 
                         if (reward.ItemType == ItemType.소모템)
@@ -251,6 +249,8 @@ namespace TeamTextRPG.Manager
                         {
                             Inventory.equipableItems.Add(reward);
                         }
+
+                        UI.QuestCompleteUI(currentQuest); // 완료 UI 표시
                         QuestManager.MoveToNextQuest();
                     }
                 }
