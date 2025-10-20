@@ -13,11 +13,11 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace TeamTextRPG.Manager
 {
-    internal class temp
+    internal class UIManager
     {
         private GameManager gameManager;
 
-        public temp(GameManager gameManager) // 생성자
+        public UIManager(GameManager gameManager) // 생성자
         {
             this.gameManager = gameManager;
         }
