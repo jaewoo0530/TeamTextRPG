@@ -27,7 +27,7 @@ namespace TeamTextRPG.Items
             };
         }
 
-        public Item EquipItem(List<Item> items, Item selectedItem)
+        public void EquipItem(List<Item> items, Item selectedItem)
         {
             for (int i = 0; i < items.Count; i++)
             {
@@ -38,14 +38,11 @@ namespace TeamTextRPG.Items
             }
 
             selectedItem.isEquip = true;
-
-            return selectedItem;
         }
 
-        public Item UnEquipItem(List<Item> items, Item selectedItem)
+        public void UnEquipItem(List<Item> items, Item selectedItem)
         {
             selectedItem.isEquip = false;
-            return selectedItem;
         }
     }
 }
