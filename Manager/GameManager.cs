@@ -70,10 +70,14 @@ namespace TeamTextRPG.Manager
         {
             int beforeHp = Player.Hp;
             Item item = Inventory.consumableItems[choice - 1];
+
             if (item.count > 0)
             {
-                Player.UseItem(item);
-                UI.ItemUseSuccessUI(beforeHp);
+                if (item is Consumable consumable)
+                {
+                    Player.UseItem(consumable);
+                    UI.ItemUseSuccessUI(beforeHp);
+                }
             }
             else
             {

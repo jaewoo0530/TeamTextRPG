@@ -23,7 +23,7 @@ namespace TeamTextRPG.Items
 
             consumableItems = new List<Item>()
             {
-                new Item("체력 포션", ItemType.소모템, 20, "체력을 회복시켜주는 포션입니다.", 3)
+                new Consumable("체력 포션", ItemType.소모템, 20, "체력을 회복시켜주는 포션입니다.", 3)
             };
         }
 

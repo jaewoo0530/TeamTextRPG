@@ -107,5 +107,10 @@ namespace TeamTextRPG.Entities
         {
             item.Use(this);
         }
+
+        public void Heal(int amount)
+        {
+            Hp += amount;
+        }
     }
 }
