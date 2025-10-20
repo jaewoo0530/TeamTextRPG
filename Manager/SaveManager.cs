@@ -40,11 +40,11 @@ namespace TeamTextRPG.Manager
                     StageNumber = game.stageNumber
                 };
 
-                //Player객체 Json 텍스트로 바꾸기        //보기좋게 들여쓰기
+                //Player객체 Json 텍스트로 바꾸기        
                 string Json = JsonConvert.SerializeObject(data, 
-                    Formatting.Indented,
+                    Formatting.Indented,    //보기좋게 들여쓰기
                     new JsonSerializerSettings {
-                        TypeNameHandling = TypeNameHandling.Auto,
+                        TypeNameHandling = TypeNameHandling.Auto,   //$type 메타데이터 (데이터 안의 데이터 ) 실제 게임데이터 구조를 알려주는 부가정보 
                         NullValueHandling = NullValueHandling.Ignore
                     });
                 File.WriteAllText(saveFile, Json);                  //세이브파일 위치에 json텍스트 저장, 같은이름 있으면 덮어씀,
