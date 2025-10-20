@@ -660,6 +660,7 @@ namespace TeamTextRPG.Manager
 
             Console.WriteLine();
             Console.WriteLine($"[퀘스트 완료!] '{quest.Title}'을(를) 달성했습니다!");
+            Console.WriteLine();
             Console.WriteLine($" - 보상으로 '{reward.name}'을(를) 획득했습니다!");
             Console.WriteLine();
             Console.WriteLine("0. 다음");
