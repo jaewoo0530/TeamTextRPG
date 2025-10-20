@@ -263,8 +263,8 @@ namespace TeamTextRPG.Manager
             Console.WriteLine($"HP {Player.Hp}/{Player.MaxHp}");
             Console.WriteLine($"MP {Player.Mp}/{Player.MaxMp}");
             Console.WriteLine();
-            Console.WriteLine("1. FullpowerAttack");
-            Console.WriteLine("2. FullSmash");
+            Console.WriteLine($"1. 풀 파워 어설트\t 사용 MP : 15"); // 단일 FullpowerAttack
+            Console.WriteLine($"2. 풀 파워 스매시\t 사용 MP : 30"); // 광역 FullSmash
             Console.WriteLine();
             Console.Write("사용할 스킬을 선택해주세요.");
 
