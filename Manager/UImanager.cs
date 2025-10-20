@@ -134,7 +134,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine($"공격력 : {Player.Atk} + ({Player.ItemAtk})"); // ItemType == 무기
             Console.WriteLine($"방어력 : {Player.Def} + ({Player.ItemDef})"); // ItemType == 방어구
             Console.WriteLine($"체 력 : {Player.Hp}");
-            Console.WriteLine($"스태미나 : {Player.Mp}");
+            Console.WriteLine($"마 나 : {Player.Mp}");
             Console.WriteLine($"Gold : {Player.Gold} G");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
@@ -259,6 +259,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine("[내정보]");
             Console.WriteLine($"Lv.{Player.Level} {Player.Name} ({Player.Job})");
             Console.WriteLine($"HP {Player.Hp}/100");
+            Console.WriteLine($"MP {Player.Mp}/100");
             Console.WriteLine();
             Console.WriteLine("1. FullpowerAttack");
             Console.WriteLine("2. FullSmash");
