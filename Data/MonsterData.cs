@@ -11,7 +11,7 @@ namespace TeamTextRPG.Data
     {
         private Random random = new Random();
 
-        public List<Monster> MonsterDex {get; private set;}
+        public List<Monster> MonsterDex { get; private set; }
 
         public MonsterData()
         {

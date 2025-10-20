@@ -23,7 +23,7 @@ namespace TeamTextRPG.Manager
             new Quest("울라리 숙청", "울라리 3마리 처치하기", "울라리", 3)
             };
         }
-        
+
         public Quest GetCurrentQuest()      //퀘스트 확인
         {
             if (currentQuestIndex < Quests.Count)

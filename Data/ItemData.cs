@@ -9,7 +9,7 @@ namespace TeamTextRPG.Data
 {
     internal class ItemData
     {
-        public List<Item> Items {get; private set;}
+        public List<Item> Items { get; private set; }
 
         public ItemData()
         {

@@ -17,33 +17,25 @@ namespace TeamTextRPG.Manager
 
         public RewardManager(ItemData sharedData)
         {
-            itemData =  sharedData;
+            itemData = sharedData;
             random = new Random();
             items = itemData.Items;
         }
 
         public Item GiveReward()
         {
-            int randomDrop = random.Next(0, 100);
+            var availableItems = items
+                .Where(i => !i.isHave)
+                .ToList();
 
-            if (randomDrop < 100)        //50확률
+            if (availableItems.Count == 0)
             {
-                var availableItems = items      //가졌나 안가졌나 판단
-                    .Where(i => !i.isHave)
-                    .ToList();
-
-                if (availableItems.Count == 0)
-                {
-                    return null;
-                }
-
-                Item reward = availableItems[random.Next(availableItems.Count)];
-                reward.isHave = true;       //주고 true
-                return reward;
+                return null;
             }
 
-            return null;    //실패시 null반환
+            Item reward = availableItems[random.Next(availableItems.Count)];
+            reward.isHave = true;
+            return reward;
         }
     }
-
 }

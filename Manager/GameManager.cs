@@ -122,7 +122,7 @@ namespace TeamTextRPG.Manager
         {
             Monster target = Monsters[choice - 1];
             if (target.IsDead) return;
-            
+
             int beforeMonsterHp = target.Hp;
             int damage = Battle.CalculateDamage(Player, target);
             Player.Attack(target, damage);
