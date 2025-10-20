@@ -264,5 +264,45 @@ namespace TeamTextRPG.Manager
         {
             UI.BattlePlayerLoseUI(beforeDungeonHp);
         }
+
+        public void SaveGame()
+        {
+            try
+            {
+                SaveManager.Save(this);
+                UI.ShowSaveSuccessMessage();
+            }
+            catch(Exception ex) 
+            {
+                UI.ShowSaveErrorMessage(ex.Message);
+            }
+        }
+        public void LoadGame()
+        {
+            try
+            {
+                GameData data = SaveManager.Load();
+                if (data == null)
+                {
+                    UI.ShowLoadErrorMessage("저장 파일이 없습니다.");
+                    return;
+                }
+
+                Player = data.Player;
+                Inventory = data.Inventory;
+                QuestManager = data.QuestManager;
+                stageNumber = data.StageNumber;
+
+                UI = new UIManager(this);
+                Battle = new BattleManager(this);
+
+                UI.ShowLoadSuccessMessage();
+                UI.MainmenuUI();
+            }
+            catch(Exception ex)
+            {
+                UI.ShowLoadErrorMessage(ex.Message);
+            }
+        }
     }
 }

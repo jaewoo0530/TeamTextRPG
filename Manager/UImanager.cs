@@ -116,9 +116,13 @@ namespace TeamTextRPG.Manager
             {
                 InventoryUI();
             }
-            else if (choice == 4) 
+            else if (choice == 4)
             {
                 QuestUI();
+            }
+            else if (choice == 0)
+            {
+                SaveMenuUI();
             }
         }
 
@@ -669,6 +673,67 @@ namespace TeamTextRPG.Manager
             Console.WriteLine();
             Console.WriteLine("0. 다음");
             Input(0);
+        }
+
+        public void  SaveMenuUI()
+        {
+            Console.Clear();
+            Console.WriteLine(" 저장 메뉴\n\n ");
+            Console.WriteLine("1. 저장하기");
+            Console.WriteLine("2. 불러오기");
+            Console.WriteLine("0. 나가기");
+            Console.WriteLine();
+            Console.Write("원하시는 행동을 입력해주세요.");
+
+            int choice = Input(2);
+            if (choice == 0)
+                MainmenuUI();
+            else if (choice == 1)
+                gameManager.SaveGame();
+            else if (choice == 2)
+                gameManager.LoadGame();
+        }
+        public void ShowSaveSuccessMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("게임이 저장되었습니다!");
+            Console.WriteLine();
+            Console.WriteLine("0. 저장메뉴로 돌아가기");
+            Input(0);
+            SaveMenuUI();
+        }
+        public void ShowSaveErrorMessage(string message)
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("저장 중 오류가 발생했습니다!");
+            Console.WriteLine($"오류 내용: {message}");
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.WriteLine("0. 저장메뉴로 돌아가기");
+            Input(0);
+            SaveMenuUI();
+        }
+        public void ShowLoadSuccessMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("게임 데이터를 불러왔습니다!");
+            Console.WriteLine();
+            Console.WriteLine("0. 저장메뉴로 돌아가기");
+            Input(0);
+            SaveMenuUI();
+        }
+        public void ShowLoadErrorMessage(string message)
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("불러오기 중 오류가 발생했습니다!");
+            Console.WriteLine($"오류 내용: {message}");
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.WriteLine("0. 저장메뉴로 돌아가기");
+            Input(0);
+            SaveMenuUI();
         }
     }
 }
