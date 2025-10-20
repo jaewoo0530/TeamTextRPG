@@ -601,18 +601,20 @@ namespace TeamTextRPG.Manager
             }
 
             Console.WriteLine();
-            Console.WriteLine("원하시는 퀘스트를 선택해주세요.");
+            Console.WriteLine("진행 중인 퀘스트를 확인하겠습니까?");
             Console.WriteLine();
+
+            Console.WriteLine("1. 예");
             Console.WriteLine("0. 나가기");
 
-            int choice = Input(QuestManager.Quests.Count);
+            int choice = Input(1);
             if (choice == 0)
             {
                 MainmenuUI();
             }
-            else if (choice > 0 && choice <= QuestManager.Quests.Count)
+            if (choice == 1)
             {
-                gameManager.AcceptQuest(choice);
+                ShowQuestUI(current);
             }
         }
 

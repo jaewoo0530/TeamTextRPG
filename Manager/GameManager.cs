@@ -81,17 +81,6 @@ namespace TeamTextRPG.Manager
             }
         }
 
-        public void AcceptQuest(int choice)
-        {
-            if (choice - 1 < 0 || choice - 1 >= QuestManager.Quests.Count)
-                return;
-
-            QuestManager.currentQuestIndex = choice - 1;
-            Quest current = QuestManager.GetCurrentQuest();
-
-            UI.ShowQuestUI(current);
-        }
-
         public void StartBattle()
         {
             beforeDungeonHp = Player.Hp;
@@ -257,7 +246,6 @@ namespace TeamTextRPG.Manager
                         else
                         {
                             Inventory.equipableItems.Add(reward);
-                            Console.WriteLine($"획득: {reward.name}");
                         }
                         QuestManager.MoveToNextQuest();
                     }
