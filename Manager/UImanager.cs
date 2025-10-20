@@ -99,7 +99,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine();
             Console.WriteLine("1. 상태 보기\n2. 전투 시작\n3. 인벤토리\n4. 퀘스트");
             Console.WriteLine();
-            Console.WriteLine("9. 불러오기\n0. 저장");
+            Console.WriteLine("0. 저장");
             Console.WriteLine();
             Console.Write("원하시는 행동을 입력해주세요.");
 
