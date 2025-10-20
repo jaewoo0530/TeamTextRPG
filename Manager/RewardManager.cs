@@ -11,11 +11,11 @@ namespace TeamTextRPG.Manager
 {
     internal class RewardManager
     {
-        private ItemData itemData;
+        private RewardData itemData;
         private readonly Random random;
         private readonly List<Item> items;
 
-        public RewardManager(ItemData sharedData)
+        public RewardManager(RewardData sharedData)
         {
             itemData = sharedData;
             random = new Random();
