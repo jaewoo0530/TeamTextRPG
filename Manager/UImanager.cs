@@ -289,7 +289,7 @@ namespace TeamTextRPG.Manager
             Console.WriteLine($"Battle!! - Stage - {gameManager.stageNumber}");
             Console.WriteLine();
 
-            for (int i = 0; i < Monsters.Count; i++) // 단순 출력 기능
+            for (int i = 0; i < Monsters.Count; i++) // 단순 출력 기능 
             {
                 if (Monsters[i].Hp == 0)
                 {
