@@ -19,7 +19,7 @@ namespace TeamTextRPG.Skills
         public override void Execute(Monster? target = null)
         {
             int damage = Player.Atk * 5;
-            Player.Mp -= manaCost;
+            Player.ReduceMp(manaCost);
 
             gameManager.PlayerSkillAttack(target, damage);
         }

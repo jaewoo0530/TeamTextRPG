@@ -19,20 +19,8 @@ namespace TeamTextRPG.Entities
         public int Gold { get; private set; } = 500;
         public int Exp { get; private set; } = 0;
 
-        private int mp;
-        public int Mp
-        {
-            get => mp;
-            set
-            {
-                if (value < 0)
-                    mp = 0;
-                else if (value > 100)
-                    mp = 100;
-                else
-                    mp = value;
-            }
-        }
+        public int Mp { get; private set; }
+        public int MaxMp { get; private set; }
 
         private Item equippedAttackItem;
         private Item equippedDefenseItem;
@@ -45,13 +33,13 @@ namespace TeamTextRPG.Entities
 
             switch (job)
             {
-                case JobType.전사: BaseAtk = 5; BaseDef = 10; MaxHp = 100; break;
-                case JobType.궁수: BaseAtk = 10; BaseDef = 5; MaxHp = 100; break;
-                case JobType.마법사: BaseAtk = 3; BaseDef = 5; MaxHp = 100; break;
+                case JobType.전사: BaseAtk = 5; BaseDef = 10; MaxHp = 100; MaxMp = 100; break;
+                case JobType.궁수: BaseAtk = 10; BaseDef = 5; MaxHp = 100; MaxMp = 100; break;
+                case JobType.마법사: BaseAtk = 3; BaseDef = 5; MaxHp = 100; MaxMp = 200; break;
             }
 
             Hp = MaxHp;
-            Mp = 100;
+            Mp = MaxMp;
 
             CalculateItemStat();
         }
@@ -100,6 +88,15 @@ namespace TeamTextRPG.Entities
                 Level++;
                 Atk++;
                 Def++;
+            }
+        }
+
+        public void ReduceMp(int manaCost)
+        {
+            Mp -= manaCost;
+            if (Mp <= 0)
+            {
+                Mp = 0;
             }
         }
 
