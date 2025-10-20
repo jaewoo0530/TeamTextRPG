@@ -152,6 +152,9 @@ namespace TeamTextRPG.Manager
             }
         }
 
+        /*
+         전투 관련
+        */
         public void BattleMainUI() // 2. 전투 시작 // 1~4 마리의 몬스터가 랜덤으로 출현
         {
             Console.Clear();
@@ -471,6 +474,9 @@ namespace TeamTextRPG.Manager
             int choice = Input(0);
         }
 
+        /*
+         아이템 관련
+        */
         public void InventoryUI()
         {
             Console.Clear();
@@ -581,6 +587,9 @@ namespace TeamTextRPG.Manager
             ConsumableItemUI();
         }
 
+        /*
+         퀘스트 관련
+        */
         public void QuestUI()
         {
             Console.Clear();
@@ -671,6 +680,9 @@ namespace TeamTextRPG.Manager
             Input(0);
         }
 
+        /*
+         저장 관련
+        */
         public void  SaveMenuUI()
         {
             Console.Clear();

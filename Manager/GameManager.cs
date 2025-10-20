@@ -49,6 +49,9 @@ namespace TeamTextRPG.Manager
             UI.MainmenuUI();
         }
 
+        /*
+         아이템 관련
+        */
         public void ItemEquip(int choice)
         {
             Item selectedItem = Inventory.equipableItems[choice - 1];
@@ -85,6 +88,9 @@ namespace TeamTextRPG.Manager
             }
         }
 
+        /*
+         전투 관련
+        */
         public void StartBattle()
         {
             beforeDungeonHp = Player.Hp;
@@ -265,6 +271,9 @@ namespace TeamTextRPG.Manager
             UI.BattlePlayerLoseUI(beforeDungeonHp);
         }
 
+        /*
+         저장 관련
+        */
         public void SaveGame()
         {
             try
