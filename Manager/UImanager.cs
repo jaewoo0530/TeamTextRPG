@@ -130,9 +130,11 @@ namespace TeamTextRPG.Manager
             Console.WriteLine();
             Console.WriteLine($"Lv. {Player.Level}");
             Console.WriteLine($"{Player.Name} ({Player.Job})");
-            Console.WriteLine($"공격력 : {Player.Atk} + (/*EquipableItems.value*/)"); // ItemType == 무기
-            Console.WriteLine($"방어력 : {Player.Def} + (/*EquipableItems.value*/)"); // ItemType == 방어구
+            
+            Console.WriteLine($"공격력 : {Player.Atk} + ({Player.ItemAtk})"); // ItemType == 무기
+            Console.WriteLine($"방어력 : {Player.Def} + ({Player.ItemDef})"); // ItemType == 방어구
             Console.WriteLine($"체 력 : {Player.Hp}");
+            Console.WriteLine($"스태미나 : {Player.Mp}");
             Console.WriteLine($"Gold : {Player.Gold} G");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
@@ -437,8 +439,6 @@ namespace TeamTextRPG.Manager
             Console.WriteLine($"Lv.{beforeLevel} {Player.Name} -> Lv.{Player.Level} {Player.Name}");
             Console.WriteLine($"exp.{beforeExp} -> exp.{Player.Exp}");
             Console.WriteLine($"HP {beforeDungeonHp} -> {Player.Hp}");
-            Console.WriteLine();
-            Console.WriteLine("[획득 아이템]");
             Console.WriteLine();
             Console.WriteLine("0. 다음");
             Console.WriteLine();
